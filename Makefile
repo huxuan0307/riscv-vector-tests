@@ -1,0 +1,79 @@
+#makefile
+
+GCC_TOOLCHAIN_DIR := /opt/RISCV/
+GEM5_DIR := /home/huxuan/repos/plct-gem5/
+BENCHMARK_DIR := /home/huxuan/repos/riscv-vectorized-benchmark-suite/
+GCC := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-gcc
+GXX := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-g++
+GNU_OBJDUMP := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-objdump
+GXX_FLAGS := -march=rv64gcv_zfh -flax-vector-conversions -static -g
+gnu_dump_options ?= -d 
+
+CLANG_DIR := /usr/local/
+CLANG := ${CLANG_DIR}/bin/clang
+CLANGXX := ${CLANG_DIR}/bin/clang++
+CLANG_OBJDUMP := ${CLANG_DIR}/bin/llvm-objdump
+CLANGXX_FLAGS := \
+		--target=riscv64-unknown-linux-gnu -march=rv64gcv0p10 \
+		-menable-experimental-extensions --gcc-toolchain=${GCC_TOOLCHAIN_DIR} \
+		--sysroot=${GCC_TOOLCHAIN_DIR}sysroot -flax-vector-conversions \
+		-DUSE_RISCV_VECTOR -static -g -w
+llvm_dump_options ?= --mattr=experimental-v
+TOOLCHAIN ?= gnu
+
+ifeq (${TOOLCHAIN}, gnu)
+	CC := ${GCC}
+	CXX := ${GXX}
+	CXX_FLAGS := ${GXX_FLAGS}
+	OBJDUMP := ${GNU_OBJDUMP}
+	OBJDUMP_OPTION := ${gnu_dump_options}
+else ifeq ($(TOOLCHAIN), clang)
+	CC := ${CLANG}
+	CXX := ${CLANGXX}
+	CXX_FLAGS := ${CLANGXX_FLAGS}
+	OBJDUMP := ${CLANG_OBJDUMP}
+	OBJDUMP_OPTION := ${llvm_dump_options}
+endif
+
+
+start:
+	if [ ! -d bin ]; then \
+		mkdir bin; \
+	else \
+		echo bin dir exist; \
+	fi
+
+all:
+	@echo ${CXX}
+	make start
+	for entry in src/*.cpp ; do \
+		${CXX} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
+	done
+	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
+	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
+# rm src/*.o;
+
+all_O2: CXX_FLAGS += -O2
+all_O2: 
+	@echo "CXX_FLAGS = " ${CXX_FLAGS}
+	make start
+	for entry in src/*.cpp ; do \
+		${CXX} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
+	done
+	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
+	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
+
+clean:
+	rm -rf bin/
+
+# runqemu :
+# 	${GCC_TOOLCHAIN_DIR}bin/qemu-riscv64 -cpu rv64,x-v=true bin/my_tests_vector 256
+
+# runqemu_O2 :
+# 	${GCC_TOOLCHAIN_DIR}bin/qemu-riscv64 -cpu rv64,x-v=true bin/my_tests_vector_O2 256
+
+# rungem5 :
+# 	${GEM5_DIR}build/RISCV/gem5.opt ${GEM5_DIR}configs/example/riscv_vector_engine.py --cmd="${BENCHMARK_DIR}my_tests/bin/my_tests_vector 256"
+
+# rungem5_O2 :
+# 	${GEM5_DIR}build/RISCV/gem5.opt ${GEM5_DIR}configs/example/riscv_vector_engine.py --cmd="${BENCHMARK_DIR}my_tests/bin/my_tests_vector_O2 256"
