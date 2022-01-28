@@ -10,7 +10,7 @@
 #include <sys/time.h>
 
 template<typename Type>
-void copy_result(Type* dst, Type* src, uint64_t n)
+void copy_vector(Type* dst, Type* src, uint64_t n)
 {
   int i;
   for (i=0; i<n; i++) {
@@ -79,5 +79,6 @@ void init_vector(uint16_t* pv, const size_t n);
 void init_vector(int8_t* pv, const size_t n);
 void init_vector(uint8_t* pv, const size_t n);
 void init_vector(bool* pv, const size_t n);
+void init_mask_vector(uint8_t* pv, const size_t n);
 
 #endif

@@ -16,10 +16,10 @@ CLANG_OBJDUMP := ${CLANG_DIR}/bin/llvm-objdump
 CLANGXX_FLAGS := \
 		--target=riscv64-unknown-linux-gnu -march=rv64gcv0p10 \
 		-menable-experimental-extensions --gcc-toolchain=${GCC_TOOLCHAIN_DIR} \
-		--sysroot=${GCC_TOOLCHAIN_DIR}sysroot -flax-vector-conversions \
+		--sysroot=${GCC_TOOLCHAIN_DIR}/sysroot -flax-vector-conversions \
 		-DUSE_RISCV_VECTOR -static -g -w
 llvm_dump_options ?= --mattr=experimental-v
-TOOLCHAIN ?= gnu
+TOOLCHAIN ?= clang
 
 ifeq (${TOOLCHAIN}, gnu)
 	CC := ${GCC}

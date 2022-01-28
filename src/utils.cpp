@@ -89,5 +89,10 @@ void init_vector(uint8_t* pv, const size_t n) {
 
 void init_vector(bool* pv, const size_t n) {
   for (size_t i=0; i<n; i++)
-    pv[i] = rand() %2 == 0;
+    pv[i] = rand() % 2 == 0;
+}
+
+void init_mask_vector(uint8_t* pv, const size_t n) {
+  for (size_t i=0; i<n; i++)
+    pv[i] = rand() & 1;
 }
