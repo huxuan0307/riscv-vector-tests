@@ -1,6 +1,6 @@
-#include "vdef/vopivvv_def.h"
-#include "vdef/vopivv_def.h"
-#include "vdef/vopfvvv_def.h"
+#include "vdef/vopi_vvv_def.h"
+#include "vdef/vopi_vv_def.h"
+#include "vdef/vopf_vvv_def.h"
 #include <stdint.h>
 #include <riscv_vector.h>
 
