@@ -61,6 +61,9 @@ all_O2:
 		${CXX} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
 	done
 	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
+	rm src/*.o
+
+dump:
 	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
 
 clean:
