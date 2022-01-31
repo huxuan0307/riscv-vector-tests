@@ -9,7 +9,21 @@
 
 int main(int argc, char *argv[])
 {
-  // test_opivvv_m<int8_t, int8_t, int8_t>(vadd_vv_m_ref, vadd_vv_i8m1_m_vec);
+  TEST_OPIVVV_M_GROUP(vadd);
+  TEST_OPIVVV_M_GROUP(vsub);
+  TEST_OPIVVV_III_M_GROUP(vmin);
+  TEST_OPIVVV_III_M_GROUP(vmax);
+  TEST_OPIVVV_UUU_M_GROUP(vminu);
+  TEST_OPIVVV_UUU_M_GROUP(vmaxu);
+  TEST_OPIVVV_M_GROUP(vand);
+  TEST_OPIVVV_M_GROUP(vor);
+  TEST_OPIVVV_M_GROUP(vxor);
+  // TEST_OPIVVV_M_GROUP(vrgather);
+  TEST_OPIVVV_IUI_M_GROUP(vsll);
+  TEST_OPIVVV_UUU_M_GROUP(vsll);
+  TEST_OPIVVV_UUU_M_GROUP(vsrl);
+  TEST_OPIVVV_IUI_M_GROUP(vsra);
+
   TEST_OPIVVV_GROUP(vadd);
   TEST_OPIVVV_GROUP(vsub);
   TEST_OPIVVV_III_GROUP(vmin);

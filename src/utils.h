@@ -28,7 +28,7 @@ void test_result(Type* y, Type* y_ref, uint64_t nrows)
     for (row=0; row<nrows; row++) {
       double error = y[row] - y_ref[row];
       if (fabs(error) > 0.0000001)  {
-        printf("y[%ld]=%.16f != y_ref[%ld]=%.16f  INCORRECT RESULT !!!! \n", row, y[row], row, y_ref[row]);
+        printf("y_vec[%ld]=%.16f != y_ref[%ld]=%.16f  INCORRECT RESULT !!!! \n", row, y[row], row, y_ref[row]);
         nerrs++;
         if (nerrs == 100) break;
       }
@@ -40,7 +40,7 @@ void test_result(Type* y, Type* y_ref, uint64_t nrows)
   else {
     for (row=0; row<nrows; row++) {
       if (y[row] != y_ref[row]) {
-        printf("y[%4d]=%d != y_ref[%4d]=%d  INCORRECT RESULT !!!! \n", row, y[row], row, y_ref[row]);
+        printf("y_vec[%4d]=%llx != y_ref[%4d]=%llx  INCORRECT RESULT !!!! \n", row, y[row], row, y_ref[row]);
         nerrs++;
         if (nerrs == 100) break;
       }

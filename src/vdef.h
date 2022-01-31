@@ -60,6 +60,57 @@ VOPIVVV_IUI_DEF_GROUP(VSRA)
 VOPIVVV_UUU_DEF_GROUP(VSRL)
 
 /**
+ * @brief defination of opivvv_m: (v, v)->v
+ * 
+ */
+
+#define VADD_VV_II_M_DEF(type, _, lmul) VOPIVVV_III_M_DEF (vadd, type, lmul)
+#define VADD_VV_UU_M_DEF(type, _, lmul) VOPIVVV_UUU_M_DEF (vadd, type, lmul)
+#define VSUB_VV_II_M_DEF(type, _, lmul) VOPIVVV_III_M_DEF (vsub, type, lmul)
+#define VSUB_VV_UU_M_DEF(type, _, lmul) VOPIVVV_UUU_M_DEF (vsub, type, lmul)
+VOPIVVV_M_DEF_GROUP(VADD)
+VOPIVVV_M_DEF_GROUP(VSUB)
+
+#define VMIN_VV_II_M_DEF(type, _, lmul)  VOPIVVV_III_M_DEF (vmin, type, lmul)
+#define VMAX_VV_II_M_DEF(type, _, lmul)  VOPIVVV_III_M_DEF (vmax, type, lmul)
+#define VMINU_VV_UU_M_DEF(type, _, lmul) VOPIVVV_UUU_M_DEF (vminu, type, lmul)
+#define VMAXU_VV_UU_M_DEF(type, _, lmul) VOPIVVV_UUU_M_DEF (vmaxu, type, lmul)
+VOPIVVV_III_M_DEF_GROUP(VMIN)
+VOPIVVV_III_M_DEF_GROUP(VMAX)
+VOPIVVV_UUU_M_DEF_GROUP(VMINU)
+VOPIVVV_UUU_M_DEF_GROUP(VMAXU)
+
+#define VAND_VV_II_M_DEF(type, _, lmul)  VOPIVVV_III_M_DEF (vand, type, lmul)
+#define VAND_VV_UU_M_DEF(type, _, lmul)  VOPIVVV_UUU_M_DEF (vand, type, lmul)
+#define VOR_VV_II_M_DEF(type, _, lmul)   VOPIVVV_III_M_DEF (vor, type, lmul)
+#define VOR_VV_UU_M_DEF(type, _, lmul)   VOPIVVV_UUU_M_DEF (vor, type, lmul)
+#define VXOR_VV_II_M_DEF(type, _, lmul)  VOPIVVV_III_M_DEF (vxor, type, lmul)
+#define VXOR_VV_UU_M_DEF(type, _, lmul)  VOPIVVV_UUU_M_DEF (vxor, type, lmul)
+VOPIVVV_M_DEF_GROUP(VAND)
+VOPIVVV_M_DEF_GROUP(VOR)
+VOPIVVV_M_DEF_GROUP(VXOR)
+
+#define VRGATHER_VV_IU_M_DEF(type2, type1, lmul) \
+VOPIVVV_IUI_M_DEF (vrgather, type2, type1, lmul)
+#define VRGATHER_VV_UU_M_DEF(type2, type1, lmul) \
+VOPIVVV_IUI_M_DEF (vrgather, type2, type1, lmul)
+VOPIVVV_IUI_M_DEF_GROUP(VRGATHER)
+
+#define VSLL_VV_IU_M_DEF(type2, type1, lmul) \
+VOPIVVV_IUI_M_DEF (vsll, type2, type1, lmul)
+#define VSLL_VV_UU_M_DEF(type, _, lmul) \
+VOPIVVV_UUU_M_DEF (vsll, type, lmul)
+#define VSRA_VV_IU_M_DEF(type2, type1, lmul) \
+VOPIVVV_IUI_M_DEF (vsra, type2, type1, lmul)
+#define VSRL_VV_UU_M_DEF(type, _, lmul) \
+VOPIVVV_UUU_M_DEF (vsrl, type, lmul)
+
+VOPIVVV_IUI_M_DEF_GROUP(VSLL)
+VOPIVVV_UUU_M_DEF_GROUP(VSLL)
+VOPIVVV_IUI_M_DEF_GROUP(VSRA)
+VOPIVVV_UUU_M_DEF_GROUP(VSRL)
+
+/**
  * @brief defination of opivv: (v)->v
  * 
  */

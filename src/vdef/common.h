@@ -82,6 +82,54 @@ using vb16    = vbool16_t;
 using vb32    = vbool32_t;
 using vb64    = vbool64_t;
 
+#define VUNDEF(type, lmul) vundefined_##type##lmul()
+#define __vtypem_i8_mf8__   b64
+#define __vtypem_i8_mf4__   b32
+#define __vtypem_i8_mf2__   b16
+#define __vtypem_i8_m1__    b8
+#define __vtypem_i8_m2__    b4
+#define __vtypem_i8_m4__    b2
+#define __vtypem_i8_m8__    b1
+#define __vtypem_i16_mf4__  b64
+#define __vtypem_i16_mf2__  b32
+#define __vtypem_i16_m1__   b16
+#define __vtypem_i16_m2__   b8
+#define __vtypem_i16_m4__   b4
+#define __vtypem_i16_m8__   b2
+#define __vtypem_i32_mf2__  b64
+#define __vtypem_i32_m1__   b32
+#define __vtypem_i32_m2__   b16
+#define __vtypem_i32_m4__   b8
+#define __vtypem_i32_m8__   b4
+#define __vtypem_i64_m1__   b64
+#define __vtypem_i64_m2__   b32
+#define __vtypem_i64_m4__   b16
+#define __vtypem_i64_m8__   b8
+#define __vtypem_u8_mf8__   b64
+#define __vtypem_u8_mf4__   b32
+#define __vtypem_u8_mf2__   b16
+#define __vtypem_u8_m1__    b8
+#define __vtypem_u8_m2__    b4
+#define __vtypem_u8_m4__    b2
+#define __vtypem_u8_m8__    b1
+#define __vtypem_u16_mf4__  b64
+#define __vtypem_u16_mf2__  b32
+#define __vtypem_u16_m1__   b16
+#define __vtypem_u16_m2__   b8
+#define __vtypem_u16_m4__   b4
+#define __vtypem_u16_m8__   b2
+#define __vtypem_u32_mf2__  b64
+#define __vtypem_u32_m1__   b32
+#define __vtypem_u32_m2__   b16
+#define __vtypem_u32_m4__   b8
+#define __vtypem_u32_m8__   b4
+#define __vtypem_u64_m1__   b64
+#define __vtypem_u64_m2__   b32
+#define __vtypem_u64_m4__   b16
+#define __vtypem_u64_m8__   b8
+#define VTYPEM(type, lmul) __vtypem_##type##_##lmul##__
+
+
 #define VSETVL(type, lmul, n) vsetvl_##type##lmul(n)
 #define vsetvl_i8mf8  vsetvl_e8mf8
 #define vsetvl_i8mf4  vsetvl_e8mf4
@@ -193,7 +241,7 @@ using vb64    = vbool64_t;
 #define vsetvlmax_f64m8  vsetvlmax_e64m8
 
 #define VSE(type, lmul, addr, res, vl) \
-vse ## _v_ ## type (addr, res, vl)
+vse_v_ ## type (addr, res, vl)
 #define vse_v_i8        vse8
 #define vse_v_u8        vse8
 #define vse_v_i16       vse16
@@ -260,5 +308,23 @@ vle ## _v_ ## type ## lmul (addr, vl)
 #define vle_v_f64m2     vle64_v_f64m2
 #define vle_v_f64m4     vle64_v_f64m4
 #define vle_v_f64m8     vle64_v_f64m8
+
+#define VLM(type, addr, vl) \
+VLM_IMPL(vlm_v_, type, (addr, vl))
+#define VLM_IMPL(s1, s2, s3) \
+s1 ## s2  s3
+
+#define VLE_M(type, lmul, addr, vmask, vl) \
+vle_v_ ## type (vmask, VUNDEF(type, lmul), addr, vl)
+#define vle_v_i8        vle8
+#define vle_v_u8        vle8
+#define vle_v_i16       vle16
+#define vle_v_u16       vle16
+#define vle_v_i32       vle32
+#define vle_v_u32       vle32
+#define vle_v_f32       vle32
+#define vle_v_i64       vle64
+#define vle_v_u64       vle64
+#define vle_v_f64       vle64
 
 #endif

@@ -1,4 +1,5 @@
 #include "utils.h"
+#include <limits>
 
 long long get_time() {
   struct timeval tv;
@@ -93,6 +94,7 @@ void init_vector(bool* pv, const size_t n) {
 }
 
 void init_mask_vector(uint8_t* pv, const size_t n) {
-  for (size_t i=0; i<n; i++)
-    pv[i] = rand() & 1;
+  for (size_t i=0; i<(n+7)/8; i++) {
+    pv[i] = static_cast<uint8_t>(rand32bit() & 0xff);
+  }
 }
