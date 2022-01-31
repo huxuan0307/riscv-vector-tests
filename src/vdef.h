@@ -128,25 +128,15 @@ VOPIVV_DEF_GROUP(VMV)
  * 
  */
 
-#define VFADD_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfadd, type, lmul)
-#define VFSUB_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfsub, type, lmul)
-#define VFMUL_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfmul, type, lmul)
-#define VFDIV_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfdiv, type, lmul)
-#define VFMAX_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfmax, type, lmul)
-#define VFMIN_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfmin, type, lmul)
-#define VFSGNJ_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfsgnj, type, lmul)
-#define VFSGNJN_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfsgnjn, type, lmul)
-#define VFSGNJX_VV_DEF(type, lmul) \
-VOPFVVV_DEF(vfsgnjx, type, lmul)
-
+#define VFADD_VV_DEF(type, lmul) VOPFVVV_DEF(vfadd, type, lmul)
+#define VFSUB_VV_DEF(type, lmul) VOPFVVV_DEF(vfsub, type, lmul)
+#define VFMUL_VV_DEF(type, lmul) VOPFVVV_DEF(vfmul, type, lmul)
+#define VFDIV_VV_DEF(type, lmul) VOPFVVV_DEF(vfdiv, type, lmul)
+#define VFMAX_VV_DEF(type, lmul) VOPFVVV_DEF(vfmax, type, lmul)
+#define VFMIN_VV_DEF(type, lmul) VOPFVVV_DEF(vfmin, type, lmul)
+#define VFSGNJ_VV_DEF(type, lmul) VOPFVVV_DEF(vfsgnj, type, lmul)
+#define VFSGNJN_VV_DEF(type, lmul) VOPFVVV_DEF(vfsgnjn, type, lmul)
+#define VFSGNJX_VV_DEF(type, lmul) VOPFVVV_DEF(vfsgnjx, type, lmul)
 VOPFVVV_DEF_GROUP(VFADD)
 VOPFVVV_DEF_GROUP(VFSUB)
 VOPFVVV_DEF_GROUP(VFMUL)
@@ -156,3 +146,22 @@ VOPFVVV_DEF_GROUP(VFMIN)
 VOPFVVV_DEF_GROUP(VFSGNJ)
 VOPFVVV_DEF_GROUP(VFSGNJN)
 VOPFVVV_DEF_GROUP(VFSGNJX)
+
+#define VFADD_VV_M_DEF(type, lmul)    VOPFVVV_M_DEF(vfadd, type, lmul)
+#define VFSUB_VV_M_DEF(type, lmul)    VOPFVVV_M_DEF(vfsub, type, lmul)
+#define VFMUL_VV_M_DEF(type, lmul)    VOPFVVV_M_DEF(vfmul, type, lmul)
+#define VFDIV_VV_M_DEF(type, lmul)    VOPFVVV_M_DEF(vfdiv, type, lmul)
+#define VFMAX_VV_M_DEF(type, lmul)    VOPFVVV_M_DEF(vfmax, type, lmul)
+#define VFMIN_VV_M_DEF(type, lmul)    VOPFVVV_M_DEF(vfmin, type, lmul)
+#define VFSGNJ_VV_M_DEF(type, lmul)   VOPFVVV_M_DEF(vfsgnj, type, lmul)
+#define VFSGNJN_VV_M_DEF(type, lmul)  VOPFVVV_M_DEF(vfsgnjn, type, lmul)
+#define VFSGNJX_VV_M_DEF(type, lmul)  VOPFVVV_M_DEF(vfsgnjx, type, lmul)
+VOPFVVV_M_DEF_GROUP(VFADD)
+VOPFVVV_M_DEF_GROUP(VFSUB)
+VOPFVVV_M_DEF_GROUP(VFMUL)
+VOPFVVV_M_DEF_GROUP(VFDIV)
+VOPFVVV_M_DEF_GROUP(VFMAX)
+VOPFVVV_M_DEF_GROUP(VFMIN)
+VOPFVVV_M_DEF_GROUP(VFSGNJ)
+VOPFVVV_M_DEF_GROUP(VFSGNJN)
+VOPFVVV_M_DEF_GROUP(VFSGNJX)

@@ -90,6 +90,8 @@ void test_opivvv(
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }
 
+#define test_opfvvv test_opivvv
+
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
 void test_opivvv_m(
   void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, const uint8_t*, size_t), 
@@ -136,6 +138,7 @@ void test_opivvv_m(
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }
 
+#define test_opfvvv_m test_opivvv_m
 
 template<typename TypeRet, typename TypeSrc1>
 void test_opivv(
@@ -175,10 +178,3 @@ void test_opivv(
 
   free(vs1); free(vd); free(vd_ref);
 }
-
-template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
-constexpr void (*test_opfvvv)(
-  void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t), 
-  void (*vector_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t),
-  size_t test_size
-) = &test_opivvv<TypeRet, TypeSrc2, TypeSrc1>;

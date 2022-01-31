@@ -127,6 +127,15 @@ using vb64    = vbool64_t;
 #define __vtypem_u64_m2__   b32
 #define __vtypem_u64_m4__   b16
 #define __vtypem_u64_m8__   b8
+#define __vtypem_f32_mf2__  b64
+#define __vtypem_f32_m1__   b32
+#define __vtypem_f32_m2__   b16
+#define __vtypem_f32_m4__   b8
+#define __vtypem_f32_m8__   b4
+#define __vtypem_f64_m1__   b64
+#define __vtypem_f64_m2__   b32
+#define __vtypem_f64_m4__   b16
+#define __vtypem_f64_m8__   b8
 #define VTYPEM(type, lmul) __vtypem_##type##_##lmul##__
 
 

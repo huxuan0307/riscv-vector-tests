@@ -40,6 +40,16 @@ int main(int argc, char *argv[])
   TEST_OPIVVV_IUI_GROUP(vsra);
   TEST_OPIVV_GROUP(vmv);
 
+  TEST_OPFVVV_M_GROUP(vfadd);
+  TEST_OPFVVV_M_GROUP(vfsub);
+  TEST_OPFVVV_M_GROUP(vfmul);
+  TEST_OPFVVV_M_GROUP(vfdiv);
+  TEST_OPFVVV_M_GROUP(vfmax);
+  TEST_OPFVVV_M_GROUP(vfmin);
+  TEST_OPFVVV_M_GROUP(vfsgnj);
+  TEST_OPFVVV_M_GROUP(vfsgnjn);
+  TEST_OPFVVV_M_GROUP(vfsgnjx);
+
   TEST_OPFVVV_GROUP(vfadd);
   TEST_OPFVVV_GROUP(vfsub);
   TEST_OPFVVV_GROUP(vfmul);

@@ -22,7 +22,8 @@ void op ## _v_v_ref(Type* vd, Type* vs, size_t n) { \
   {code;} \
 } \
 
-#define VOPFVVV_REF_DEF(op, code) VOPIVVV_REF_DEF(op, code)
+#define VOPFVVV_REF_DEF(op, code)   VOPIVVV_REF_DEF(op, code)
+#define VOPFVVV_M_REF_DEF(op, code) VOPIVVV_M_REF_DEF(op, code)
 
 #define FORLOOP(i, code) \
 for (size_t i = 0; i < n; i++) { \
@@ -76,3 +77,12 @@ VOPFVVV_REF_DEF(vfsgnj,         FORLOOP(i, vd[i] = vs1[i]>0 ? fabs(vs2[i]) : -fa
 VOPFVVV_REF_DEF(vfsgnjn,        FORLOOP(i, vd[i] = vs1[i]<0 ? fabs(vs2[i]) : -fabs(vs2[i])))
 VOPFVVV_REF_DEF(vfsgnjx,        FORLOOP(i, vd[i] = vs1[i]>0 ? vs2[i] : -vs2[i]))
 
+VOPIVVV_M_REF_DEF(vfadd,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]+vs1[i]))
+VOPIVVV_M_REF_DEF(vfsub,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]-vs1[i]))
+VOPIVVV_M_REF_DEF(vfmul,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]*vs1[i]))
+VOPIVVV_M_REF_DEF(vfdiv,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]/vs1[i]))
+VOPIVVV_M_REF_DEF(vfmax,        FORLOOPIF(i, VMASK(i), vd[i] = std::max(vs2[i],vs1[i])))
+VOPIVVV_M_REF_DEF(vfmin,        FORLOOPIF(i, VMASK(i), vd[i] = std::min(vs2[i],vs1[i])))
+VOPIVVV_M_REF_DEF(vfsgnj,       FORLOOPIF(i, VMASK(i), vd[i] = vs1[i]>0 ? fabs(vs2[i]) : -fabs(vs2[i])))
+VOPIVVV_M_REF_DEF(vfsgnjn,      FORLOOPIF(i, VMASK(i), vd[i] = vs1[i]<0 ? fabs(vs2[i]) : -fabs(vs2[i])))
+VOPIVVV_M_REF_DEF(vfsgnjx,      FORLOOPIF(i, VMASK(i), vd[i] = vs1[i]>0 ? vs2[i] : -vs2[i]))
