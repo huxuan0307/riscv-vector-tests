@@ -1,5 +1,6 @@
 #include "vdef/vopi_vvv_def.h"
 #include "vdef/vopi_vxv_def.h"
+#include "vdef/vopi_vvmv_def.h"
 #include "vdef/vopi_vv_def.h"
 #include "vdef/vopf_vvv_def.h"
 #include "vdef/vopf_vfv_def.h"
@@ -210,6 +211,21 @@ VOPI_VXV_IUI_M_DEF_GROUP(VSLL)
 VOPI_VXV_UUU_M_DEF_GROUP(VSLL)
 VOPI_VXV_IUI_M_DEF_GROUP(VSRA)
 VOPI_VXV_UUU_M_DEF_GROUP(VSRL)
+
+/**
+ * @brief defination of opi_vvmv: (v,v,m)->v
+ * 
+ */
+
+#define VMERGE_VVM_II_DEF(type, _, lmul) VOPI_VVMV_III_DEF(vmerge, type, lmul)
+#define VMERGE_VVM_UU_DEF(type, _, lmul) VOPI_VVMV_UUU_DEF(vmerge, type, lmul)
+VOPI_VVMV_DEF_GROUP(VMERGE)
+#define VADC_VVM_II_DEF(type, _, lmul) VOPI_VVMV_III_DEF(vadc, type, lmul)
+#define VADC_VVM_UU_DEF(type, _, lmul) VOPI_VVMV_UUU_DEF(vadc, type, lmul)
+VOPI_VVMV_DEF_GROUP(VADC)
+#define VSBC_VVM_II_DEF(type, _, lmul) VOPI_VVMV_III_DEF(vsbc, type, lmul)
+#define VSBC_VVM_UU_DEF(type, _, lmul) VOPI_VVMV_UUU_DEF(vsbc, type, lmul)
+VOPI_VVMV_DEF_GROUP(VSBC)
 
 /**
  * @brief defination of opi_vv: (v)->v

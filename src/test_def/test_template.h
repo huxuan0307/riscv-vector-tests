@@ -203,12 +203,20 @@ void test_opi_vvv_m(
   TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
   TypeRet  *vd     = (TypeRet*)   malloc(n*sizeof(TypeRet));
   TypeRet  *vd_ref = (TypeRet*)   malloc(n*sizeof(TypeRet));
-
+  
   init_vector(vs1, n);
   init_vector(vs2, n);
   init_vector(vd, n);
   copy_vector(vd_ref, vd, n);
   init_mask_vector(vmask, n);
+
+#ifdef SHOW_ORIGIN
+  for(size_t i=0; i<100; i++) {
+    printf("vd[%d]=%llx, vs1[%d]=%llx, vs2[%d]=%llx, vmask[%d]=%d\n", 
+      i, vd[i], i, vs1[i], i, vs2[i], i, ((vmask[i/8] >> (i%8)) & 0x1)
+    );
+  }
+#endif
 
   end = get_time();
   fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
@@ -230,6 +238,7 @@ void test_opi_vvv_m(
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }
 
+#define test_opi_vvmv test_opi_vvv_m
 #define test_opf_vvv_m test_opi_vvv_m
 
 template<typename TypeRet, typename TypeSrc1>

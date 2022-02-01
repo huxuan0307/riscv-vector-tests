@@ -1,6 +1,7 @@
 #include "test_def/opi_vvv_def.h"
 #include "test_def/opi_vxv_def.h"
 #include "test_def/opi_vv_def.h"
+#include "test_def/opi_vvmv_def.h"
 #include "test_def/opf_vvv_def.h"
 #include "test_def/opf_vfv_def.h"
 #include "test_def/test_template.h"
@@ -93,6 +94,11 @@ TEST_OPF_VVV_M_GROUP(vfmin) \
 TEST_OPF_VVV_M_GROUP(vfsgnj) \
 TEST_OPF_VVV_M_GROUP(vfsgnjn) \
 TEST_OPF_VVV_M_GROUP(vfsgnjx) \
+
+#define TEST_OPI_VVMV_ALL() \
+TEST_OPI_VVMV_GROUP(vmerge) \
+TEST_OPI_VVMV_GROUP(vadc) \
+TEST_OPI_VVMV_GROUP(vsbc) \
 
 #define TEST_OPF_VFV_ALL() \
 TEST_OPF_VFV_GROUP(vfadd) \

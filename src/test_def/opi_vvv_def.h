@@ -63,6 +63,3 @@ test_opi_vvv_m<type_ret, type2, type1>(op ## _vv_m_ref<type_ret, type2, type1>, 
 #define TEST_OPI_VVV_IUI_M_GROUP_M2(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M2(  TEST_OPI_VVV_M, op)
 #define TEST_OPI_VVV_IUI_M_GROUP_M4(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M4(  TEST_OPI_VVV_M, op)
 #define TEST_OPI_VVV_IUI_M_GROUP_M8(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M8(  TEST_OPI_VVV_M, op)
-
-
-

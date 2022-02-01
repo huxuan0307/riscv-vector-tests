@@ -33,6 +33,14 @@ void op ## _vx_m_ref( \
 #define VOPF_VVV_REF_DEF(op, code)    VOPI_VVV_REF_DEF(op, code)
 #define VOPF_VVV_M_REF_DEF(op, code)  VOPI_VVV_M_REF_DEF(op, code)
 
+#define VOPI_VVMV_REF_DEF(op, code) \
+template<typename TypeRet, typename TypeSrc2, typename TypeSrc1> \
+void op ## _vvm_ref( \
+  TypeRet* vd, TypeSrc2* vs2, TypeSrc1* vs1, \
+  const uint8_t* vmask, size_t n) { \
+  {code;} \
+} \
+
 #define VOPF_VFV_REF_DEF(op, code) \
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1> \
 void op ## _vf_ref(TypeRet* vd, TypeSrc2* vs2, TypeSrc1* rs1, size_t n) { \
@@ -63,7 +71,7 @@ for (size_t i = 0; i < n; i++) { \
   if (condition) {code;} \
 } \
 
-#define VMASK(i) (vmask[i/8] >> (i%8)) & 0x1 
+#define VMASK(i) ((vmask[i/8] >> (i%8)) & 0x1)
 
 VOPI_VVV_REF_DEF(vadd,           FORLOOP(i, vd[i] = vs2[i]+vs1[i]))
 VOPI_VVV_REF_DEF(vsub,           FORLOOP(i, vd[i] = vs2[i]-vs1[i]))
@@ -122,6 +130,10 @@ VOPI_VXV_M_REF_DEF(vrgather,     FORLOOPIF(i, VMASK(i), vd[i] = vs2[rs1[0]]))
 VOPI_VXV_M_REF_DEF(vsll,         FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]<<(rs1[0] & (sizeof(vs2[i])*8-1))))
 VOPI_VXV_M_REF_DEF(vsrl,         FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(rs1[0] & (sizeof(vs2[i])*8-1))))
 VOPI_VXV_M_REF_DEF(vsra,         FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(rs1[0] & (sizeof(vs2[i])*8-1))))
+
+VOPI_VVMV_REF_DEF(vmerge,        FORLOOP(i, vd[i] = VMASK(i) ? vs1[i] : vs2[i]))
+VOPI_VVMV_REF_DEF(vadc,          FORLOOP(i, vd[i] = vs2[i] + vs1[i] + VMASK(i)))
+VOPI_VVMV_REF_DEF(vsbc,          FORLOOP(i, vd[i] = vs2[i] - vs1[i] - VMASK(i)))
 
 VOPI_VV_REF_DEF(vmv,             FORLOOP(i, vd[i] = vs[i]))
 
