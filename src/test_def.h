@@ -2,6 +2,7 @@
 #include "test_def/opi_vxv_def.h"
 #include "test_def/opi_vv_def.h"
 #include "test_def/opf_vvv_def.h"
+#include "test_def/opf_vfv_def.h"
 #include "test_def/test_template.h"
 
 #define TEST_OPI_VV_ALL() \
@@ -92,3 +93,29 @@ TEST_OPF_VVV_M_GROUP(vfmin) \
 TEST_OPF_VVV_M_GROUP(vfsgnj) \
 TEST_OPF_VVV_M_GROUP(vfsgnjn) \
 TEST_OPF_VVV_M_GROUP(vfsgnjx) \
+
+#define TEST_OPF_VFV_ALL() \
+TEST_OPF_VFV_GROUP(vfadd) \
+TEST_OPF_VFV_GROUP(vfsub) \
+TEST_OPF_VFV_GROUP(vfrsub) \
+TEST_OPF_VFV_GROUP(vfmul) \
+TEST_OPF_VFV_GROUP(vfdiv) \
+TEST_OPF_VFV_GROUP(vfrdiv) \
+TEST_OPF_VFV_GROUP(vfmax) \
+TEST_OPF_VFV_GROUP(vfmin) \
+TEST_OPF_VFV_GROUP(vfsgnj) \
+TEST_OPF_VFV_GROUP(vfsgnjn) \
+TEST_OPF_VFV_GROUP(vfsgnjx) \
+
+#define TEST_OPF_VFV_M_ALL() \
+TEST_OPF_VFV_M_GROUP(vfadd) \
+TEST_OPF_VFV_M_GROUP(vfsub) \
+TEST_OPF_VFV_M_GROUP(vfrsub) \
+TEST_OPF_VFV_M_GROUP(vfmul) \
+TEST_OPF_VFV_M_GROUP(vfdiv) \
+TEST_OPF_VFV_M_GROUP(vfrdiv) \
+TEST_OPF_VFV_M_GROUP(vfmax) \
+TEST_OPF_VFV_M_GROUP(vfmin) \
+TEST_OPF_VFV_M_GROUP(vfsgnj) \
+TEST_OPF_VFV_M_GROUP(vfsgnjn) \
+TEST_OPF_VFV_M_GROUP(vfsgnjx) \
