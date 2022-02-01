@@ -3,6 +3,9 @@
 GCC_TOOLCHAIN_DIR := /opt/RISCV/
 GEM5_DIR := /home/huxuan/repos/plct-gem5/
 BENCHMARK_DIR := /home/huxuan/repos/riscv-vectorized-benchmark-suite/
+
+USER_DEFINES ?= 
+
 GCC := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-gcc
 GXX := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-g++
 GNU_OBJDUMP := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-objdump
@@ -47,7 +50,7 @@ all:
 	@echo ${CXX}
 	make start
 	for entry in src/*.cpp ; do \
-		${CXX} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
+		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
 	done
 	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
 	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
@@ -58,7 +61,7 @@ all_O2:
 	@echo "CXX_FLAGS = " ${CXX_FLAGS}
 	make start
 	for entry in src/*.cpp ; do \
-		${CXX} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
+		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
 	done
 	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
 	rm src/*.o
