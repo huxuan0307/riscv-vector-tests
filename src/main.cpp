@@ -10,6 +10,7 @@
 int main(int argc, char *argv[])
 {
   TEST_OPI_VXV_ALL();
+  TEST_OPI_VXV_M_ALL();
   TEST_OPI_VV_ALL();
   TEST_OPI_VVV_ALL();
   TEST_OPF_VVV_ALL();

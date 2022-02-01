@@ -1,7 +1,7 @@
 #include "common.h"
 
 #define VOPI_VXV_DEF(op, type2, lmul2, type1, type_ret, lmul_ret) \
-void op##_vx_ ## type_ret ## lmul_ret ## _vec(type_ret*vd, type2*s2, type1*s1, u64 n) \
+void op##_vx_ ## type_ret ## lmul_ret ## _vec(type_ret*d, type2*s2, type1*s1, u64 n) \
 { \
   size_t i; \
   size_t vl = VSETVL(type2, lmul2, n); \
@@ -10,7 +10,7 @@ void op##_vx_ ## type_ret ## lmul_ret ## _vec(type_ret*vd, type2*s2, type1*s1, u
     type1 rs1 = *s1; \
     VTYPE(type2, lmul2) vs2 = VLE(type2, lmul2, &s2[i], vl); \
     VTYPE(type_ret, lmul_ret) v_res = op##_vx_##type_ret##lmul_ret(vs2, rs1, vl); \
-    VSE(type_ret, lmul_ret, &vd[i], v_res, vl); \
+    VSE(type_ret, lmul_ret, &d[i], v_res, vl); \
     i += vl; \
   } \
 } \
@@ -21,6 +21,30 @@ VOPI_VXV_DEF(op, type, lmul, type, type, lmul)
 #define VOPI_VXV_IUI_DEF(op, type2, type1, lmul) \
 VOPI_VXV_DEF(op, type2, lmul, type1, type2, lmul)
 
+#define VOPI_VXV_M_DEF(op, type2, lmul2, type1, type_ret, lmul_ret) \
+void op##_vx_ ## type_ret ## lmul_ret ## _m_vec( \ 
+type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
+{ \
+  size_t i=0; \
+  size_t vlmax = VSETVLMAX(type2, lmul2); \
+  for (i = 0; i < n;) { \
+    size_t vl = VSETVL(type2, lmul2, n); \
+    auto vmask = VLM(VTYPEM(type2, lmul2), &mask[i/8], vl); \
+    auto offset = i % 8; \
+    __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \
+    auto rs1 = *s1; \
+    auto vs2 = vle_v_ ## type2(vmask, VUNDEF(type2, lmul2), &s2[i], vl); \
+    auto vres = op(vmask, VUNDEF(type_ret, lmul_ret), vs2, rs1, vl); \
+    vse_v_ ## type_ret(vmask, &d[i], vres, vl); \
+    i += vl; \
+  } \
+} \
+
+#define VOPI_VXV_III_M_DEF(op, type, lmul) \
+VOPI_VXV_M_DEF(op, type, lmul, type, type, lmul)
+#define VOPI_VXV_UUU_M_DEF VOPI_VXV_III_M_DEF
+#define VOPI_VXV_IUI_M_DEF(op, type2, type1, lmul) \
+VOPI_VXV_M_DEF(op, type2, lmul, type1, type2, lmul)
 
 #define VOPI_VXV_II_DEF_GROUP_IMPL(op) \
 /* int8_t */ \
@@ -106,12 +130,16 @@ op (u64, u64, m2) \
 op (u64, u64, m4) \
 op (u64, u64, m8)
 
-#define VOPI_VXV_III_DEF_GROUP(op) \
-VOPI_VXV_II_DEF_GROUP_IMPL(op ## _VX_II_DEF)
-#define VOPI_VXV_UUU_DEF_GROUP(op) \
-VOPI_VXV_UU_DEF_GROUP_IMPL(op ## _VX_UU_DEF)
-#define VOPI_VXV_IUI_DEF_GROUP(op) \
-VOPI_VXV_IU_DEF_GROUP_IMPL(op ## _VX_IU_DEF)
+#define VOPI_VXV_III_DEF_GROUP(op) VOPI_VXV_II_DEF_GROUP_IMPL(op ## _VX_II_DEF)
+#define VOPI_VXV_UUU_DEF_GROUP(op) VOPI_VXV_UU_DEF_GROUP_IMPL(op ## _VX_UU_DEF)
+#define VOPI_VXV_IUI_DEF_GROUP(op) VOPI_VXV_IU_DEF_GROUP_IMPL(op ## _VX_IU_DEF)
 #define VOPI_VXV_DEF_GROUP(op) \
 VOPI_VXV_III_DEF_GROUP(op) \
 VOPI_VXV_UUU_DEF_GROUP(op)
+
+#define VOPI_VXV_III_M_DEF_GROUP(op) VOPI_VXV_II_DEF_GROUP_IMPL(op ## _VX_II_M_DEF)
+#define VOPI_VXV_UUU_M_DEF_GROUP(op) VOPI_VXV_UU_DEF_GROUP_IMPL(op ## _VX_UU_M_DEF)
+#define VOPI_VXV_IUI_M_DEF_GROUP(op) VOPI_VXV_IU_DEF_GROUP_IMPL(op ## _VX_IU_M_DEF)
+#define VOPI_VXV_M_DEF_GROUP(op) \
+VOPI_VXV_III_M_DEF_GROUP(op) \
+VOPI_VXV_UUU_M_DEF_GROUP(op)

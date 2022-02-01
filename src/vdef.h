@@ -163,6 +163,54 @@ VOPI_VVV_IUI_M_DEF_GROUP(VSRA)
 VOPI_VVV_UUU_M_DEF_GROUP(VSRL)
 
 /**
+ * @brief defination of opi_vxv_m: (v, v)->v
+ * 
+ */
+
+#define VADD_VX_II_M_DEF(type, _, lmul) VOPI_VXV_III_M_DEF (vadd, type, lmul)
+#define VADD_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vadd, type, lmul)
+#define VSUB_VX_II_M_DEF(type, _, lmul) VOPI_VXV_III_M_DEF (vsub, type, lmul)
+#define VSUB_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vsub, type, lmul)
+#define VRSUB_VX_II_M_DEF(type, _, lmul) VOPI_VXV_III_M_DEF (vrsub, type, lmul)
+#define VRSUB_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vrsub, type, lmul)
+VOPI_VXV_M_DEF_GROUP(VADD)
+VOPI_VXV_M_DEF_GROUP(VSUB)
+VOPI_VXV_M_DEF_GROUP(VRSUB)
+
+#define VMIN_VX_II_M_DEF(type, _, lmul)  VOPI_VXV_III_M_DEF (vmin, type, lmul)
+#define VMAX_VX_II_M_DEF(type, _, lmul)  VOPI_VXV_III_M_DEF (vmax, type, lmul)
+#define VMINU_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vminu, type, lmul)
+#define VMAXU_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vmaxu, type, lmul)
+VOPI_VXV_III_M_DEF_GROUP(VMIN)
+VOPI_VXV_III_M_DEF_GROUP(VMAX)
+VOPI_VXV_UUU_M_DEF_GROUP(VMINU)
+VOPI_VXV_UUU_M_DEF_GROUP(VMAXU)
+
+#define VAND_VX_II_M_DEF(type, _, lmul)  VOPI_VXV_III_M_DEF (vand, type, lmul)
+#define VAND_VX_UU_M_DEF(type, _, lmul)  VOPI_VXV_UUU_M_DEF (vand, type, lmul)
+#define VOR_VX_II_M_DEF(type, _, lmul)   VOPI_VXV_III_M_DEF (vor, type, lmul)
+#define VOR_VX_UU_M_DEF(type, _, lmul)   VOPI_VXV_UUU_M_DEF (vor, type, lmul)
+#define VXOR_VX_II_M_DEF(type, _, lmul)  VOPI_VXV_III_M_DEF (vxor, type, lmul)
+#define VXOR_VX_UU_M_DEF(type, _, lmul)  VOPI_VXV_UUU_M_DEF (vxor, type, lmul)
+VOPI_VXV_M_DEF_GROUP(VAND)
+VOPI_VXV_M_DEF_GROUP(VOR)
+VOPI_VXV_M_DEF_GROUP(VXOR)
+
+#define VRGATHER_VX_IU_M_DEF(type2, type1, lmul) VOPI_VXV_IUI_M_DEF (vrgather, type2, type1, lmul)
+#define VRGATHER_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vrgather, type, lmul)
+VOPI_VXV_IUI_M_DEF_GROUP(VRGATHER)
+VOPI_VXV_UUU_M_DEF_GROUP(VRGATHER)
+
+#define VSLL_VX_IU_M_DEF(type2, type1, lmul) VOPI_VXV_IUI_M_DEF (vsll, type2, type1, lmul)
+#define VSLL_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vsll, type, lmul)
+#define VSRA_VX_IU_M_DEF(type2, type1, lmul) VOPI_VXV_IUI_M_DEF (vsra, type2, type1, lmul)
+#define VSRL_VX_UU_M_DEF(type, _, lmul) VOPI_VXV_UUU_M_DEF (vsrl, type, lmul)
+VOPI_VXV_IUI_M_DEF_GROUP(VSLL)
+VOPI_VXV_UUU_M_DEF_GROUP(VSLL)
+VOPI_VXV_IUI_M_DEF_GROUP(VSRA)
+VOPI_VXV_UUU_M_DEF_GROUP(VSRL)
+
+/**
  * @brief defination of opi_vv: (v)->v
  * 
  */
