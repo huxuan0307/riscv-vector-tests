@@ -1,6 +1,6 @@
 #include "common.h"
 
-#define VOPFVVV_DEF(op, type, lmul) \
+#define VOPF_VVV_DEF(op, type, lmul) \
 void op##_vv_ ## type ## lmul ## _vec ( \
 type*vd, type*vs2, type*vs1, uint64_t n) \
 { \
@@ -16,7 +16,7 @@ type*vd, type*vs2, type*vs1, uint64_t n) \
   } \
 } \
 
-#define VOPFVVV_M_DEF(op, type, lmul) \
+#define VOPF_VVV_M_DEF(op, type, lmul) \
 void op##_vv_ ## type ## lmul ## _m_vec( \ 
 type*d, type*s2, type*s1, const u8* mask, u64 n) \
 { \
@@ -35,7 +35,7 @@ type*d, type*s2, type*s1, const u8* mask, u64 n) \
   } \
 } \
 
-#define VOPFVVV_DEF_GROUP_IMPL(op) \
+#define VOPF_VVV_DEF_GROUP_IMPL(op) \
 op (f32, mf2) \
 op (f32, m1) \
 op (f32, m2) \
@@ -46,5 +46,5 @@ op (f64, m2) \
 op (f64, m4) \
 op (f64, m8)
 
-#define VOPFVVV_DEF_GROUP(op) VOPFVVV_DEF_GROUP_IMPL(op ## _VV_DEF)
-#define VOPFVVV_M_DEF_GROUP(op) VOPFVVV_DEF_GROUP_IMPL(op ## _VV_M_DEF)
+#define VOPF_VVV_DEF_GROUP(op) VOPF_VVV_DEF_GROUP_IMPL(op ## _VV_DEF)
+#define VOPF_VVV_M_DEF_GROUP(op) VOPF_VVV_DEF_GROUP_IMPL(op ## _VV_M_DEF)

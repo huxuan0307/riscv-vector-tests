@@ -1,6 +1,6 @@
 #include "common.h"
 
-#define VOPIVV_INT_DEF(op, type, lmul) \
+#define VOPI_VV_INT_DEF(op, type, lmul) \
 void op ## _v_v_ ## type ## lmul ## _vec (type* vd, type* vs, u64 n) \
 { \
   size_t i; \
@@ -14,7 +14,7 @@ void op ## _v_v_ ## type ## lmul ## _vec (type* vd, type* vs, u64 n) \
   } \
 } \
 
-#define VOPIVV_UINT_DEF(op, type, lmul) \
+#define VOPI_VV_UINT_DEF(op, type, lmul) \
 void op ## _v_v_ ## type ## lmul ## _vec (type* vd, type* vs, uint64_t n) \
 { \
   size_t i; \
@@ -28,7 +28,7 @@ void op ## _v_v_ ## type ## lmul ## _vec (type* vd, type* vs, uint64_t n) \
   } \
 } \
 
-#define VOPIVV_INT_DEF_GROUP_IMPL(op) \
+#define VOPI_VV_INT_DEF_GROUP_IMPL(op) \
 /* int8_t */ \
 op (i8, mf8) \
 op (i8, mf4) \
@@ -56,7 +56,7 @@ op (i64, m2) \
 op (i64, m4) \
 op (i64, m8)
 
-#define VOPIVV_UINT_DEF_GROUP_IMPL(op) \
+#define VOPI_VV_UINT_DEF_GROUP_IMPL(op) \
 /* uint8_t */ \
 op (u8, mf8) \
 op (u8, mf4) \
@@ -84,12 +84,12 @@ op (u64, m2) \
 op (u64, m4) \
 op (u64, m8)
 
-#define VOPIVV_INT_DEF_GROUP(op) \
-VOPIVV_INT_DEF_GROUP_IMPL(op ## _V_INT_DEF)
+#define VOPI_VV_INT_DEF_GROUP(op) \
+VOPI_VV_INT_DEF_GROUP_IMPL(op ## _V_INT_DEF)
 
-#define VOPIVV_UINT_DEF_GROUP(op) \
-VOPIVV_UINT_DEF_GROUP_IMPL(op ## _V_UINT_DEF)
+#define VOPI_VV_UINT_DEF_GROUP(op) \
+VOPI_VV_UINT_DEF_GROUP_IMPL(op ## _V_UINT_DEF)
 
-#define VOPIVV_DEF_GROUP(op) \
-VOPIVV_INT_DEF_GROUP(op) \
-VOPIVV_UINT_DEF_GROUP(op)
+#define VOPI_VV_DEF_GROUP(op) \
+VOPI_VV_INT_DEF_GROUP(op) \
+VOPI_VV_UINT_DEF_GROUP(op)

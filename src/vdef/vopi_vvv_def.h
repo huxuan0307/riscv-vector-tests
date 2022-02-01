@@ -1,6 +1,6 @@
 #include "common.h"
 
-#define VOPIVVV_DEF(op, type2, lmul2, type1, lmul1, type_ret, lmul_ret) \
+#define VOPI_VVV_DEF(op, type2, lmul2, type1, lmul1, type_ret, lmul_ret) \
 void op##_vv_ ## type_ret ## lmul_ret ## _vec(type_ret*vd, type2*vs2, type1*vs1, u64 n) \
 { \
   size_t i; \
@@ -15,13 +15,13 @@ void op##_vv_ ## type_ret ## lmul_ret ## _vec(type_ret*vd, type2*vs2, type1*vs1,
   } \
 } \
 
-#define VOPIVVV_III_DEF(op, type, lmul) \
-VOPIVVV_DEF(op, type, lmul, type, lmul, type, lmul)
-#define VOPIVVV_UUU_DEF VOPIVVV_III_DEF
-#define VOPIVVV_IUI_DEF(op, type2, type1, lmul) \
-VOPIVVV_DEF(op, type2, lmul, type1, lmul, type2, lmul)
+#define VOPI_VVV_III_DEF(op, type, lmul) \
+VOPI_VVV_DEF(op, type, lmul, type, lmul, type, lmul)
+#define VOPI_VVV_UUU_DEF VOPI_VVV_III_DEF
+#define VOPI_VVV_IUI_DEF(op, type2, type1, lmul) \
+VOPI_VVV_DEF(op, type2, lmul, type1, lmul, type2, lmul)
 
-#define VOPIVVV_M_DEF(op, type2, lmul2, type1, lmul1, type_ret, lmul_ret) \
+#define VOPI_VVV_M_DEF(op, type2, lmul2, type1, lmul1, type_ret, lmul_ret) \
 void op##_vv_ ## type_ret ## lmul_ret ## _m_vec( \ 
 type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
 { \
@@ -40,14 +40,14 @@ type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
   } \
 } \
 
-#define VOPIVVV_III_M_DEF(op, type, lmul) \
-VOPIVVV_M_DEF(op, type, lmul, type, lmul, type, lmul)
-#define VOPIVVV_UUU_M_DEF VOPIVVV_III_M_DEF
-#define VOPIVVV_IUI_M_DEF(op, type2, type1, lmul) \
-VOPIVVV_M_DEF(op, type2, lmul, type1, lmul, type2, lmul)
+#define VOPI_VVV_III_M_DEF(op, type, lmul) \
+VOPI_VVV_M_DEF(op, type, lmul, type, lmul, type, lmul)
+#define VOPI_VVV_UUU_M_DEF VOPI_VVV_III_M_DEF
+#define VOPI_VVV_IUI_M_DEF(op, type2, type1, lmul) \
+VOPI_VVV_M_DEF(op, type2, lmul, type1, lmul, type2, lmul)
 
 
-#define VOPIVVV_II_DEF_GROUP_IMPL(op) \
+#define VOPI_VVV_II_DEF_GROUP_IMPL(op) \
 /* int8_t */ \
 op (i8, i8, mf8) \
 op (i8, i8, mf4) \
@@ -75,7 +75,7 @@ op (i64, i64, m2) \
 op (i64, i64, m4) \
 op (i64, i64, m8)
 
-#define VOPIVVV_IU_DEF_GROUP_IMPL(op) \
+#define VOPI_VVV_IU_DEF_GROUP_IMPL(op) \
 /* int8_t */ \
 op (i8, u8, mf8) \
 op (i8, u8, mf4) \
@@ -103,7 +103,7 @@ op (i64, u64, m2) \
 op (i64, u64, m4) \
 op (i64, u64, m8)
 
-#define VOPIVVV_UU_DEF_GROUP_IMPL(op) \
+#define VOPI_VVV_UU_DEF_GROUP_IMPL(op) \
 /* uint8_t */ \
 op (u8, u8, mf8) \
 op (u8, u8, mf4) \
@@ -131,24 +131,24 @@ op (u64, u64, m2) \
 op (u64, u64, m4) \
 op (u64, u64, m8)
 
-#define VOPIVVV_III_DEF_GROUP(op) \
-VOPIVVV_II_DEF_GROUP_IMPL(op ## _VV_II_DEF)
-#define VOPIVVV_UUU_DEF_GROUP(op) \
-VOPIVVV_UU_DEF_GROUP_IMPL(op ## _VV_UU_DEF)
-#define VOPIVVV_IUI_DEF_GROUP(op) \
-VOPIVVV_IU_DEF_GROUP_IMPL(op ## _VV_IU_DEF)
+#define VOPI_VVV_III_DEF_GROUP(op) \
+VOPI_VVV_II_DEF_GROUP_IMPL(op ## _VV_II_DEF)
+#define VOPI_VVV_UUU_DEF_GROUP(op) \
+VOPI_VVV_UU_DEF_GROUP_IMPL(op ## _VV_UU_DEF)
+#define VOPI_VVV_IUI_DEF_GROUP(op) \
+VOPI_VVV_IU_DEF_GROUP_IMPL(op ## _VV_IU_DEF)
 
-#define VOPIVVV_DEF_GROUP(op) \
-VOPIVVV_III_DEF_GROUP(op) \
-VOPIVVV_UUU_DEF_GROUP(op)
+#define VOPI_VVV_DEF_GROUP(op) \
+VOPI_VVV_III_DEF_GROUP(op) \
+VOPI_VVV_UUU_DEF_GROUP(op)
 
-#define VOPIVVV_III_M_DEF_GROUP(op) \
-VOPIVVV_II_DEF_GROUP_IMPL(op ## _VV_II_M_DEF)
-#define VOPIVVV_UUU_M_DEF_GROUP(op) \
-VOPIVVV_UU_DEF_GROUP_IMPL(op ## _VV_UU_M_DEF)
-#define VOPIVVV_IUI_M_DEF_GROUP(op) \
-VOPIVVV_IU_DEF_GROUP_IMPL(op ## _VV_IU_M_DEF)
+#define VOPI_VVV_III_M_DEF_GROUP(op) \
+VOPI_VVV_II_DEF_GROUP_IMPL(op ## _VV_II_M_DEF)
+#define VOPI_VVV_UUU_M_DEF_GROUP(op) \
+VOPI_VVV_UU_DEF_GROUP_IMPL(op ## _VV_UU_M_DEF)
+#define VOPI_VVV_IUI_M_DEF_GROUP(op) \
+VOPI_VVV_IU_DEF_GROUP_IMPL(op ## _VV_IU_M_DEF)
 
-#define VOPIVVV_M_DEF_GROUP(op) \
-VOPIVVV_III_M_DEF_GROUP(op) \
-VOPIVVV_UUU_M_DEF_GROUP(op)
+#define VOPI_VVV_M_DEF_GROUP(op) \
+VOPI_VVV_III_M_DEF_GROUP(op) \
+VOPI_VVV_UUU_M_DEF_GROUP(op)

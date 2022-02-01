@@ -1,7 +1,7 @@
 #include <cstdio>
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
-void test_opivvvv(
+void test_opi_vvvv(
   void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, int), 
   void (*vector_func)(TypeRet*, TypeSrc2*, TypeSrc1*, int),
   size_t test_size = 1024
@@ -49,7 +49,7 @@ void test_opivvvv(
 }
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
-void test_opivvv(
+void test_opi_vvv(
   void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t), 
   void (*vector_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t),
   size_t test_size = 1024
@@ -133,10 +133,10 @@ void test_opi_vxv(
 }
 
 
-#define test_opfvvv test_opivvv
+#define test_opf_vvv test_opi_vvv
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
-void test_opivvv_m(
+void test_opi_vvv_m(
   void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, const uint8_t*, size_t), 
   void (*vector_func)(TypeRet*, TypeSrc2*, TypeSrc1*, const uint8_t*, size_t),
   size_t test_size = 1024
@@ -181,10 +181,10 @@ void test_opivvv_m(
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }
 
-#define test_opfvvv_m test_opivvv_m
+#define test_opf_vvv_m test_opi_vvv_m
 
 template<typename TypeRet, typename TypeSrc1>
-void test_opivv(
+void test_opi_vv(
   void (*ref_func)(TypeRet*, TypeSrc1*, size_t), 
   void (*vector_func)(TypeRet*, TypeSrc1*, size_t),
   size_t test_size = 1024

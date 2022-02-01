@@ -10,11 +10,11 @@
 int main(int argc, char *argv[])
 {
   TEST_OPI_VXV_ALL();
-  TEST_OPIVV_ALL();
-  TEST_OPIVVV_ALL();
-  TEST_OPFVVV_ALL();
-  TEST_OPIVVV_M_ALL();
-  TEST_OPFVVV_M_ALL();
+  TEST_OPI_VV_ALL();
+  TEST_OPI_VVV_ALL();
+  TEST_OPF_VVV_ALL();
+  TEST_OPI_VVV_M_ALL();
+  TEST_OPF_VVV_M_ALL();
 
 
   return 0;
