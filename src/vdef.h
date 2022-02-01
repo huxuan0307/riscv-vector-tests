@@ -1,9 +1,9 @@
-#include "vdef/vopi_vvv_def.h"
-#include "vdef/vopi_vxv_def.h"
-#include "vdef/vopi_vvmv_def.h"
-#include "vdef/vopi_vv_def.h"
-#include "vdef/vopf_vvv_def.h"
-#include "vdef/vopf_vfv_def.h"
+#include "vdef/vopi_vvv.h"
+#include "vdef/vopi_vxv.h"
+#include "vdef/vopi_vvmv.h"
+#include "vdef/vopi_vv.h"
+#include "vdef/vopf_vvv.h"
+#include "vdef/vopf_vfv.h"
 #include <stdint.h>
 #include <riscv_vector.h>
 

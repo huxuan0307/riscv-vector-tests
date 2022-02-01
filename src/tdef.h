@@ -1,10 +1,10 @@
-#include "test_def/opi_vvv_def.h"
-#include "test_def/opi_vxv_def.h"
-#include "test_def/opi_vv_def.h"
-#include "test_def/opi_vvmv_def.h"
-#include "test_def/opf_vvv_def.h"
-#include "test_def/opf_vfv_def.h"
-#include "test_def/test_template.h"
+#include "tdef/opi_vvv.h"
+#include "tdef/opi_vxv.h"
+#include "tdef/opi_vv.h"
+#include "tdef/opi_vvmv.h"
+#include "tdef/opf_vvv.h"
+#include "tdef/opf_vfv.h"
+#include "tdef/test_template.h"
 
 #define TEST_OPI_VV_ALL() \
 TEST_OPI_VV_GROUP(vmv) \
