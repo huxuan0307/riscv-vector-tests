@@ -2,6 +2,7 @@
 #include "vdef/vopi_vxv.h"
 #include "vdef/vopi_vvmv.h"
 #include "vdef/vopi_vvm.h"
+#include "vdef/vopi_vvmm.h"
 #include "vdef/vopi_vv.h"
 #include "vdef/vopf_vvv.h"
 #include "vdef/vopf_vfv.h"
@@ -254,6 +255,18 @@ VOPI_VVM_UU_DEF_GROUP(VMSLEU)
 VOPI_VVM_II_DEF_GROUP(VMSLE)
 VOPI_VVM_DEF_GROUP(VMADC)
 VOPI_VVM_DEF_GROUP(VMSBC)
+
+/**
+ * @brief defination of opi_vvmm: (v,v,m)->m
+ * 
+ */
+
+#define VMADC_VVM_II_DEF(type, lmul)  VOPI_VVMM_II_DEF(vmadc, type, lmul)
+#define VMADC_VVM_UU_DEF(type, lmul)  VOPI_VVMM_UU_DEF(vmadc, type, lmul)
+VOPI_VVMM_DEF_GROUP(VMADC)
+#define VMSBC_VVM_II_DEF(type, lmul)  VOPI_VVMM_II_DEF(vmsbc, type, lmul)
+#define VMSBC_VVM_UU_DEF(type, lmul)  VOPI_VVMM_UU_DEF(vmsbc, type, lmul)
+VOPI_VVMM_DEF_GROUP(VMSBC)
 
 /**
  * @brief defination of opi_vv: (v)->v

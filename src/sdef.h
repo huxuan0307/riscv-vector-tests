@@ -70,6 +70,14 @@ void op ## _vv_ref( \
   {code;} \
 } \
 
+#define VOPI_VVMM_REF_DEF(op, code) \
+template<typename TypeSrc2, typename TypeSrc1> \
+void op ## _vvm_ref( \
+  uint8_t* vd, TypeSrc2* vs2, TypeSrc1* vs1, const uint8_t* vmask, size_t n \
+) { \
+  {code;} \
+} \
+
 #define VOPF_VFV_REF_DEF(op, code) \
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1> \
 void op ## _vf_ref(TypeRet* vd, TypeSrc2* vs2, TypeSrc1* rs1, size_t n) { \
@@ -172,6 +180,9 @@ VOPI_VVM_REF_DEF(vmsleu,        FORLOOP(i, ASSIGN_BIT(vd, i, vs2[i] <= vs1[i])))
 VOPI_VVM_REF_DEF(vmsle,         FORLOOP(i, ASSIGN_BIT(vd, i, vs2[i] <= vs1[i])))
 VOPI_VVM_REF_DEF(vmadc,         FORLOOP(i, ASSIGN_BIT(vd, i, carry_out(vs2[i], vs1[i]))))
 VOPI_VVM_REF_DEF(vmsbc,         FORLOOP(i, ASSIGN_BIT(vd, i, borrow_out(vs2[i], vs1[i]))))
+
+VOPI_VVMM_REF_DEF(vmadc,        FORLOOP(i, ASSIGN_BIT(vd, i, carry_out(vs2[i], vs1[i], VMASK(i)))))
+VOPI_VVMM_REF_DEF(vmsbc,        FORLOOP(i, ASSIGN_BIT(vd, i, borrow_out(vs2[i], vs1[i], VMASK(i)))))
 
 VOPI_VV_REF_DEF(vmv,            FORLOOP(i, vd[i] = vs[i]))
 
