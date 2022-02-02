@@ -4,6 +4,13 @@
 #include <stdint.h>
 #include <riscv_vector.h>
 
+#ifndef VLEN
+#define VLEN 128
+#endif
+
+#define CONCAT(A, B) A ## B
+#define DEREF(x)     x
+
 // scalar type
 using f32 = float;
 using f64 = double;
@@ -83,62 +90,74 @@ using vb32    = vbool32_t;
 using vb64    = vbool64_t;
 
 #define VUNDEF(type, lmul) vundefined_##type##lmul()
-#define __vtypem_i8_mf8__   b64
-#define __vtypem_i8_mf4__   b32
-#define __vtypem_i8_mf2__   b16
-#define __vtypem_i8_m1__    b8
-#define __vtypem_i8_m2__    b4
-#define __vtypem_i8_m4__    b2
-#define __vtypem_i8_m8__    b1
-#define __vtypem_i16_mf4__  b64
-#define __vtypem_i16_mf2__  b32
-#define __vtypem_i16_m1__   b16
-#define __vtypem_i16_m2__   b8
-#define __vtypem_i16_m4__   b4
-#define __vtypem_i16_m8__   b2
-#define __vtypem_i32_mf2__  b64
-#define __vtypem_i32_m1__   b32
-#define __vtypem_i32_m2__   b16
-#define __vtypem_i32_m4__   b8
-#define __vtypem_i32_m8__   b4
-#define __vtypem_i64_m1__   b64
-#define __vtypem_i64_m2__   b32
-#define __vtypem_i64_m4__   b16
-#define __vtypem_i64_m8__   b8
-#define __vtypem_u8_mf8__   b64
-#define __vtypem_u8_mf4__   b32
-#define __vtypem_u8_mf2__   b16
-#define __vtypem_u8_m1__    b8
-#define __vtypem_u8_m2__    b4
-#define __vtypem_u8_m4__    b2
-#define __vtypem_u8_m8__    b1
-#define __vtypem_u16_mf4__  b64
-#define __vtypem_u16_mf2__  b32
-#define __vtypem_u16_m1__   b16
-#define __vtypem_u16_m2__   b8
-#define __vtypem_u16_m4__   b4
-#define __vtypem_u16_m8__   b2
-#define __vtypem_u32_mf2__  b64
-#define __vtypem_u32_m1__   b32
-#define __vtypem_u32_m2__   b16
-#define __vtypem_u32_m4__   b8
-#define __vtypem_u32_m8__   b4
-#define __vtypem_u64_m1__   b64
-#define __vtypem_u64_m2__   b32
-#define __vtypem_u64_m4__   b16
-#define __vtypem_u64_m8__   b8
-#define __vtypem_f32_mf2__  b64
-#define __vtypem_f32_m1__   b32
-#define __vtypem_f32_m2__   b16
-#define __vtypem_f32_m4__   b8
-#define __vtypem_f32_m8__   b4
-#define __vtypem_f64_m1__   b64
-#define __vtypem_f64_m2__   b32
-#define __vtypem_f64_m4__   b16
-#define __vtypem_f64_m8__   b8
-#define VTYPEM(type, lmul) __vtypem_##type##_##lmul##__
 
+#define __vtypem_i8_mf8__   64
+#define __vtypem_i8_mf4__   32
+#define __vtypem_i8_mf2__   16
+#define __vtypem_i8_m1__    8
+#define __vtypem_i8_m2__    4
+#define __vtypem_i8_m4__    2
+#define __vtypem_i8_m8__    1
+#define __vtypem_i16_mf4__  64
+#define __vtypem_i16_mf2__  32
+#define __vtypem_i16_m1__   16
+#define __vtypem_i16_m2__   8
+#define __vtypem_i16_m4__   4
+#define __vtypem_i16_m8__   2
+#define __vtypem_i32_mf2__  64
+#define __vtypem_i32_m1__   32
+#define __vtypem_i32_m2__   16
+#define __vtypem_i32_m4__   8
+#define __vtypem_i32_m8__   4
+#define __vtypem_i64_m1__   64
+#define __vtypem_i64_m2__   32
+#define __vtypem_i64_m4__   16
+#define __vtypem_i64_m8__   8
+#define __vtypem_u8_mf8__   64
+#define __vtypem_u8_mf4__   32
+#define __vtypem_u8_mf2__   16
+#define __vtypem_u8_m1__    8
+#define __vtypem_u8_m2__    4
+#define __vtypem_u8_m4__    2
+#define __vtypem_u8_m8__    1
+#define __vtypem_u16_mf4__  64
+#define __vtypem_u16_mf2__  32
+#define __vtypem_u16_m1__   16
+#define __vtypem_u16_m2__   8
+#define __vtypem_u16_m4__   4
+#define __vtypem_u16_m8__   2
+#define __vtypem_u32_mf2__  64
+#define __vtypem_u32_m1__   32
+#define __vtypem_u32_m2__   16
+#define __vtypem_u32_m4__   8
+#define __vtypem_u32_m8__   4
+#define __vtypem_u64_m1__   64
+#define __vtypem_u64_m2__   32
+#define __vtypem_u64_m4__   16
+#define __vtypem_u64_m8__   8
+#define __vtypem_f32_mf2__  64
+#define __vtypem_f32_m1__   32
+#define __vtypem_f32_m2__   16
+#define __vtypem_f32_m4__   8
+#define __vtypem_f32_m8__   4
+#define __vtypem_f64_m1__   64
+#define __vtypem_f64_m2__   32
+#define __vtypem_f64_m4__   16
+#define __vtypem_f64_m8__   8
+#define VBOOL_BITS(type, lmul) DEREF(__vtypem_##type##_##lmul##__)
+#define VTYPEM(type, lmul) B_PREFIX(VBOOL_BITS(type, lmul))
+#define VTYPEB(bits) CONCAT(vb, bits)
+#define B_PREFIX(num) CONCAT(b, num)
 
+template<int N>
+constexpr uint8_t MAX_BITS = 0;
+template<>
+constexpr uint8_t MAX_BITS<2> = 0x03;
+template<>
+constexpr uint8_t MAX_BITS<4> = 0x0f;
+
+#define OFFSET_PER_LOOP(type, lmul) (VLEN / VBOOL_BITS(type, lmul))
+#define NEWMASK(type, lmul, offset) (MAX_BITS<OFFSET_PER_LOOP(type, lmul)> << offset)
 #define VSETVL(type, lmul, n) vsetvl_##type##lmul(n)
 #define vsetvl_i8mf8  vsetvl_e8mf8
 #define vsetvl_i8mf4  vsetvl_e8mf4

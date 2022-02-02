@@ -170,3 +170,130 @@ TEST_OPI3OPS_COMMON_GROUP_M2(test, op) \
 TEST_OPI3OPS_COMMON_GROUP_M4(test, op) \
 TEST_OPI3OPS_COMMON_GROUP_M8(test, op) \
 
+#define TEST_OPI1OP_COMMON_I_GROUP_MF8(test, op) \
+test(op, i8,  mf8); \
+
+#define TEST_OPI1OP_COMMON_I_GROUP_MF4(test, op)  \
+test(op, i8,  mf4); \
+test(op, i16, mf4); \
+
+#define TEST_OPI1OP_COMMON_I_GROUP_MF2(test, op)  \
+test(op, i8,  mf2); \
+test(op, i16, mf2); \
+test(op, i32, mf2); \
+
+#define TEST_OPI1OP_COMMON_I_GROUP_M1(test, op)   \
+test(op, i8,  m1);  \
+test(op, i16, m1);  \
+test(op, i32, m1);  \
+test(op, i64, m1);  \
+
+#define TEST_OPI1OP_COMMON_I_GROUP_M2(test, op)   \
+test(op, i8,  m2);  \
+test(op, i16, m2);  \
+test(op, i32, m2);  \
+test(op, i64, m2);  \
+
+#define TEST_OPI1OP_COMMON_I_GROUP_M4(test, op)   \
+test(op, i8,  m4);  \
+test(op, i16, m4);  \
+test(op, i32, m4);  \
+test(op, i64, m4);  \
+
+#define TEST_OPI1OP_COMMON_I_GROUP_M8(test, op)   \
+test(op, i8,  m8);  \
+test(op, i16, m8);  \
+test(op, i32, m8);  \
+test(op, i64, m8);  \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_MF8(test, op) \
+test(op, u8,  mf8); \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_MF4(test, op) \
+test(op, u8,  mf4); \
+test(op, u16, mf4); \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_MF2(test, op) \
+test(op, u8,  mf2); \
+test(op, u16, mf2); \
+test(op, u32, mf2); \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_M1(test, op)  \
+test(op, u8,  m1);  \
+test(op, u16, m1);  \
+test(op, u32, m1);  \
+test(op, u64, m1);  \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_M2(test, op)  \
+test(op, u8,  m2);  \
+test(op, u16, m2);  \
+test(op, u32, m2);  \
+test(op, u64, m2);  \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_M4(test, op)  \
+test(op, u8,  m4);  \
+test(op, u16, m4);  \
+test(op, u32, m4);  \
+test(op, u64, m4);  \
+
+#define TEST_OPI1OP_COMMON_U_GROUP_M8(test, op)  \
+test(op, u8,  m8);  \
+test(op, u16, m8);  \
+test(op, u32, m8);  \
+test(op, u64, m8);  \
+
+#define TEST_OPI1OP_COMMON_GROUP_MF8(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_MF8(test, op)  \
+TEST_OPI1OP_COMMON_U_GROUP_MF8(test, op) \
+
+#define TEST_OPI1OP_COMMON_GROUP_MF4(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_MF4(test, op)  \
+TEST_OPI1OP_COMMON_U_GROUP_MF4(test, op) \
+
+#define TEST_OPI1OP_COMMON_GROUP_MF2(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_MF2(test, op)  \
+TEST_OPI1OP_COMMON_U_GROUP_MF2(test, op) \
+
+#define TEST_OPI1OP_COMMON_GROUP_M1(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_M1(test, op)   \
+TEST_OPI1OP_COMMON_U_GROUP_M1(test, op)  \
+
+#define TEST_OPI1OP_COMMON_GROUP_M2(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_M2(test, op)   \
+TEST_OPI1OP_COMMON_U_GROUP_M2(test, op)  \
+
+#define TEST_OPI1OP_COMMON_GROUP_M4(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_M4(test, op)   \
+TEST_OPI1OP_COMMON_U_GROUP_M4(test, op)  \
+
+#define TEST_OPI1OP_COMMON_GROUP_M8(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_M8(test, op)   \
+TEST_OPI1OP_COMMON_U_GROUP_M8(test, op)   \
+
+#define TEST_OPI1OP_COMMON_I_GROUP(test, op) \
+TEST_OPI1OP_COMMON_I_GROUP_MF8(test, op)  \
+TEST_OPI1OP_COMMON_I_GROUP_MF4(test, op)  \
+TEST_OPI1OP_COMMON_I_GROUP_MF2(test, op)  \
+TEST_OPI1OP_COMMON_I_GROUP_M1(test, op)   \
+TEST_OPI1OP_COMMON_I_GROUP_M2(test, op)   \
+TEST_OPI1OP_COMMON_I_GROUP_M4(test, op)   \
+TEST_OPI1OP_COMMON_I_GROUP_M8(test, op)   \
+
+#define TEST_OPI1OP_COMMON_U_GROUP(test, op) \
+TEST_OPI1OP_COMMON_U_GROUP_MF8(test, op) \
+TEST_OPI1OP_COMMON_U_GROUP_MF4(test, op) \
+TEST_OPI1OP_COMMON_U_GROUP_MF2(test, op) \
+TEST_OPI1OP_COMMON_U_GROUP_M1(test, op)  \
+TEST_OPI1OP_COMMON_U_GROUP_M2(test, op)  \
+TEST_OPI1OP_COMMON_U_GROUP_M4(test, op)  \
+TEST_OPI1OP_COMMON_U_GROUP_M8(test, op)  \
+
+#define TEST_OPI1OP_COMMON_GROUP(test, op) \
+TEST_OPI1OP_COMMON_GROUP_MF8(test, op) \
+TEST_OPI1OP_COMMON_GROUP_MF4(test, op) \
+TEST_OPI1OP_COMMON_GROUP_MF2(test, op) \
+TEST_OPI1OP_COMMON_GROUP_M1(test, op) \
+TEST_OPI1OP_COMMON_GROUP_M2(test, op) \
+TEST_OPI1OP_COMMON_GROUP_M4(test, op) \
+TEST_OPI1OP_COMMON_GROUP_M8(test, op) \
+

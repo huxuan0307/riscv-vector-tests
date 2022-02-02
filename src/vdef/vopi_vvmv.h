@@ -10,8 +10,6 @@ type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
   for (i = 0; i < n;) { \
     size_t vl = VSETVL(type2, lmul2, n); \
     auto vmask = VLM(VTYPEM(type2, lmul2), &mask[i/8], vl); \
-    auto offset = i % 8; \
-    __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \
     auto vs1 = VLE(type1, lmul1, &s1[i], vl); \
     auto vs2 = VLE(type2, lmul2, &s2[i], vl); \
     __asm__(#op ".vvm %0, %1, %2, %3;" : "=vr"(vd) : "vr"(vs2), "vr"(vs1), "vm"(vmask)); \

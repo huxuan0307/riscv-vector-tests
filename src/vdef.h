@@ -1,6 +1,7 @@
 #include "vdef/vopi_vvv.h"
 #include "vdef/vopi_vxv.h"
 #include "vdef/vopi_vvmv.h"
+#include "vdef/vopi_vvm.h"
 #include "vdef/vopi_vv.h"
 #include "vdef/vopf_vvv.h"
 #include "vdef/vopf_vfv.h"
@@ -226,6 +227,33 @@ VOPI_VVMV_DEF_GROUP(VADC)
 #define VSBC_VVM_II_DEF(type, _, lmul) VOPI_VVMV_III_DEF(vsbc, type, lmul)
 #define VSBC_VVM_UU_DEF(type, _, lmul) VOPI_VVMV_UUU_DEF(vsbc, type, lmul)
 VOPI_VVMV_DEF_GROUP(VSBC)
+
+/**
+ * @brief defination of opi_vvm: (v,v)->m
+ * 
+ */
+
+#define VMSEQ_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmseq, type, lmul)
+#define VMSEQ_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmseq, type, lmul)
+#define VMSNE_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmsne, type, lmul)
+#define VMSNE_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmsne, type, lmul)
+#define VMSLTU_VV_UU_DEF(type, lmul)  VOPI_VVM_UU_DEF(vmsltu, type, lmul)
+#define VMSLT_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmslt, type, lmul)
+#define VMSLEU_VV_UU_DEF(type, lmul)  VOPI_VVM_UU_DEF(vmsleu, type, lmul)
+#define VMSLE_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmsle, type, lmul)
+#define VMADC_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmadc, type, lmul)
+#define VMADC_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmadc, type, lmul)
+#define VMSBC_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmsbc, type, lmul)
+#define VMSBC_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmsbc, type, lmul)
+
+VOPI_VVM_DEF_GROUP(VMSEQ)
+VOPI_VVM_DEF_GROUP(VMSNE)
+VOPI_VVM_UU_DEF_GROUP(VMSLTU)
+VOPI_VVM_II_DEF_GROUP(VMSLT)
+VOPI_VVM_UU_DEF_GROUP(VMSLEU)
+VOPI_VVM_II_DEF_GROUP(VMSLE)
+VOPI_VVM_DEF_GROUP(VMADC)
+VOPI_VVM_DEF_GROUP(VMSBC)
 
 /**
  * @brief defination of opi_vv: (v)->v
