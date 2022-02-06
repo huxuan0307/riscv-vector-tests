@@ -62,6 +62,14 @@ void op ## _vvm_ref( \
   {code;} \
 } \
 
+#define VOPI_VXMV_REF_DEF(op, code) \
+template<typename TypeRet, typename TypeSrc2, typename TypeSrc1> \
+void op ## _vxm_ref( \
+  TypeRet* vd, TypeSrc2* vs2, TypeSrc1* rs1, \
+  const uint8_t* vmask, size_t n) { \
+  {code;} \
+} \
+
 #define VOPI_VVM_REF_DEF(op, code) \
 template<typename TypeSrc2, typename TypeSrc1> \
 void op ## _vv_ref( \
@@ -203,6 +211,10 @@ VOPI_VXV_M_REF_DEF(vsra,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(rs1[0] &
 VOPI_VVMV_REF_DEF(vmerge,       FORLOOP(i, vd[i] = VMASK(i) ? vs1[i] : vs2[i]))
 VOPI_VVMV_REF_DEF(vadc,         FORLOOP(i, vd[i] = vs2[i] + vs1[i] + VMASK(i)))
 VOPI_VVMV_REF_DEF(vsbc,         FORLOOP(i, vd[i] = vs2[i] - vs1[i] - VMASK(i)))
+
+VOPI_VXMV_REF_DEF(vmerge,       FORLOOP(i, vd[i] = VMASK(i) ? rs1[0] : vs2[i]))
+VOPI_VXMV_REF_DEF(vadc,         FORLOOP(i, vd[i] = vs2[i] + rs1[0] + VMASK(i)))
+VOPI_VXMV_REF_DEF(vsbc,         FORLOOP(i, vd[i] = vs2[i] - rs1[0] - VMASK(i)))
 
 VOPI_VVM_REF_DEF(vmseq,         FORLOOP(i, ASSIGN_BIT(vd, i, vs2[i] == vs1[i])))
 VOPI_VVM_REF_DEF(vmsne,         FORLOOP(i, ASSIGN_BIT(vd, i, vs2[i] != vs1[i])))

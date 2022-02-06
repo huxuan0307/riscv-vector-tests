@@ -91,8 +91,6 @@ void test_opi_vvv(
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }
 
-#define test_opf_vvv test_opi_vvv
-
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
 void test_opi_vvm(
   void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t), 
@@ -440,8 +438,6 @@ void test_opi_vxv(
   free(rs1); free(vs2); free(vd); free(vd_ref);
 }
 
-#define test_opf_vfv test_opi_vxv
-
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
 void test_opi_vxv_m(
   void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, const uint8_t*, size_t), 
@@ -488,7 +484,7 @@ void test_opi_vxv_m(
   free(rs1); free(vs2); free(vd); free(vd_ref);
 }
 
-#define test_opf_vfv_m test_opi_vxv_m
+#define test_opi_vxmv test_opi_vxv_m
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
 void test_opi_vvv_m(
@@ -545,7 +541,6 @@ void test_opi_vvv_m(
 }
 
 #define test_opi_vvmv test_opi_vvv_m
-#define test_opf_vvv_m test_opi_vvv_m
 
 template<typename TypeRet, typename TypeSrc1>
 void test_opi_vv(
@@ -585,3 +580,8 @@ void test_opi_vv(
 
   free(vs1); free(vd); free(vd_ref);
 }
+
+#define test_opf_vvv test_opi_vvv
+#define test_opf_vvv_m test_opi_vvv_m
+#define test_opf_vfv test_opi_vxv
+#define test_opf_vfv_m test_opi_vxv_m

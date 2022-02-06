@@ -2,6 +2,7 @@
 #include "tdef/opi_vxv.h"
 #include "tdef/opi_vv.h"
 #include "tdef/opi_vvmv.h"
+#include "tdef/opi_vxmv.h"
 #include "tdef/opi_vvm.h"
 #include "tdef/opi_vxm.h"
 #include "tdef/opi_vvmm.h"
@@ -49,6 +50,11 @@ TEST_OPI_VVV_IUI_M_GROUP(vsra)\
 TEST_OPI_VVMV_GROUP(vmerge) \
 TEST_OPI_VVMV_GROUP(vadc) \
 TEST_OPI_VVMV_GROUP(vsbc) \
+
+#define TEST_OPI_VXMV_ALL() \
+TEST_OPI_VXMV_GROUP(vmerge) \
+TEST_OPI_VXMV_GROUP(vadc) \
+TEST_OPI_VXMV_GROUP(vsbc) \
 
 #define TEST_OPI_VVM_ALL() \
 TEST_OPI_VVM_GROUP(vmseq) \
