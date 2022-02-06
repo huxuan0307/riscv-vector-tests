@@ -9,6 +9,10 @@
 #include <time.h>
 #include <sys/time.h>
 
+bool inline get_bit(const uint8_t* bits, const size_t i) {
+  return (bits[i/8] >> (i%8)) & 0x1;
+}
+
 template<typename Type>
 void copy_vector(Type* dst, Type* src, uint64_t n)
 {
@@ -19,16 +23,16 @@ void copy_vector(Type* dst, Type* src, uint64_t n)
 }
 
 template<typename Type>
-void test_result(Type* y, Type* y_ref, uint64_t nrows)
+void test_result(Type* y, Type* y_ref, uint64_t n)
 {
-  uint64_t row;
+  uint64_t i;
   uint64_t nerrs=0;
   /* Compute with the result to keep the compiler for marking the code as dead */
-  if (std::is_floating_point<Type>::value) {
-    for (row=0; row<nrows; row++) {
-      double error = y[row] - y_ref[row];
+  if constexpr (std::is_floating_point<Type>::value) {
+    for (i=0; i<n; i++) {
+      double error = y[i] - y_ref[i];
       if (fabs(error) > 0.0000001)  {
-        printf("y_vec[%ld]=%.16f != y_ref[%ld]=%.16f  INCORRECT RESULT !!!! \n", row, y[row], row, y_ref[row]);
+        printf("y_vec[%4lu]=%.16f != y_ref[%4lu]=%.16f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
         nerrs++;
         if (nerrs == 100) break;
       }
@@ -38,9 +42,9 @@ void test_result(Type* y, Type* y_ref, uint64_t nrows)
     }
   }
   else {
-    for (row=0; row<nrows; row++) {
-      if (y[row] != y_ref[row]) {
-        printf("y_vec[%4d]=%llx != y_ref[%4d]=%llx  INCORRECT RESULT !!!! \n", row, y[row], row, y_ref[row]);
+    for (i=0; i<n; i++) {
+      if (y[i] != y_ref[i]) {
+        printf("y_vec[%4lu]=%hhx != y_ref[%4lu]=%hhx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
         nerrs++;
         if (nerrs == 100) break;
       }
@@ -50,6 +54,42 @@ void test_result(Type* y, Type* y_ref, uint64_t nrows)
     }
   }
 }
+
+template<typename Type>
+void test_result_with_mask(Type* y, Type* y_ref, const uint8_t* mask, uint64_t n)
+{
+  uint64_t i;
+  uint64_t nerrs=0;
+  /* Compute with the result to keep the compiler for marking the code as dead */
+  if (std::is_floating_point<Type>::value) {
+    for (i=0; i<n; i++) {
+      double error = y[i] - y_ref[i];
+      if (get_bit(mask, i) && fabs(error) > 0.0000001 )  {
+        printf("y_vec[%ld]=%.16f != y_ref[%ld]=%.16f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        nerrs++;
+        if (nerrs == 100) break;
+      }
+    }
+    if (nerrs == 0) {
+      printf ("pass !!!\n");
+    }
+  }
+  else {
+    for (i=0; i<n; i++) {
+      if (get_bit(mask, i) && y[i] != y_ref[i]) {
+        printf("y_vec[%4d]=%llx != y_ref[%4d]=%llx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        nerrs++;
+        if (nerrs == 100) break;
+      }
+    }
+    if (nerrs == 0) {
+      printf ("pass !!!\n");
+    }
+  }
+}
+
+void test_mask_result_with_mask(const uint8_t* y, const uint8_t* y_ref, 
+  const uint8_t* mask, uint64_t n);
 
 long long get_time();
 

@@ -16,7 +16,7 @@ void op##_vf_ ## type ## lmul ## _vec(type*d, type*s2, type*s1, u64 n) \
 } \
 
 #define VOPF_VFV_M_DEF(op, type, lmul) \
-void op##_vf_ ## type ## lmul ## _m_vec( \ 
+void op##_vf_ ## type ## lmul ## _m_vec( \
 type*d, type*s2, type*s1, const u8* mask, u64 n) \
 { \
   size_t i=0; \

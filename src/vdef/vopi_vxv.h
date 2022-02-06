@@ -22,7 +22,7 @@ VOPI_VXV_DEF(op, type, lmul, type, type, lmul)
 VOPI_VXV_DEF(op, type2, lmul, type1, type2, lmul)
 
 #define VOPI_VXV_M_DEF(op, type2, lmul2, type1, type_ret, lmul_ret) \
-void op##_vx_ ## type_ret ## lmul_ret ## _m_vec( \ 
+void op##_vx_ ## type_ret ## lmul_ret ## _m_vec( \
 type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
 { \
   size_t i=0; \

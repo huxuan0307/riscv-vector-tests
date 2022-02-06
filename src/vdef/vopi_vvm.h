@@ -1,7 +1,7 @@
 #include "common.h"
 
 #define VOPI_VVM_DEF(op, type2, lmul2, type1, lmul1) \
-void op##_vv_ ## type2 ## lmul2 ## _vec( \ 
+void op##_vv_ ## type2 ## lmul2 ## _vec( \
 u8*d, type2*s2, type1*s1, u64 n) \
 { \
   size_t i=0; \
@@ -26,9 +26,43 @@ u8*d, type2*s2, type1*s1, u64 n) \
   } \
 } \
 
+#define VOPI_VVM_M_DEF(op, type2, lmul2, type1, lmul1) \
+void op##_vv_ ## type2 ## lmul2 ## _m_vec( \
+  u8*d, type2*s2, type1*s1, const u8* mask, u64 n \
+) { \
+  size_t i=0; \
+  size_t vl = VSETVL(type2, lmul2, n); \
+  VTYPEB(VBOOL_BITS(type2, lmul2)) vd; \
+  VTYPEB(VBOOL_BITS(type2, lmul2)) vd2; \
+  for (i = 0; i < n;) { \
+    auto vmask = VLM(VTYPEM(type2, lmul2), &mask[i/8], vl); \
+    auto offset = i % 8; \
+    __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \
+    vl = VSETVL(type2, lmul2, n); \
+    auto vs1 = VLE(type1, lmul1, &s1[i], vl); \
+    auto vs2 = VLE(type2, lmul2, &s2[i], vl); \
+    vd = op(vmask, vd2, vs2, vs1, vl); \
+    /*__asm__(#op ".vv %0, %1, %2, %3.t;" : "=vr"(vd) : "vr"(vs2), "vr"(vs1), "vm"(vmask));*/ \
+    if (OFFSET_PER_LOOP(type2, lmul2) >= 8) { \
+      vsm(&d[i/8], vd, vl); \
+    } \
+    else { \
+      uint8_t new_res; \
+      __asm__("vmv.x.s %0, %1;" : "=r"(new_res) : "vr"(vd)); \
+      new_res <<= offset; \
+      auto old_res = d[i/8] & ~NEWMASK(type2, lmul2, offset); \
+      d[i/8] = new_res | old_res; \
+    } \
+    i += vl; \
+  } \
+} \
+
 #define VOPI_VVM_II_DEF(op, type, lmul) \
 VOPI_VVM_DEF(op, type, lmul, type, lmul)
 #define VOPI_VVM_UU_DEF VOPI_VVM_II_DEF
+#define VOPI_VVM_II_M_DEF(op, type, lmul) \
+VOPI_VVM_M_DEF(op, type, lmul, type, lmul)
+#define VOPI_VVM_UU_M_DEF VOPI_VVM_II_M_DEF
 
 #define VOPI_VVM_II_DEF_GROUP_IMPL(op) \
 /* int8_t */ \
@@ -90,6 +124,14 @@ op (u64, m8)
 #define VOPI_VVM_UU_DEF_GROUP(op) VOPI_VVM_UU_DEF_GROUP_IMPL(op ## _VV_UU_DEF)
 #define VOPI_VVM_IU_DEF_GROUP(op) VOPI_VVM_IU_DEF_GROUP_IMPL(op ## _VV_IU_DEF)
 
+#define VOPI_VVM_II_M_DEF_GROUP(op) VOPI_VVM_II_DEF_GROUP_IMPL(op ## _VV_II_M_DEF)
+#define VOPI_VVM_UU_M_DEF_GROUP(op) VOPI_VVM_UU_DEF_GROUP_IMPL(op ## _VV_UU_M_DEF)
+#define VOPI_VVM_IU_M_DEF_GROUP(op) VOPI_VVM_IU_DEF_GROUP_IMPL(op ## _VV_IU_M_DEF)
+
 #define VOPI_VVM_DEF_GROUP(op) \
 VOPI_VVM_II_DEF_GROUP(op) \
 VOPI_VVM_UU_DEF_GROUP(op)
+
+#define VOPI_VVM_M_DEF_GROUP(op) \
+VOPI_VVM_II_M_DEF_GROUP(op) \
+VOPI_VVM_UU_M_DEF_GROUP(op)

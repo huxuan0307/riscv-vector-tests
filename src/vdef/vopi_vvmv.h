@@ -1,7 +1,7 @@
 #include "common.h"
 
 #define VOPI_VVMV_DEF(op, type2, lmul2, type1, lmul1, type_ret, lmul_ret) \
-void op##_vvm_ ## type_ret ## lmul_ret ## _vec( \ 
+void op##_vvm_ ## type_ret ## lmul_ret ## _vec( \
 type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
 { \
   size_t i=0; \

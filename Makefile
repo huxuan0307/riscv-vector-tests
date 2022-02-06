@@ -20,7 +20,7 @@ CLANGXX_FLAGS := \
 		--target=riscv64-unknown-linux-gnu -march=rv64gcv0p10 \
 		-menable-experimental-extensions --gcc-toolchain=${GCC_TOOLCHAIN_DIR} \
 		--sysroot=${GCC_TOOLCHAIN_DIR}/sysroot -flax-vector-conversions \
-		-DUSE_RISCV_VECTOR -static -g -w
+		-DUSE_RISCV_VECTOR -static -g
 llvm_dump_options ?= --mattr=experimental-v
 TOOLCHAIN ?= clang
 
@@ -38,6 +38,7 @@ else ifeq ($(TOOLCHAIN), clang)
 	OBJDUMP_OPTION := ${llvm_dump_options}
 endif
 
+CXX_FLAGS += -std=c++17
 
 start:
 	if [ ! -d bin ]; then \
@@ -50,7 +51,7 @@ all:
 	@echo ${CXX}
 	make start
 	for entry in src/*.cpp ; do \
-		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
+		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -o $$entry.o $$entry; \
 	done
 	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
 	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
@@ -61,7 +62,7 @@ all_O2:
 	@echo "CXX_FLAGS = " ${CXX_FLAGS}
 	make start
 	for entry in src/*.cpp ; do \
-		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -w -o $$entry.o $$entry; \
+		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -o $$entry.o $$entry; \
 	done
 	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
 	rm src/*.o
