@@ -61,7 +61,7 @@ void test_opi_vvv(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %lld\n", n);
+  printf("test length: %zu\n", n);
   /* Allocate the source and result vectors */
   TypeSrc1 *vs1    = (TypeSrc1*)  malloc(n*sizeof(TypeSrc1));
   TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
@@ -105,7 +105,7 @@ void test_opi_vvm(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %lld\n", n);
+  printf("test length: %zu\n", n);
   /* Allocate the source and result vectors */
   TypeSrc1 *vs1    = (TypeSrc1*)  malloc(n*sizeof(TypeSrc1));
   TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
@@ -200,7 +200,7 @@ void test_opi_vvmm(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %lld\n", n);
+  printf("test length: %zu\n", n);
   /* Allocate the source and result vectors */
   uint8_t *vmask   = (uint8_t*)   malloc(n*sizeof(uint8_t));
   TypeSrc1 *vs1    = (TypeSrc1*)  malloc(n*sizeof(TypeSrc1));
@@ -253,7 +253,7 @@ void test_opi_vxv(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %lld\n", n);
+  printf("test length: %zu\n", n);
   /* Allocate the source and result vectors */
   TypeSrc1 *rs1    = (TypeSrc1*)  malloc(1*sizeof(TypeSrc1));
   TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
@@ -297,7 +297,7 @@ void test_opi_vxv_m(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %lld\n", n);
+  printf("test length: %zu\n", n);
   /* Allocate the source and result vectors */
   uint8_t *vmask   = (uint8_t*)   malloc(n*sizeof(uint8_t));
   TypeSrc1 *rs1    = (TypeSrc1*)  malloc(1*sizeof(TypeSrc1));
@@ -345,7 +345,7 @@ void test_opi_vvv_m(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %lld\n", n);
+  printf("test length: %zu\n", n);
   /* Allocate the source and result vectors */
   uint8_t *vmask   = (uint8_t*)   malloc(n*sizeof(uint8_t));
   TypeSrc1 *vs1    = (TypeSrc1*)  malloc(n*sizeof(TypeSrc1));
