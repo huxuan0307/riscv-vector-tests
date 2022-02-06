@@ -1,6 +1,22 @@
 #include "utils.h"
 #include <limits>
 
+void test_mask_result(const uint8_t* y, const uint8_t* y_ref, uint64_t n)
+{
+  uint64_t nerrs=0;
+  for (uint64_t i=0; i<n; i++) {
+    if (get_bit(y, i) != get_bit(y_ref, i)) {
+      printf("y_vec[%4lu]=%d != y_ref[%4lu]=%d  INCORRECT RESULT !!!! \n", 
+            i, get_bit(y, i), i, get_bit(y_ref, i));
+      nerrs++;
+      if (nerrs == 100) break;
+    }
+  }
+  if (nerrs == 0) {
+    printf ("pass !!!\n");
+  }
+}
+
 void test_mask_result_with_mask(const uint8_t* y, const uint8_t* y_ref, 
   const uint8_t* mask, uint64_t n)
 {

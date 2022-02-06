@@ -88,6 +88,8 @@ void test_result_with_mask(Type* y, Type* y_ref, const uint8_t* mask, uint64_t n
   }
 }
 
+void test_mask_result(const uint8_t* y, const uint8_t* y_ref, uint64_t n);
+
 void test_mask_result_with_mask(const uint8_t* y, const uint8_t* y_ref, 
   const uint8_t* mask, uint64_t n);
 

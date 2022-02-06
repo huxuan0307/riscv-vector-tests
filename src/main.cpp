@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
   TEST_OPI_VVMV_ALL();
   TEST_OPI_VVM_ALL();
   TEST_OPI_VVM_M_ALL();
+  TEST_OPI_VXM_ALL();
+  TEST_OPI_VXM_M_ALL();
   TEST_OPI_VVMM_ALL();
   TEST_OPF_VVV_ALL();
   TEST_OPF_VVV_M_ALL();
