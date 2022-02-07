@@ -1,4 +1,5 @@
 #include "tdef/opi_vvv.h"
+#include "tdef/opi_vvw.h"
 #include "tdef/opi_vxv.h"
 #include "tdef/opi_vv.h"
 #include "tdef/opi_vvmv.h"
@@ -46,6 +47,24 @@ TEST_OPI_VVV_IUI_M_GROUP(vsll)\
 TEST_OPI_VVV_UUU_M_GROUP(vsll)\
 TEST_OPI_VVV_UUU_M_GROUP(vsrl)\
 TEST_OPI_VVV_IUI_M_GROUP(vsra)\
+
+#define TEST_OPI_VVW_ALL() \
+TEST_OPI_VVW_III_GROUP(vwadd) \
+TEST_OPI_VVW_III_GROUP(vwsub) \
+TEST_OPI_VVW_UUU_GROUP(vwaddu) \
+TEST_OPI_VVW_UUU_GROUP(vwsubu) \
+TEST_OPI_VVW_III_GROUP(vwmul) \
+TEST_OPI_VVW_UUU_GROUP(vwmulu) \
+TEST_OPI_VVW_IUI_GROUP(vwmulsu) \
+
+#define TEST_OPI_VVW_M_ALL() \
+TEST_OPI_VVW_III_M_GROUP(vwadd) \
+TEST_OPI_VVW_III_M_GROUP(vwsub) \
+TEST_OPI_VVW_UUU_M_GROUP(vwaddu) \
+TEST_OPI_VVW_UUU_M_GROUP(vwsubu) \
+TEST_OPI_VVW_III_M_GROUP(vwmul) \
+TEST_OPI_VVW_UUU_M_GROUP(vwmulu) \
+TEST_OPI_VVW_IUI_M_GROUP(vwmulsu) \
 
 #define TEST_OPI_VVMV_ALL() \
 TEST_OPI_VVMV_GROUP(vmerge) \

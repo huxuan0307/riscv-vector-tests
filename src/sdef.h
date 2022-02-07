@@ -29,6 +29,8 @@ void op ## _vv_ref(TypeRet* vd, TypeSrc2* vs2, TypeSrc1* vs1, size_t n) { \
   {code;} \
 } \
 
+#define VOPI_VVW_REF_DEF VOPI_VVV_REF_DEF
+
 #define VOPI_VXV_REF_DEF(op, code) \
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1> \
 void op ## _vx_ref(TypeRet* vd, TypeSrc2* vs2, TypeSrc1* rs1, size_t n) { \
@@ -42,6 +44,8 @@ void op ## _vv_m_ref( \
   const uint8_t* vmask, size_t n) { \
   {code;} \
 } \
+
+#define VOPI_VVW_REF_M_DEF VOPI_VVV_M_REF_DEF
 
 #define VOPI_VXV_M_REF_DEF(op, code) \
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1> \
@@ -193,6 +197,22 @@ VOPI_VVV_M_REF_DEF(vrgather,    FORLOOPIF(i, VMASK(i), vd[i] = vs2[vs1[i]]))
 VOPI_VVV_M_REF_DEF(vsll,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]<<(vs1[i] & (sizeof(vs2[i])*8-1))))
 VOPI_VVV_M_REF_DEF(vsrl,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(vs1[i] & (sizeof(vs2[i])*8-1))))
 VOPI_VVV_M_REF_DEF(vsra,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(vs1[i] & (sizeof(vs2[i])*8-1))))
+
+VOPI_VVW_REF_DEF(vwadd,         FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) + static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_DEF(vwsub,         FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) - static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_DEF(vwaddu,        FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) + static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_DEF(vwsubu,        FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) - static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_DEF(vwmul,         FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) * static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_DEF(vwmulu,        FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) * static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_DEF(vwmulsu,       FORLOOP(i, vd[i] = static_cast<TypeRet>(vs2[i]) * static_cast<std::make_unsigned_t<TypeRet>>(vs1[i])))
+
+VOPI_VVW_REF_M_DEF(vwadd,       FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) + static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_M_DEF(vwsub,       FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) - static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_M_DEF(vwaddu,      FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) + static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_M_DEF(vwsubu,      FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) - static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_M_DEF(vwmul,       FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) * static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_M_DEF(vwmulu,      FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) * static_cast<TypeRet>(vs1[i])))
+VOPI_VVW_REF_M_DEF(vwmulsu,     FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) * static_cast<std::make_unsigned_t<TypeRet>>(vs1[i])))
 
 VOPI_VXV_REF_DEF(vadd,          FORLOOP(i, vd[i] = vs2[i]+rs1[0]))
 VOPI_VXV_REF_DEF(vsub,          FORLOOP(i, vd[i] = vs2[i]-rs1[0]))
