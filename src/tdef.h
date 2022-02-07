@@ -7,6 +7,7 @@
 #include "tdef/opi_vxm.h"
 #include "tdef/opi_vvmm.h"
 #include "tdef/opi_vxmm.h"
+#include "tdef/opi_vvvv.h"
 #include "tdef/opf_vvv.h"
 #include "tdef/opf_vfv.h"
 #include "tdef/test_template.h"
@@ -135,6 +136,18 @@ TEST_OPI_VXM_UU_M_GROUP(vmsleu) \
 TEST_OPI_VXM_II_M_GROUP(vmsle) \
 TEST_OPI_VXM_UU_M_GROUP(vmsgtu) \
 TEST_OPI_VXM_II_M_GROUP(vmsgt) \
+
+#define TEST_OPI_VVVV_ALL() \
+TEST_OPI_VVVV_GROUP(vmacc) \
+TEST_OPI_VVVV_GROUP(vnmsac) \
+TEST_OPI_VVVV_GROUP(vmadd) \
+TEST_OPI_VVVV_GROUP(vnmsub) \
+
+#define TEST_OPI_VVVV_M_ALL() \
+TEST_OPI_VVVV_M_GROUP(vmacc) \
+TEST_OPI_VVVV_M_GROUP(vnmsac) \
+TEST_OPI_VVVV_M_GROUP(vmadd) \
+TEST_OPI_VVVV_M_GROUP(vnmsub) \
 
 #define TEST_OPF_VVV_ALL() \
 TEST_OPF_VVV_GROUP(vfadd) \

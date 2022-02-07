@@ -5,11 +5,12 @@ void op##_vv_ ## type_ret ## lmul_ret ## _vec(type_ret*vd, type2*vs2, type1*vs1,
 { \
   size_t i; \
   size_t vl = VSETVL(type2, lmul2, n); \
+  VTYPE(type_ret, lmul_ret) v_res; \
   for (i = 0; i < n;) { \
     vl = VSETVL(type2, lmul2, n); \
     VTYPE(type1, lmul1) v_vs1 = VLE(type1, lmul1, &vs1[i], vl); \
     VTYPE(type2, lmul2) v_vs2 = VLE(type2, lmul2, &vs2[i], vl); \
-    VTYPE(type_ret, lmul_ret) v_res = op##_vv_##type_ret##lmul_ret(v_vs2, v_vs1, vl); \
+    __asm__(#op ".vv %0, %1, %2;" : "+&vr"(v_res) : "vr"(v_vs2), "vr"(v_vs1)); \
     VSE(type_ret, lmul_ret, &vd[i], v_res, vl); \
     i += vl; \
   } \
