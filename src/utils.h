@@ -44,7 +44,18 @@ void test_result(Type* y, Type* y_ref, uint64_t n)
   else {
     for (i=0; i<n; i++) {
       if (y[i] != y_ref[i]) {
-        printf("y_vec[%4lu]=%hhx != y_ref[%4lu]=%hhx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        if constexpr(sizeof(Type) == 1) {
+          printf("y_vec[%4lu]=%hhx != y_ref[%4lu]=%hhx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
+        else if constexpr(sizeof(Type) == 2) {
+          printf("y_vec[%4lu]=%hx != y_ref[%4lu]=%hx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
+        else if constexpr(sizeof(Type) == 4) {
+          printf("y_vec[%4lu]=%x != y_ref[%4lu]=%x  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
+        else if constexpr(sizeof(Type) == 8) {
+          printf("y_vec[%4lu]=%lx != y_ref[%4lu]=%lx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
         nerrs++;
         if (nerrs == 100) break;
       }
