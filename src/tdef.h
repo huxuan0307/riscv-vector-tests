@@ -1,14 +1,15 @@
-#include "tdef/opi_vvv.h"
-#include "tdef/opi_vvw.h"
-#include "tdef/opi_vxv.h"
 #include "tdef/opi_vv.h"
-#include "tdef/opi_vvmv.h"
-#include "tdef/opi_vxmv.h"
+#include "tdef/opi_vvv.h"
+#include "tdef/opi_vxv.h"
 #include "tdef/opi_vvm.h"
 #include "tdef/opi_vxm.h"
+#include "tdef/opi_vvw.h"
+#include "tdef/opi_vvvv.h"
+#include "tdef/opi_vvmv.h"
+#include "tdef/opi_vxmv.h"
 #include "tdef/opi_vvmm.h"
 #include "tdef/opi_vxmm.h"
-#include "tdef/opi_vvvv.h"
+#include "tdef/opi_vvww.h"
 #include "tdef/opf_vvv.h"
 #include "tdef/opf_vfv.h"
 
@@ -166,6 +167,16 @@ TEST_OPI_VVVV_M_GROUP(vmacc) \
 TEST_OPI_VVVV_M_GROUP(vnmsac) \
 TEST_OPI_VVVV_M_GROUP(vmadd) \
 TEST_OPI_VVVV_M_GROUP(vnmsub) \
+
+#define TEST_OPI_VVWW_ALL() \
+TEST_OPI_VVWW_III_GROUP(vwmacc) \
+TEST_OPI_VVWW_UUU_GROUP(vwmaccu) \
+TEST_OPI_VVWW_IUI_GROUP(vwmaccsu) \
+
+#define TEST_OPI_VVWW_M_ALL() \
+TEST_OPI_VVWW_III_M_GROUP(vwmacc) \
+TEST_OPI_VVWW_UUU_M_GROUP(vwmaccu) \
+TEST_OPI_VVWW_IUI_M_GROUP(vwmaccsu) \
 
 #define TEST_OPF_VVV_ALL() \
 TEST_OPF_VVV_GROUP(vfadd) \

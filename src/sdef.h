@@ -9,5 +9,6 @@
 #include "sdef/opi_vxmv.h"
 #include "sdef/opi_vvmm.h"
 #include "sdef/opi_vxmm.h"
+#include "sdef/opi_vvww.h"
 #include "sdef/opf_vvv.h"
 #include "sdef/opf_vfv.h"
