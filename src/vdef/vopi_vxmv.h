@@ -85,3 +85,18 @@ op (u64, m8)
 #define VOPI_VXMV_DEF_GROUP(op) \
 VOPI_VXMV_III_DEF_GROUP(op) \
 VOPI_VXMV_UUU_DEF_GROUP(op)
+
+/**
+ * @brief defination of opi_vxmv: (v,x,m)->v
+ * 
+ */
+
+#define VMERGE_VXM_II_DEF(type, lmul) VOPI_VXMV_III_DEF(vmerge, type, lmul)
+#define VMERGE_VXM_UU_DEF(type, lmul) VOPI_VXMV_UUU_DEF(vmerge, type, lmul)
+VOPI_VXMV_DEF_GROUP(VMERGE)
+#define VADC_VXM_II_DEF(type, lmul) VOPI_VXMV_III_DEF(vadc, type, lmul)
+#define VADC_VXM_UU_DEF(type, lmul) VOPI_VXMV_UUU_DEF(vadc, type, lmul)
+VOPI_VXMV_DEF_GROUP(VADC)
+#define VSBC_VXM_II_DEF(type, lmul) VOPI_VXMV_III_DEF(vsbc, type, lmul)
+#define VSBC_VXM_UU_DEF(type, lmul) VOPI_VXMV_UUU_DEF(vsbc, type, lmul)
+VOPI_VXMV_DEF_GROUP(VSBC)

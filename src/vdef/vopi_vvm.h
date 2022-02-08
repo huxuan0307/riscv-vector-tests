@@ -135,3 +135,51 @@ VOPI_VVM_UU_DEF_GROUP(op)
 #define VOPI_VVM_M_DEF_GROUP(op) \
 VOPI_VVM_II_M_DEF_GROUP(op) \
 VOPI_VVM_UU_M_DEF_GROUP(op)
+
+/**
+ * @brief defination of opi_vvm: (v,v)->m
+ * 
+ */
+
+#define VMSEQ_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmseq, type, lmul)
+#define VMSEQ_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmseq, type, lmul)
+#define VMSNE_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmsne, type, lmul)
+#define VMSNE_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmsne, type, lmul)
+#define VMSLTU_VV_UU_DEF(type, lmul)  VOPI_VVM_UU_DEF(vmsltu, type, lmul)
+#define VMSLT_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmslt, type, lmul)
+#define VMSLEU_VV_UU_DEF(type, lmul)  VOPI_VVM_UU_DEF(vmsleu, type, lmul)
+#define VMSLE_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmsle, type, lmul)
+#define VMADC_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmadc, type, lmul)
+#define VMADC_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmadc, type, lmul)
+#define VMSBC_VV_II_DEF(type, lmul)   VOPI_VVM_II_DEF(vmsbc, type, lmul)
+#define VMSBC_VV_UU_DEF(type, lmul)   VOPI_VVM_UU_DEF(vmsbc, type, lmul)
+
+VOPI_VVM_DEF_GROUP(VMSEQ)
+VOPI_VVM_DEF_GROUP(VMSNE)
+VOPI_VVM_UU_DEF_GROUP(VMSLTU)
+VOPI_VVM_II_DEF_GROUP(VMSLT)
+VOPI_VVM_UU_DEF_GROUP(VMSLEU)
+VOPI_VVM_II_DEF_GROUP(VMSLE)
+VOPI_VVM_DEF_GROUP(VMADC)
+VOPI_VVM_DEF_GROUP(VMSBC)
+
+/**
+ * @brief defination of opi_vvm_m: (v,v)->m
+ * 
+ */
+
+#define VMSEQ_VV_II_M_DEF(type, lmul)   VOPI_VVM_II_M_DEF(vmseq, type, lmul)
+#define VMSEQ_VV_UU_M_DEF(type, lmul)   VOPI_VVM_UU_M_DEF(vmseq, type, lmul)
+#define VMSNE_VV_II_M_DEF(type, lmul)   VOPI_VVM_II_M_DEF(vmsne, type, lmul)
+#define VMSNE_VV_UU_M_DEF(type, lmul)   VOPI_VVM_UU_M_DEF(vmsne, type, lmul)
+#define VMSLTU_VV_UU_M_DEF(type, lmul)  VOPI_VVM_UU_M_DEF(vmsltu, type, lmul)
+#define VMSLT_VV_II_M_DEF(type, lmul)   VOPI_VVM_II_M_DEF(vmslt, type, lmul)
+#define VMSLEU_VV_UU_M_DEF(type, lmul)  VOPI_VVM_UU_M_DEF(vmsleu, type, lmul)
+#define VMSLE_VV_II_M_DEF(type, lmul)   VOPI_VVM_II_M_DEF(vmsle, type, lmul)
+
+VOPI_VVM_M_DEF_GROUP(VMSEQ)
+VOPI_VVM_M_DEF_GROUP(VMSNE)
+VOPI_VVM_UU_M_DEF_GROUP(VMSLTU)
+VOPI_VVM_II_M_DEF_GROUP(VMSLT)
+VOPI_VVM_UU_M_DEF_GROUP(VMSLEU)
+VOPI_VVM_II_M_DEF_GROUP(VMSLE)

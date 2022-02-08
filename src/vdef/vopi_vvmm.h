@@ -95,3 +95,15 @@ op (u64, m8)
 #define VOPI_VVMM_DEF_GROUP(op) \
 VOPI_VVMM_II_DEF_GROUP(op) \
 VOPI_VVMM_UU_DEF_GROUP(op)
+
+/**
+ * @brief defination of opi_vvmm: (v,v,m)->m
+ * 
+ */
+
+#define VMADC_VVM_II_DEF(type, lmul)  VOPI_VVMM_II_DEF(vmadc, type, lmul)
+#define VMADC_VVM_UU_DEF(type, lmul)  VOPI_VVMM_UU_DEF(vmadc, type, lmul)
+VOPI_VVMM_DEF_GROUP(VMADC)
+#define VMSBC_VVM_II_DEF(type, lmul)  VOPI_VVMM_II_DEF(vmsbc, type, lmul)
+#define VMSBC_VVM_UU_DEF(type, lmul)  VOPI_VVMM_UU_DEF(vmsbc, type, lmul)
+VOPI_VVMM_DEF_GROUP(VMSBC)

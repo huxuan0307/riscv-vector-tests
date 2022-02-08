@@ -48,3 +48,51 @@ op (f64, m8)
 
 #define VOPF_VVV_DEF_GROUP(op) VOPF_VVV_DEF_GROUP_IMPL(op ## _VV_DEF)
 #define VOPF_VVV_M_DEF_GROUP(op) VOPF_VVV_DEF_GROUP_IMPL(op ## _VV_M_DEF)
+
+/**
+ * @brief defination of opf_vvv: (v,v)->v
+ * 
+ */
+
+#define VFADD_VV_DEF(type, lmul) VOPF_VVV_DEF(vfadd, type, lmul)
+#define VFSUB_VV_DEF(type, lmul) VOPF_VVV_DEF(vfsub, type, lmul)
+#define VFMUL_VV_DEF(type, lmul) VOPF_VVV_DEF(vfmul, type, lmul)
+#define VFDIV_VV_DEF(type, lmul) VOPF_VVV_DEF(vfdiv, type, lmul)
+#define VFMAX_VV_DEF(type, lmul) VOPF_VVV_DEF(vfmax, type, lmul)
+#define VFMIN_VV_DEF(type, lmul) VOPF_VVV_DEF(vfmin, type, lmul)
+#define VFSGNJ_VV_DEF(type, lmul) VOPF_VVV_DEF(vfsgnj, type, lmul)
+#define VFSGNJN_VV_DEF(type, lmul) VOPF_VVV_DEF(vfsgnjn, type, lmul)
+#define VFSGNJX_VV_DEF(type, lmul) VOPF_VVV_DEF(vfsgnjx, type, lmul)
+VOPF_VVV_DEF_GROUP(VFADD)
+VOPF_VVV_DEF_GROUP(VFSUB)
+VOPF_VVV_DEF_GROUP(VFMUL)
+VOPF_VVV_DEF_GROUP(VFDIV)
+VOPF_VVV_DEF_GROUP(VFMAX)
+VOPF_VVV_DEF_GROUP(VFMIN)
+VOPF_VVV_DEF_GROUP(VFSGNJ)
+VOPF_VVV_DEF_GROUP(VFSGNJN)
+VOPF_VVV_DEF_GROUP(VFSGNJX)
+
+/**
+ * @brief defination of opf_vvv_m: (v,v)->v
+ * 
+ */
+
+#define VFADD_VV_M_DEF(type, lmul)    VOPF_VVV_M_DEF(vfadd, type, lmul)
+#define VFSUB_VV_M_DEF(type, lmul)    VOPF_VVV_M_DEF(vfsub, type, lmul)
+#define VFMUL_VV_M_DEF(type, lmul)    VOPF_VVV_M_DEF(vfmul, type, lmul)
+#define VFDIV_VV_M_DEF(type, lmul)    VOPF_VVV_M_DEF(vfdiv, type, lmul)
+#define VFMAX_VV_M_DEF(type, lmul)    VOPF_VVV_M_DEF(vfmax, type, lmul)
+#define VFMIN_VV_M_DEF(type, lmul)    VOPF_VVV_M_DEF(vfmin, type, lmul)
+#define VFSGNJ_VV_M_DEF(type, lmul)   VOPF_VVV_M_DEF(vfsgnj, type, lmul)
+#define VFSGNJN_VV_M_DEF(type, lmul)  VOPF_VVV_M_DEF(vfsgnjn, type, lmul)
+#define VFSGNJX_VV_M_DEF(type, lmul)  VOPF_VVV_M_DEF(vfsgnjx, type, lmul)
+VOPF_VVV_M_DEF_GROUP(VFADD)
+VOPF_VVV_M_DEF_GROUP(VFSUB)
+VOPF_VVV_M_DEF_GROUP(VFMUL)
+VOPF_VVV_M_DEF_GROUP(VFDIV)
+VOPF_VVV_M_DEF_GROUP(VFMAX)
+VOPF_VVV_M_DEF_GROUP(VFMIN)
+VOPF_VVV_M_DEF_GROUP(VFSGNJ)
+VOPF_VVV_M_DEF_GROUP(VFSGNJN)
+VOPF_VVV_M_DEF_GROUP(VFSGNJX)

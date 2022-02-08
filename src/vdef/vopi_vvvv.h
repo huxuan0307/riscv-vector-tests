@@ -147,3 +147,41 @@ VOPI_VVVV_UUU_DEF_GROUP(op)
 #define VOPI_VVVV_M_DEF_GROUP(op) \
 VOPI_VVVV_III_M_DEF_GROUP(op) \
 VOPI_VVVV_UUU_M_DEF_GROUP(op)
+
+/**
+ * @brief defination of opi_vvvv: (v, v, v)->v
+ * 
+ */
+
+#define VMACC_VVV_II_DEF(type, _, lmul)  VOPI_VVVV_III_DEF(vmacc,  type, lmul)
+#define VMACC_VVV_UU_DEF(type, _, lmul)  VOPI_VVVV_UUU_DEF(vmacc,  type, lmul)
+#define VNMSAC_VVV_II_DEF(type, _, lmul) VOPI_VVVV_III_DEF(vnmsac, type, lmul)
+#define VNMSAC_VVV_UU_DEF(type, _, lmul) VOPI_VVVV_UUU_DEF(vnmsac, type, lmul)
+#define VMADD_VVV_II_DEF(type, _, lmul)  VOPI_VVVV_III_DEF(vmadd,  type, lmul)
+#define VMADD_VVV_UU_DEF(type, _, lmul)  VOPI_VVVV_UUU_DEF(vmadd,  type, lmul)
+#define VNMSUB_VVV_II_DEF(type, _, lmul) VOPI_VVVV_III_DEF(vnmsub, type, lmul)
+#define VNMSUB_VVV_UU_DEF(type, _, lmul) VOPI_VVVV_UUU_DEF(vnmsub, type, lmul)
+
+VOPI_VVVV_DEF_GROUP(VMACC)
+VOPI_VVVV_DEF_GROUP(VNMSAC)
+VOPI_VVVV_DEF_GROUP(VMADD)
+VOPI_VVVV_DEF_GROUP(VNMSUB)
+
+/**
+ * @brief defination of opi_vvvv_m: (v, v, v)->v
+ * 
+ */
+
+#define VMACC_VVV_II_M_DEF(type, _, lmul)  VOPI_VVVV_III_M_DEF(vmacc,  type, lmul)
+#define VMACC_VVV_UU_M_DEF(type, _, lmul)  VOPI_VVVV_UUU_M_DEF(vmacc,  type, lmul)
+#define VNMSAC_VVV_II_M_DEF(type, _, lmul) VOPI_VVVV_III_M_DEF(vnmsac, type, lmul)
+#define VNMSAC_VVV_UU_M_DEF(type, _, lmul) VOPI_VVVV_UUU_M_DEF(vnmsac, type, lmul)
+#define VMADD_VVV_II_M_DEF(type, _, lmul)  VOPI_VVVV_III_M_DEF(vmadd,  type, lmul)
+#define VMADD_VVV_UU_M_DEF(type, _, lmul)  VOPI_VVVV_UUU_M_DEF(vmadd,  type, lmul)
+#define VNMSUB_VVV_II_M_DEF(type, _, lmul) VOPI_VVVV_III_M_DEF(vnmsub, type, lmul)
+#define VNMSUB_VVV_UU_M_DEF(type, _, lmul) VOPI_VVVV_UUU_M_DEF(vnmsub, type, lmul)
+
+VOPI_VVVV_M_DEF_GROUP(VMACC)
+VOPI_VVVV_M_DEF_GROUP(VNMSAC)
+VOPI_VVVV_M_DEF_GROUP(VMADD)
+VOPI_VVVV_M_DEF_GROUP(VNMSUB)

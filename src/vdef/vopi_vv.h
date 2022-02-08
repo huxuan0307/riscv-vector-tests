@@ -93,3 +93,13 @@ VOPI_VV_UINT_DEF_GROUP_IMPL(op ## _V_UINT_DEF)
 #define VOPI_VV_DEF_GROUP(op) \
 VOPI_VV_INT_DEF_GROUP(op) \
 VOPI_VV_UINT_DEF_GROUP(op)
+
+/**
+ * @brief defination of opi_vv: (v)->v
+ * 
+ */
+
+#define VMV_V_INT_DEF(type, lmul) VOPI_VV_INT_DEF(vmv, type, lmul)
+#define VMV_V_UINT_DEF(type, lmul) VOPI_VV_UINT_DEF(vmv, type, lmul)
+
+VOPI_VV_DEF_GROUP(VMV)

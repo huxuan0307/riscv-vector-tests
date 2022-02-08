@@ -133,3 +133,59 @@ VOPI_VXM_UU_DEF_GROUP(op)
 #define VOPI_VXM_M_DEF_GROUP(op) \
 VOPI_VXM_II_M_DEF_GROUP(op) \
 VOPI_VXM_UU_M_DEF_GROUP(op)
+
+/**
+ * @brief defination of opi_vxm: (v,x)->m
+ * 
+ */
+
+#define VMSEQ_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmseq, type, lmul)
+#define VMSEQ_VX_UU_DEF(type, lmul)   VOPI_VXM_UU_DEF(vmseq, type, lmul)
+#define VMSNE_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmsne, type, lmul)
+#define VMSNE_VX_UU_DEF(type, lmul)   VOPI_VXM_UU_DEF(vmsne, type, lmul)
+#define VMSLTU_VX_UU_DEF(type, lmul)  VOPI_VXM_UU_DEF(vmsltu, type, lmul)
+#define VMSLT_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmslt, type, lmul)
+#define VMSLEU_VX_UU_DEF(type, lmul)  VOPI_VXM_UU_DEF(vmsleu, type, lmul)
+#define VMSLE_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmsle, type, lmul)
+#define VMSGTU_VX_UU_DEF(type, lmul)  VOPI_VXM_UU_DEF(vmsgtu, type, lmul)
+#define VMSGT_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmsgt, type, lmul)
+#define VMADC_VX_UU_DEF(type, lmul)   VOPI_VXM_UU_DEF(vmadc, type, lmul)
+#define VMADC_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmadc, type, lmul)
+#define VMSBC_VX_UU_DEF(type, lmul)   VOPI_VXM_UU_DEF(vmsbc, type, lmul)
+#define VMSBC_VX_II_DEF(type, lmul)   VOPI_VXM_II_DEF(vmsbc, type, lmul)
+
+VOPI_VXM_DEF_GROUP(VMSEQ)
+VOPI_VXM_DEF_GROUP(VMSNE)
+VOPI_VXM_UU_DEF_GROUP(VMSLTU)
+VOPI_VXM_II_DEF_GROUP(VMSLT)
+VOPI_VXM_UU_DEF_GROUP(VMSLEU)
+VOPI_VXM_II_DEF_GROUP(VMSLE)
+VOPI_VXM_UU_DEF_GROUP(VMSGTU)
+VOPI_VXM_II_DEF_GROUP(VMSGT)
+VOPI_VXM_DEF_GROUP(VMADC)
+VOPI_VXM_DEF_GROUP(VMSBC)
+
+/**
+ * @brief defination of opi_vxm_m: (v,x)->m
+ * 
+ */
+
+#define VMSEQ_VX_II_M_DEF(type, lmul)   VOPI_VXM_II_M_DEF(vmseq, type, lmul)
+#define VMSEQ_VX_UU_M_DEF(type, lmul)   VOPI_VXM_UU_M_DEF(vmseq, type, lmul)
+#define VMSNE_VX_II_M_DEF(type, lmul)   VOPI_VXM_II_M_DEF(vmsne, type, lmul)
+#define VMSNE_VX_UU_M_DEF(type, lmul)   VOPI_VXM_UU_M_DEF(vmsne, type, lmul)
+#define VMSLTU_VX_UU_M_DEF(type, lmul)  VOPI_VXM_UU_M_DEF(vmsltu, type, lmul)
+#define VMSLT_VX_II_M_DEF(type, lmul)   VOPI_VXM_II_M_DEF(vmslt, type, lmul)
+#define VMSLEU_VX_UU_M_DEF(type, lmul)  VOPI_VXM_UU_M_DEF(vmsleu, type, lmul)
+#define VMSLE_VX_II_M_DEF(type, lmul)   VOPI_VXM_II_M_DEF(vmsle, type, lmul)
+#define VMSGTU_VX_UU_M_DEF(type, lmul)  VOPI_VXM_UU_M_DEF(vmsgtu, type, lmul)
+#define VMSGT_VX_II_M_DEF(type, lmul)   VOPI_VXM_II_M_DEF(vmsgt, type, lmul)
+
+VOPI_VXM_M_DEF_GROUP(VMSEQ)
+VOPI_VXM_M_DEF_GROUP(VMSNE)
+VOPI_VXM_UU_M_DEF_GROUP(VMSLTU)
+VOPI_VXM_II_M_DEF_GROUP(VMSLT)
+VOPI_VXM_UU_M_DEF_GROUP(VMSLEU)
+VOPI_VXM_II_M_DEF_GROUP(VMSLE)
+VOPI_VXM_UU_M_DEF_GROUP(VMSGTU)
+VOPI_VXM_II_M_DEF_GROUP(VMSGT)

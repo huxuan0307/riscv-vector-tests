@@ -110,3 +110,45 @@ op (i32,  u32,  m4,   i64,  m8) \
 #define VOPI_VVW_III_M_DEF_GROUP(op) VOPI_VVW_II_DEF_GROUP_IMPL(op ## _VV_II_M_DEF)
 #define VOPI_VVW_UUU_M_DEF_GROUP(op) VOPI_VVW_UU_DEF_GROUP_IMPL(op ## _VV_UU_M_DEF)
 #define VOPI_VVW_IUI_M_DEF_GROUP(op) VOPI_VVW_IU_DEF_GROUP_IMPL(op ## _VV_IU_M_DEF)
+
+/**
+ * @brief defination of opi_vvw: (v, v)->wv
+ * 
+ */
+
+#define VWADD_VV_II_DEF(type_arg, lmul_arg, type_ret, lmul_ret)       VOPI_VVW_III_DEF(vwadd,    type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWSUB_VV_II_DEF(type_arg, lmul_arg, type_ret, lmul_ret)       VOPI_VVW_III_DEF(vwsub,    type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWADDU_VV_UU_DEF(type_arg, lmul_arg, type_ret, lmul_ret)      VOPI_VVW_UUU_DEF(vwaddu,   type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWSUBU_VV_UU_DEF(type_arg, lmul_arg, type_ret, lmul_ret)      VOPI_VVW_UUU_DEF(vwsubu,   type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWMUL_VV_II_DEF(type_arg, lmul_arg, type_ret, lmul_ret)       VOPI_VVW_III_DEF(vwmul,    type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWMULU_VV_UU_DEF(type_arg, lmul_arg, type_ret, lmul_ret)      VOPI_VVW_UUU_DEF(vwmulu,   type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWMULSU_VV_IU_DEF(type2, type1, lmul_arg, type_ret, lmul_ret) VOPI_VVW_IUI_DEF(vwmulsu,  type2, type1,  lmul_arg, type_ret, lmul_ret)
+
+VOPI_VVW_III_DEF_GROUP(VWADD)
+VOPI_VVW_III_DEF_GROUP(VWSUB)
+VOPI_VVW_UUU_DEF_GROUP(VWADDU)
+VOPI_VVW_UUU_DEF_GROUP(VWSUBU)
+VOPI_VVW_III_DEF_GROUP(VWMUL)
+VOPI_VVW_UUU_DEF_GROUP(VWMULU)
+VOPI_VVW_IUI_DEF_GROUP(VWMULSU)
+
+/**
+ * @brief defination of opi_vvw_m: (v, v)->wv
+ * 
+ */
+
+#define VWADD_VV_II_M_DEF(type_arg, lmul_arg, type_ret, lmul_ret)       VOPI_VVW_III_M_DEF(vwadd,    type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWSUB_VV_II_M_DEF(type_arg, lmul_arg, type_ret, lmul_ret)       VOPI_VVW_III_M_DEF(vwsub,    type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWADDU_VV_UU_M_DEF(type_arg, lmul_arg, type_ret, lmul_ret)      VOPI_VVW_UUU_M_DEF(vwaddu,   type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWSUBU_VV_UU_M_DEF(type_arg, lmul_arg, type_ret, lmul_ret)      VOPI_VVW_UUU_M_DEF(vwsubu,   type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWMUL_VV_II_M_DEF(type_arg, lmul_arg, type_ret, lmul_ret)       VOPI_VVW_III_M_DEF(vwmul,    type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWMULU_VV_UU_M_DEF(type_arg, lmul_arg, type_ret, lmul_ret)      VOPI_VVW_UUU_M_DEF(vwmulu,   type_arg,      lmul_arg, type_ret, lmul_ret)
+#define VWMULSU_VV_IU_M_DEF(type2, type1, lmul_arg, type_ret, lmul_ret) VOPI_VVW_IUI_M_DEF(vwmulsu,  type2, type1,  lmul_arg, type_ret, lmul_ret)
+
+VOPI_VVW_III_M_DEF_GROUP(VWADD)
+VOPI_VVW_III_M_DEF_GROUP(VWSUB)
+VOPI_VVW_UUU_M_DEF_GROUP(VWADDU)
+VOPI_VVW_UUU_M_DEF_GROUP(VWSUBU)
+VOPI_VVW_III_M_DEF_GROUP(VWMUL)
+VOPI_VVW_UUU_M_DEF_GROUP(VWMULU)
+VOPI_VVW_IUI_M_DEF_GROUP(VWMULSU)
