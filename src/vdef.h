@@ -11,5 +11,6 @@
 #include "vdef/opi_vvmm.h"
 #include "vdef/opi_vxmm.h"
 #include "vdef/opi_vvww.h"
+#include "vdef/opi_vxww.h"
 #include "vdef/opf_vvv.h"
 #include "vdef/opf_vfv.h"
