@@ -74,3 +74,7 @@ test_opi_vvmm<uint8_t, type, type>(op ## _vvm_ref<type, type>, op ## _vvm_## typ
 #define TEST_OPI_VVMM_UU_GROUP_M2(op)   TEST_OPI1OP_COMMON_U_GROUP_M2(TEST_OPI_VVMM, op)
 #define TEST_OPI_VVMM_UU_GROUP_M4(op)   TEST_OPI1OP_COMMON_U_GROUP_M4(TEST_OPI_VVMM, op)
 #define TEST_OPI_VVMM_UU_GROUP_M8(op)   TEST_OPI1OP_COMMON_U_GROUP_M8(TEST_OPI_VVMM, op)
+
+#define TEST_OPI_VVMM_ALL() \
+TEST_OPI_VVMM_GROUP(vmadc) \
+TEST_OPI_VVMM_GROUP(vmsbc) \

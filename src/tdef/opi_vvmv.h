@@ -31,3 +31,8 @@ test_opi_vvmv<type_ret, type2, type1>(op ## _vvm_ref<type_ret, type2, type1>, op
 #define TEST_OPI_VVMV_IUI_GROUP_M2(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M2(TEST_OPI_VVMV, op)
 #define TEST_OPI_VVMV_IUI_GROUP_M4(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M4(TEST_OPI_VVMV, op)
 #define TEST_OPI_VVMV_IUI_GROUP_M8(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M8(TEST_OPI_VVMV, op)
+
+#define TEST_OPI_VVMV_ALL() \
+TEST_OPI_VVMV_GROUP(vmerge) \
+TEST_OPI_VVMV_GROUP(vadc) \
+TEST_OPI_VVMV_GROUP(vsbc) \

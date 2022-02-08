@@ -74,3 +74,7 @@ test_opi_vxmm<type, type>(op ## _vxm_ref<type, type>, op ## _vxm_## type ## lmul
 #define TEST_OPI_VXMM_UU_GROUP_M2(op)   TEST_OPI1OP_COMMON_U_GROUP_M2(TEST_OPI_VXMM, op)
 #define TEST_OPI_VXMM_UU_GROUP_M4(op)   TEST_OPI1OP_COMMON_U_GROUP_M4(TEST_OPI_VXMM, op)
 #define TEST_OPI_VXMM_UU_GROUP_M8(op)   TEST_OPI1OP_COMMON_U_GROUP_M8(TEST_OPI_VXMM, op)
+
+#define TEST_OPI_VXMM_ALL() \
+TEST_OPI_VXMM_GROUP(vmadc) \
+TEST_OPI_VXMM_GROUP(vmsbc) \

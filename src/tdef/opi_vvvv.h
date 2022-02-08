@@ -64,3 +64,15 @@ test_opi_vvvv_m<type_ret, type2, type1>(op ## _vv_m_ref<type_ret, type2, type1>,
 #define TEST_OPI_VVVV_IUI_M_GROUP_M2(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M2(  TEST_OPI_VVVV_M, op)
 #define TEST_OPI_VVVV_IUI_M_GROUP_M4(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M4(  TEST_OPI_VVVV_M, op)
 #define TEST_OPI_VVVV_IUI_M_GROUP_M8(op)  TEST_OPI3OPS_COMMON_IUI_GROUP_M8(  TEST_OPI_VVVV_M, op)
+
+#define TEST_OPI_VVVV_ALL() \
+TEST_OPI_VVVV_GROUP(vmacc) \
+TEST_OPI_VVVV_GROUP(vnmsac) \
+TEST_OPI_VVVV_GROUP(vmadd) \
+TEST_OPI_VVVV_GROUP(vnmsub) \
+
+#define TEST_OPI_VVVV_M_ALL() \
+TEST_OPI_VVVV_M_GROUP(vmacc) \
+TEST_OPI_VVVV_M_GROUP(vnmsac) \
+TEST_OPI_VVVV_M_GROUP(vmadd) \
+TEST_OPI_VVVV_M_GROUP(vnmsub) \

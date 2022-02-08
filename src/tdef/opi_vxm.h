@@ -148,3 +148,25 @@ test_opi_vxm_m<type, type>(op ## _vx_m_ref<type, type>, op ## _vx_## type ## lmu
 #define TEST_OPI_VXM_UU_M_GROUP_M2(op)    TEST_OPI1OP_COMMON_U_GROUP_M2(TEST_OPI_VXM_M, op)
 #define TEST_OPI_VXM_UU_M_GROUP_M4(op)    TEST_OPI1OP_COMMON_U_GROUP_M4(TEST_OPI_VXM_M, op)
 #define TEST_OPI_VXM_UU_M_GROUP_M8(op)    TEST_OPI1OP_COMMON_U_GROUP_M8(TEST_OPI_VXM_M, op)
+
+#define TEST_OPI_VXM_ALL() \
+TEST_OPI_VXM_GROUP(vmseq) \
+TEST_OPI_VXM_GROUP(vmsne) \
+TEST_OPI_VXM_UU_GROUP(vmsltu) \
+TEST_OPI_VXM_II_GROUP(vmslt) \
+TEST_OPI_VXM_UU_GROUP(vmsleu) \
+TEST_OPI_VXM_II_GROUP(vmsle) \
+TEST_OPI_VXM_UU_GROUP(vmsgtu) \
+TEST_OPI_VXM_II_GROUP(vmsgt) \
+TEST_OPI_VXM_GROUP(vmadc) \
+TEST_OPI_VXM_GROUP(vmsbc) \
+
+#define TEST_OPI_VXM_M_ALL() \
+TEST_OPI_VXM_M_GROUP(vmseq) \
+TEST_OPI_VXM_M_GROUP(vmsne) \
+TEST_OPI_VXM_UU_M_GROUP(vmsltu) \
+TEST_OPI_VXM_II_M_GROUP(vmslt) \
+TEST_OPI_VXM_UU_M_GROUP(vmsleu) \
+TEST_OPI_VXM_II_M_GROUP(vmsle) \
+TEST_OPI_VXM_UU_M_GROUP(vmsgtu) \
+TEST_OPI_VXM_II_M_GROUP(vmsgt) \

@@ -23,3 +23,8 @@ test_opi_vxmv<type, type, type>(op ## _vxm_ref<type, type, type>, op ## _vxm_## 
 #define TEST_OPI_VXMV_UUU_GROUP_M2(op)  TEST_OPI1OP_COMMON_U_GROUP_M2(TEST_OPI_VXMV, op)
 #define TEST_OPI_VXMV_UUU_GROUP_M4(op)  TEST_OPI1OP_COMMON_U_GROUP_M4(TEST_OPI_VXMV, op)
 #define TEST_OPI_VXMV_UUU_GROUP_M8(op)  TEST_OPI1OP_COMMON_U_GROUP_M8(TEST_OPI_VXMV, op)
+
+#define TEST_OPI_VXMV_ALL() \
+TEST_OPI_VXMV_GROUP(vmerge) \
+TEST_OPI_VXMV_GROUP(vadc) \
+TEST_OPI_VXMV_GROUP(vsbc) \

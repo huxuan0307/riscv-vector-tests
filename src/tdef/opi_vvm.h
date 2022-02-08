@@ -139,4 +139,20 @@ test_opi_vvm_m<type, type>(op ## _vv_m_ref<type, type>, op ## _vv_## type ## lmu
 #define TEST_OPI_VVM_UU_M_GROUP_M4(op)    TEST_OPI1OP_COMMON_U_GROUP_M4(TEST_OPI_VVM_M, op)
 #define TEST_OPI_VVM_UU_M_GROUP_M8(op)    TEST_OPI1OP_COMMON_U_GROUP_M8(TEST_OPI_VVM_M, op)
 
+#define TEST_OPI_VVM_ALL() \
+TEST_OPI_VVM_GROUP(vmseq) \
+TEST_OPI_VVM_GROUP(vmsne) \
+TEST_OPI_VVM_UU_GROUP(vmsltu) \
+TEST_OPI_VVM_II_GROUP(vmslt) \
+TEST_OPI_VVM_UU_GROUP(vmsleu) \
+TEST_OPI_VVM_II_GROUP(vmsle) \
+TEST_OPI_VVM_GROUP(vmadc) \
+TEST_OPI_VVM_GROUP(vmsbc) \
 
+#define TEST_OPI_VVM_M_ALL() \
+TEST_OPI_VVM_M_GROUP(vmseq) \
+TEST_OPI_VVM_M_GROUP(vmsne) \
+TEST_OPI_VVM_UU_M_GROUP(vmsltu) \
+TEST_OPI_VVM_II_M_GROUP(vmslt) \
+TEST_OPI_VVM_UU_M_GROUP(vmsleu) \
+TEST_OPI_VVM_II_M_GROUP(vmsle) \

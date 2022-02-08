@@ -171,3 +171,6 @@ TEST_OPI_VV_UINT_GROUP_M8(op)  \
   TEST_OPI_VV_GROUP_M4(op) \
   TEST_OPI_VV_GROUP_M8(op) \
 }
+
+#define TEST_OPI_VV_ALL() \
+TEST_OPI_VV_GROUP(vmv) \
