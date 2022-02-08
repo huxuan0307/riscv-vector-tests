@@ -45,11 +45,6 @@ float elapsed_time(long long start_time, long long end_time) {
   return (float) (end_time - start_time) / (1000 * 1000);
 }
 
-void init_vector(double *pv, long n, double value)
-{
-  for (int i=0; i<n; i++) pv[i]= value;
-}
-
 uint32_t rand32bit() {
   return rand() | (rand() %2==0 ? 0x80000000 : 0);
 }

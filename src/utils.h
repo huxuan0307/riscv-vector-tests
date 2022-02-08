@@ -115,8 +115,6 @@ void init_vector(Type* pv, const size_t n, Type value) {
   for (int i=0; i<n; i++) pv[i]= value;
 }
 
-void init_vector(double *pv, long n, double value);
-
 uint32_t rand32bit();
 
 uint64_t rand64bit();
