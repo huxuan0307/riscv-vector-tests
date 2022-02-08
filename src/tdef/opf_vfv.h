@@ -1,5 +1,7 @@
-#include <stdint.h>
+#include "common.h"
 
+#define test_opf_vfv test_opi_vxv
+#define test_opf_vfv_m test_opi_vxv_m
 
 #define TEST_OPF_VFV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vf_" #type_ret #lmul " ...\n"); \

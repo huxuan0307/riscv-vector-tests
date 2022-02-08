@@ -1,5 +1,92 @@
 #include "common.h"
-#include <stdint.h>
+
+template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
+void test_opi_vxv(
+  void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t), 
+  void (*vector_func)(TypeRet*, TypeSrc2*, TypeSrc1*, size_t),
+  size_t test_size = 1024
+) {
+
+  long long start,end;
+
+  start = get_time();
+
+  const size_t n = test_size;
+  printf("test length: %zu\n", n);
+  /* Allocate the source and result vectors */
+  TypeSrc1 *rs1    = (TypeSrc1*)  malloc(1*sizeof(TypeSrc1));
+  TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
+  TypeRet  *vd     = (TypeRet*)   malloc(n*sizeof(TypeRet));
+  TypeRet  *vd_ref = (TypeRet*)   malloc(n*sizeof(TypeRet));
+
+  init_vector(rs1, 1);
+  init_vector(vs2, n);
+
+  end = get_time();
+  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+
+  fprintf(stderr, "doing reference calculate\n");
+  start = get_time();
+  ref_func(vd_ref, vs2, rs1, n);
+  end = get_time();
+  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+
+  fprintf(stderr, "doing vector calculate\n");
+  start = get_time();
+  vector_func(vd, vs2, rs1, n);
+  end = get_time();
+  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+
+  test_result(vd, vd_ref, n);
+
+  free(rs1); free(vs2); free(vd); free(vd_ref);
+}
+
+template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
+void test_opi_vxv_m(
+  void (*ref_func)(TypeRet*, TypeSrc2*, TypeSrc1*, const uint8_t*, size_t), 
+  void (*vector_func)(TypeRet*, TypeSrc2*, TypeSrc1*, const uint8_t*, size_t),
+  size_t test_size = 1024
+) {
+
+  long long start,end;
+
+  start = get_time();
+
+  const size_t n = test_size;
+  printf("test length: %zu\n", n);
+  /* Allocate the source and result vectors */
+  uint8_t *vmask   = (uint8_t*)   malloc(n*sizeof(uint8_t));
+  TypeSrc1 *rs1    = (TypeSrc1*)  malloc(1*sizeof(TypeSrc1));
+  TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
+  TypeRet  *vd     = (TypeRet*)   malloc(n*sizeof(TypeRet));
+  TypeRet  *vd_ref = (TypeRet*)   malloc(n*sizeof(TypeRet));
+
+  init_vector(rs1, 1);
+  init_vector(vs2, n);
+  init_vector(vd, n);
+  copy_vector(vd_ref, vd, n);
+  init_mask_vector(vmask, n);
+
+  end = get_time();
+  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+
+  fprintf(stderr, "doing reference calculate\n");
+  start = get_time();
+  ref_func(vd_ref, vs2, rs1, vmask, n);
+  end = get_time();
+  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+
+  fprintf(stderr, "doing vector calculate\n");
+  start = get_time();
+  vector_func(vd, vs2, rs1, vmask, n);
+  end = get_time();
+  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+
+  test_result(vd, vd_ref, n);
+
+  free(rs1); free(vs2); free(vd); free(vd_ref);
+}
 
 #define TEST_OPI_VXV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vx_" #type_ret #lmul " ...\n"); \

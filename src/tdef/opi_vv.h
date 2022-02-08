@@ -1,4 +1,43 @@
-#include <stdint.h>
+#include "common.h"
+
+template<typename TypeRet, typename TypeSrc1>
+void test_opi_vv(
+  void (*ref_func)(TypeRet*, TypeSrc1*, size_t), 
+  void (*vector_func)(TypeRet*, TypeSrc1*, size_t),
+  size_t test_size = 1024
+) {
+
+  long long start,end;
+
+  start = get_time();
+
+  const size_t n = test_size;
+  /* Allocate the source and result vectors */
+  TypeSrc1 *vs1    = (TypeSrc1*)  malloc(n*sizeof(TypeSrc1));
+  TypeRet  *vd     = (TypeRet*)   malloc(n*sizeof(TypeRet));
+  TypeRet  *vd_ref = (TypeRet*)   malloc(n*sizeof(TypeRet));
+
+  init_vector(vs1, n);
+
+  end = get_time();
+  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+
+  fprintf(stderr, "doing reference calculate\n");
+  start = get_time();
+  ref_func(vd_ref, vs1, n);
+  end = get_time();
+  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+
+  fprintf(stderr, "doing vector calculate\n");
+  start = get_time();
+  vector_func(vd, vs1, n);
+  end = get_time();
+  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+  
+  test_result(vd, vd_ref, n);
+
+  free(vs1); free(vd); free(vd_ref);
+}
 
 #define TEST_OPI_VV(op, type, tp, lmul) \
 printf("\ntest " #op "_v_v_" #tp #lmul " ...\n"); \

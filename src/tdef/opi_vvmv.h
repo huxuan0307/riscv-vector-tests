@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include <stdint.h>
+#define test_opi_vvmv test_opi_vvv_m
 
 #define TEST_OPI_VVMV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vvm_" #type_ret #lmul " ...\n"); \

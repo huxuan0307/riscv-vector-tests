@@ -11,7 +11,6 @@
 #include "tdef/opi_vvvv.h"
 #include "tdef/opf_vvv.h"
 #include "tdef/opf_vfv.h"
-#include "tdef/test_template.h"
 
 #define TEST_OPI_VV_ALL() \
 TEST_OPI_VV_GROUP(vmv) \

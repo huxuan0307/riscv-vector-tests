@@ -1,3 +1,8 @@
+#ifndef __TDEF_COMMON_H__
+#define __TDEF_COMMON_H__
+
+#include <cstdint>
+
 #define TEST_OPI3OPS_COMMON_III_GROUP_MF8(test, op) \
 test(op, i8,   i8,   i8,   mf8); \
 
@@ -297,3 +302,4 @@ TEST_OPI1OP_COMMON_GROUP_M2(test, op) \
 TEST_OPI1OP_COMMON_GROUP_M4(test, op) \
 TEST_OPI1OP_COMMON_GROUP_M8(test, op) \
 
+#endif
