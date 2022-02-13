@@ -147,4 +147,10 @@ debug_##flag(__VA_ARGS__)
 #define debug_details(...)
 #endif
 
+#ifdef show_origin
+#define debug_origin(...) printf(__VA_ARGS__)
+#else
+#define debug_origin(...)
+#endif
+
 #endif
