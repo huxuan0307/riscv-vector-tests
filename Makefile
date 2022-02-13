@@ -1,10 +1,11 @@
 #makefile
 
 GCC_TOOLCHAIN_DIR := /opt/RISCV/
-GEM5_DIR := /home/huxuan/repos/plct-gem5/
-BENCHMARK_DIR := /home/huxuan/repos/riscv-vectorized-benchmark-suite/
+GEM5_DIR ?= 
 
 USER_DEFINES ?= 
+
+EXE_NAME ?= riscv-vector-tests
 
 GCC := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-gcc
 GXX := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-g++
@@ -53,9 +54,9 @@ all:
 	for entry in src/*.cpp ; do \
 		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -o $$entry.o $$entry; \
 	done
-	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
-	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
-# rm src/*.o;
+	${CXX} ${CXX_FLAGS} -o bin/${EXE_NAME} src/*.cpp.o -lm;
+	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME} > bin/${EXE_NAME}.dump;
+	rm src/*.o;
 
 all_O2: CXX_FLAGS += -O2
 all_O2: 
@@ -64,11 +65,12 @@ all_O2:
 	for entry in src/*.cpp ; do \
 		${CXX} ${USER_DEFINES} ${CXX_FLAGS} -c -o $$entry.o $$entry; \
 	done
-	${CXX} ${CXX_FLAGS} -o bin/my_tests_vector src/*.cpp.o -lm;
+	${CXX} ${CXX_FLAGS} -o bin/${EXE_NAME}_O2 src/*.cpp.o -lm;
 	rm src/*.o
 
 dump:
-	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/my_tests_vector > bin/my_tests_vector.dump;
+	@ ${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME} > bin/${EXE_NAME}.dump;
+	@ ${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME}_O2 > bin/${EXE_NAME}_O2.dump;
 
 clean:
 	rm -rf bin/
@@ -79,8 +81,8 @@ clean:
 # runqemu_O2 :
 # 	${GCC_TOOLCHAIN_DIR}bin/qemu-riscv64 -cpu rv64,x-v=true bin/my_tests_vector_O2 256
 
-# rungem5 :
-# 	${GEM5_DIR}build/RISCV/gem5.opt ${GEM5_DIR}configs/example/riscv_vector_engine.py --cmd="${BENCHMARK_DIR}my_tests/bin/my_tests_vector 256"
+rungem5 :
+	${GEM5_DIR}build/RISCV/gem5.opt ${GEM5_DIR}/configs/example/se.py --cmd="bin/${EXE_NAME}"
 
-# rungem5_O2 :
-# 	${GEM5_DIR}build/RISCV/gem5.opt ${GEM5_DIR}configs/example/riscv_vector_engine.py --cmd="${BENCHMARK_DIR}my_tests/bin/my_tests_vector_O2 256"
+rungem5_O2 :
+	${GEM5_DIR}build/RISCV/gem5.opt ${GEM5_DIR}/configs/example/se.py --cmd="bin/${EXE_NAME}_O2"
