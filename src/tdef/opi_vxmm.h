@@ -48,14 +48,14 @@ void test_opi_vxmm(
   end = get_time();
   fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
 
-  test_result(vd, vd_ref, (n+7)/8);
+  test_mask_result(vd, vd_ref, n);
 
   free(vmask); free(rs1); free(vs2); free(vd); free(vd_ref);
 }
 
 #define TEST_OPI_VXMM(op, type, lmul) \
 printf("\ntest " #op "_vxm_" #type #lmul " ...\n"); \
-test_opi_vxmm<type, type>(op ## _vxm_ref<type, type>, op ## _vxm_## type ## lmul ## _vec)
+test_opi_vxmm<type, type>(op ## _vxm_ref<type, type>, op ## _vxm_## type ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VXMM_GROUP(op)         TEST_OPI1OP_COMMON_GROUP(TEST_OPI_VXMM, op)
 #define TEST_OPI_VXMM_II_GROUP(op)      TEST_OPI1OP_COMMON_I_GROUP(TEST_OPI_VXMM, op)

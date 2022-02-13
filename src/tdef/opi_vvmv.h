@@ -4,7 +4,7 @@
 
 #define TEST_OPI_VVMV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vvm_" #type_ret #lmul " ...\n"); \
-test_opi_vvmv<type_ret, type2, type1>(op ## _vvm_ref<type_ret, type2, type1>, op ## _vvm_## type_ret ## lmul ## _vec)
+test_opi_vvmv<type_ret, type2, type1>(op ## _vvm_ref<type_ret, type2, type1>, op ## _vvm_## type_ret ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VVMV_GROUP(op)         TEST_OPI3OPS_COMMON_GROUP(TEST_OPI_VVMV, op)
 #define TEST_OPI_VVMV_III_GROUP(op)     TEST_OPI3OPS_COMMON_III_GROUP(TEST_OPI_VVMV, op)

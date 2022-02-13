@@ -108,11 +108,11 @@ void test_opi_vxww_m(
 
 #define TEST_OPI_VXWW(op, type2, type1, lmul_arg, type_ret, lmul_ret) \
 printf("\ntest " #op "_vx_" #type_ret #lmul_ret " ...\n"); \
-test_opi_vxww<type_ret, type2, type1>(op ## _vx_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul_ret ## _vec)
+test_opi_vxww<type_ret, type2, type1>(op ## _vx_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul_ret ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VXWW_M(op, type2, type1, lmul_arg, type_ret, lmul_ret) \
 printf("\ntest " #op "_vx_" #type_ret #lmul_ret "_m" " ...\n"); \
-test_opi_vxww_m<type_ret, type2, type1>(op ## _vx_m_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul_ret ## _m_vec)
+test_opi_vxww_m<type_ret, type2, type1>(op ## _vx_m_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul_ret ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPI_VXWW_III(op, type_arg, lmul_arg, type_ret, lmul_ret) \
 TEST_OPI_VXWW(op, type_arg, type_arg, lmul_arg, type_ret, lmul_ret)

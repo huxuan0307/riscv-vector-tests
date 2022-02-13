@@ -90,11 +90,11 @@ void test_opi_vxv_m(
 
 #define TEST_OPI_VXV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vx_" #type_ret #lmul " ...\n"); \
-test_opi_vxv<type_ret, type2, type1>(op ## _vx_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul ## _vec)
+test_opi_vxv<type_ret, type2, type1>(op ## _vx_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VXV_M(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vx_" #type_ret #lmul "_m" " ...\n"); \
-test_opi_vxv_m<type_ret, type2, type1>(op ## _vx_m_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul ## _m_vec)
+test_opi_vxv_m<type_ret, type2, type1>(op ## _vx_m_ref<type_ret, type2, type1>, op ## _vx_## type_ret ## lmul ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPI_VXV_GROUP(op)          TEST_OPI3OPS_COMMON_GROUP(        TEST_OPI_VXV, op)
 #define TEST_OPI_VXV_III_GROUP(op)      TEST_OPI3OPS_COMMON_III_GROUP(    TEST_OPI_VXV, op)

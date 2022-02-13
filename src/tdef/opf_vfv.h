@@ -5,11 +5,11 @@
 
 #define TEST_OPF_VFV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vf_" #type_ret #lmul " ...\n"); \
-test_opf_vfv<type_ret, type2, type1>(op ## _vf_ref<type_ret,type2,type1>, op ## _vf_## type_ret ## lmul ## _vec)
+test_opf_vfv<type_ret, type2, type1>(op ## _vf_ref<type_ret,type2,type1>, op ## _vf_## type_ret ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPF_VFV_M(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vf_" #type_ret #lmul "_m" " ...\n"); \
-test_opf_vfv_m<type_ret, type2, type1>(op ## _vf_m_ref<type_ret,type2,type1>, op ## _vf_## type_ret ## lmul ## _m_vec)
+test_opf_vfv_m<type_ret, type2, type1>(op ## _vf_m_ref<type_ret,type2,type1>, op ## _vf_## type_ret ## lmul ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPF_VFV_COMMON_GROUP_MF2(test, op) \
 test(op, f32,  f32,  f32,  mf2); \

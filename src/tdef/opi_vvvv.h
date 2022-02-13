@@ -5,11 +5,11 @@
 
 #define TEST_OPI_VVVV(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vv_" #type_ret #lmul " ...\n"); \
-test_opi_vvvv<type_ret, type2, type1>(op ## _vv_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul ## _vec)
+test_opi_vvvv<type_ret, type2, type1>(op ## _vv_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VVVV_M(op, type2, type1, type_ret, lmul) \
 printf("\ntest " #op "_vv_" #type_ret #lmul "_m" " ...\n"); \
-test_opi_vvvv_m<type_ret, type2, type1>(op ## _vv_m_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul ## _m_vec)
+test_opi_vvvv_m<type_ret, type2, type1>(op ## _vv_m_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPI_VVVV_GROUP(op)     TEST_OPI3OPS_COMMON_GROUP(TEST_OPI_VVVV, op)
 #define TEST_OPI_VVVV_III_GROUP(op) TEST_OPI3OPS_COMMON_III_GROUP(TEST_OPI_VVVV, op)

@@ -37,7 +37,7 @@ void test_opi_vvm(
   end = get_time();
   fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
 
-  test_result(vd, vd_ref, (n+7)/8);
+  test_mask_result(vd, vd_ref, n);
 
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }
@@ -97,11 +97,11 @@ void test_opi_vvm_m(
 
 #define TEST_OPI_VVM(op, type, lmul) \
 printf("\ntest " #op "_vv_" #type #lmul " ...\n"); \
-test_opi_vvm<uint8_t, type, type>(op ## _vv_ref<type, type>, op ## _vv_## type ## lmul ## _vec)
+test_opi_vvm<uint8_t, type, type>(op ## _vv_ref<type, type>, op ## _vv_## type ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VVM_M(op, type, lmul) \
 printf("\ntest " #op "_vv_" #type #lmul "_m " " ...\n"); \
-test_opi_vvm_m<type, type>(op ## _vv_m_ref<type, type>, op ## _vv_## type ## lmul ## _m_vec)
+test_opi_vvm_m<type, type>(op ## _vv_m_ref<type, type>, op ## _vv_## type ## lmul ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPI_VVM_GROUP(op)          TEST_OPI1OP_COMMON_GROUP(TEST_OPI_VVM, op)
 #define TEST_OPI_VVM_II_GROUP(op)       TEST_OPI1OP_COMMON_I_GROUP(TEST_OPI_VVM, op)

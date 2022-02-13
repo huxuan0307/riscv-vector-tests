@@ -5,11 +5,11 @@
 
 #define TEST_OPI_VVW(op, type2, type1, lmul_arg, type_ret, lmul_ret) \
 printf("\ntest " #op "_vv_" #type_ret #lmul_ret " ...\n"); \
-test_opi_vvw<type_ret, type2, type1>(op ## _vv_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul_ret ## _vec)
+test_opi_vvw<type_ret, type2, type1>(op ## _vv_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul_ret ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VVW_M(op, type2, type1, lmul_arg, type_ret, lmul_ret) \
 printf("\ntest " #op "_vv_" #type_ret #lmul_ret "_m" " ...\n"); \
-test_opi_vvw_m<type_ret, type2, type1>(op ## _vv_m_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul_ret ## _m_vec)
+test_opi_vvw_m<type_ret, type2, type1>(op ## _vv_m_ref<type_ret, type2, type1>, op ## _vv_## type_ret ## lmul_ret ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPI_VVW_III(op, type_arg, lmul_arg, type_ret, lmul_ret) \
 TEST_OPI_VVW(op, type_arg, type_arg, lmul_arg, type_ret, lmul_ret)

@@ -41,7 +41,7 @@ void test_opi_vv(
 
 #define TEST_OPI_VV(op, type, tp, lmul) \
 printf("\ntest " #op "_v_v_" #tp #lmul " ...\n"); \
-test_opi_vv<type, type>(op ## _v_v_ref<type>, op ## _v_v_## tp ## lmul ## _vec)
+test_opi_vv<type, type>(op ## _v_v_ref<type>, op ## _v_v_## tp ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VV_INT_GROUP_MF8(op) \
 TEST_OPI_VV(op,  int8_t,   i8,   mf8); \

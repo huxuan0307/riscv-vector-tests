@@ -107,11 +107,11 @@ void test_opi_vxm_m(
 
 #define TEST_OPI_VXM(op, type, lmul) \
 printf("\ntest " #op "_vx_" #type #lmul " ...\n"); \
-test_opi_vxm<type, type>(op ## _vx_ref<type, type>, op ## _vx_## type ## lmul ## _vec)
+test_opi_vxm<type, type>(op ## _vx_ref<type, type>, op ## _vx_## type ## lmul ## _vec, TEST_LENGTH)
 
 #define TEST_OPI_VXM_M(op, type, lmul) \
 printf("\ntest " #op "_vx_" #type #lmul "_m " " ...\n"); \
-test_opi_vxm_m<type, type>(op ## _vx_m_ref<type, type>, op ## _vx_## type ## lmul ## _m_vec)
+test_opi_vxm_m<type, type>(op ## _vx_m_ref<type, type>, op ## _vx_## type ## lmul ## _m_vec, TEST_LENGTH)
 
 #define TEST_OPI_VXM_GROUP(op)          TEST_OPI1OP_COMMON_GROUP(TEST_OPI_VXM, op)
 #define TEST_OPI_VXM_II_GROUP(op)       TEST_OPI1OP_COMMON_I_GROUP(TEST_OPI_VXM, op)

@@ -5,7 +5,11 @@ GEM5_DIR ?=
 
 USER_DEFINES ?= 
 
+TEST_LENGTH ?= 1024
+
 EXE_NAME ?= riscv-vector-tests
+
+USER_DEFINES += -DTEST_LENGTH=${TEST_LENGTH}
 
 GCC := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-gcc
 GXX := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-g++
