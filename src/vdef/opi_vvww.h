@@ -7,7 +7,7 @@ void op##_vv_ ## type_ret ## lmul_ret ## _vec(type_ret*d, type2*s2, type1*s1, u6
   size_t vl = VSETVL(type1, lmul_arg, n); \
   for (i = 0; i < n;) { \
     VTYPE(type_ret, lmul_ret) vd = VLE(type_ret, lmul_ret, &d[i], vl); \
-    vl = VSETVL(type1, lmul_arg, n-i); \
+    vl = VSETVL(type1, lmul_arg, n - i); \
     VTYPE(type1, lmul_arg) vs1 = VLE(type1, lmul_arg, &s1[i], vl); \
     VTYPE(type2, lmul_arg) vs2 = VLE(type2, lmul_arg, &s2[i], vl); \
     __asm__(#op ".vv %0, %1, %2;" : "+vr"(vd) : "vr"(vs1), "vr"(vs2)); \
@@ -25,7 +25,7 @@ void op##_vv_ ## type_ret ## lmul_ret ## _m_vec( \
   VTYPE(type_ret, lmul_ret) vd; \
   for (i = 0; i < n;) { \
     VTYPE(type_ret, lmul_ret) vd = VLE(type_ret, lmul_ret, &d[i], vl); \
-    vl = VSETVL(type1, lmul_arg, n-i); \
+    vl = VSETVL(type1, lmul_arg, n - i); \
     auto vmask = VLM(VTYPEM(type1, lmul_arg), &mask[i/8], vl); \
     auto offset = i % 8; \
     __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \

@@ -6,7 +6,7 @@ void op ## _v_v_ ## type ## lmul ## _vec (type* vd, type* vs, u64 n) \
   size_t i; \
   size_t vl = VSETVL(type, lmul, n); \
   for (i = 0; i < n;) { \
-    vl = VSETVL(type, lmul, n); \
+    vl = VSETVL(type, lmul, n - i); \
     VTYPE(type, lmul) v_vs = VLE(type, lmul, &vs[i], vl); \
     VTYPE(type, lmul) v_vd = op##_v_v_##type##lmul(v_vs, vl); \
     VSE(type, lmul, &vd[i], v_vd, vl); \
@@ -20,7 +20,7 @@ void op ## _v_v_ ## type ## lmul ## _vec (type* vd, type* vs, uint64_t n) \
   size_t i; \
   size_t vl = VSETVL(type, lmul, n); \
   for (i = 0; i < n;) { \
-    vl = VSETVL(type, lmul, n); \
+    vl = VSETVL(type, lmul, n - i); \
     VTYPE(type, lmul) v_vs = VLE(type, lmul, &vs[i], vl); \
     VTYPE(type, lmul) v_vd = op##_v_v_##type##lmul(v_vs, vl); \
     VSE(type, lmul, &vd[i], v_vd, vl); \

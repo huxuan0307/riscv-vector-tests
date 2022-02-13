@@ -7,7 +7,7 @@ u8*d, type2*s2, type1*s1, u64 n) \
   size_t i=0; \
   VTYPEB(VBOOL_BITS(type2, lmul2)) vd; \
   for (i = 0; i < n;) { \
-    size_t vl = VSETVL(type2, lmul2, n); \
+    size_t vl = VSETVL(type2, lmul2, n - i); \
     auto vs1 = VLE(type1, lmul1, &s1[i], vl); \
     auto vs2 = VLE(type2, lmul2, &s2[i], vl); \
     __asm__(#op ".vv %0, %1, %2;" : "=vr"(vd) : "vr"(vs2), "vr"(vs1)); \
@@ -38,11 +38,10 @@ void op##_vv_ ## type2 ## lmul2 ## _m_vec( \
     auto vmask = VLM(VTYPEM(type2, lmul2), &mask[i/8], vl); \
     auto offset = i % 8; \
     __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \
-    vl = VSETVL(type2, lmul2, n); \
+    vl = VSETVL(type2, lmul2, n - i); \
     auto vs1 = VLE(type1, lmul1, &s1[i], vl); \
     auto vs2 = VLE(type2, lmul2, &s2[i], vl); \
     vd = op(vmask, vd2, vs2, vs1, vl); \
-    /*__asm__(#op ".vv %0, %1, %2, %3.t;" : "=vr"(vd) : "vr"(vs2), "vr"(vs1), "vm"(vmask));*/ \
     if (OFFSET_PER_LOOP(type2, lmul2) >= 8) { \
       vsm(&d[i/8], vd, vl); \
     } \

@@ -7,7 +7,7 @@ type*d, type*s2, type*s1, const u8* mask, u64 n) \
   size_t i=0; \
   VTYPE(type, lmul) vd; \
   for (i = 0; i < n;) { \
-    size_t vl = VSETVL(type, lmul, n); \
+    size_t vl = VSETVL(type, lmul, n - i); \
     auto vmask = VLM(VTYPEM(type, lmul), &mask[i/8], vl); \
     auto offset = i % 8; \
     __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \

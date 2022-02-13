@@ -7,7 +7,7 @@ type*vd, type*vs2, type*vs1, uint64_t n) \
   size_t i; \
   size_t vl = VSETVL(type, lmul, n); \
   for (i = 0; i < n;) { \
-    vl = VSETVL(type, lmul, n); \
+    vl = VSETVL(type, lmul, n - i); \
     VTYPE(type, lmul) v_vs1 = VLE(type, lmul, &vs1[i], vl); \
     VTYPE(type, lmul) v_vs2 = VLE(type, lmul, &vs2[i], vl); \
     VTYPE(type, lmul) v_res = op##_vv_##type##lmul(v_vs2, v_vs1, vl); \
@@ -23,7 +23,7 @@ type*d, type*s2, type*s1, const u8* mask, u64 n) \
   size_t i=0; \
   size_t vlmax = VSETVLMAX(type, lmul); \
   for (i = 0; i < n;) { \
-    size_t vl = VSETVL(type, lmul, n); \
+    size_t vl = VSETVL(type, lmul, n - i); \
     auto vmask = VLM(VTYPEM(type, lmul), &mask[i/8], vl); \
     auto offset = i % 8; \
     __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \

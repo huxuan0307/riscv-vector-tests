@@ -7,7 +7,7 @@ void op##_vv_ ## type_ret ## lmul_ret ## _vec(type_ret*vd, type2*vs2, type1*vs1,
   size_t vl = VSETVL(type2, lmul2, n); \
   VTYPE(type_ret, lmul_ret) v_res; \
   for (i = 0; i < n;) { \
-    vl = VSETVL(type2, lmul2, n); \
+    vl = VSETVL(type2, lmul2, n - i); \
     VTYPE(type1, lmul1) v_vs1 = VLE(type1, lmul1, &vs1[i], vl); \
     VTYPE(type2, lmul2) v_vs2 = VLE(type2, lmul2, &vs2[i], vl); \
     __asm__(#op ".vv %0, %1, %2;" : "+&vr"(v_res) : "vr"(v_vs2), "vr"(v_vs1)); \
@@ -29,7 +29,7 @@ type_ret*d, type2*s2, type1*s1, const u8* mask, u64 n) \
   size_t i=0; \
   size_t vlmax = VSETVLMAX(type2, lmul2); \
   for (i = 0; i < n;) { \
-    size_t vl = VSETVL(type2, lmul2, n); \
+    size_t vl = VSETVL(type2, lmul2, n - i); \
     auto vmask = VLM(VTYPEM(type2, lmul2), &mask[i/8], vl); \
     auto offset = i % 8; \
     __asm__("vsrl.vx %0, %1, %2;" : "=vm"(vmask) : "vm"(vmask), "r"(offset)); \
