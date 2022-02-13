@@ -12,7 +12,7 @@ void test_opi_vxvv(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %zu\n", n);
+  debug(details, "test length: %zu\n", n);
   /* Allocate the source and result vectors */
   TypeSrc1 *rs1    = (TypeSrc1*)  malloc(1*sizeof(TypeSrc1));
   TypeSrc2 *vs2    = (TypeSrc2*)  malloc(n*sizeof(TypeSrc2));
@@ -25,19 +25,19 @@ void test_opi_vxvv(
   copy_vector(vd_ref, vd, n);
 
   end = get_time();
-  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "init_vector time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing reference calculate\n");
+  debug(details, "doing reference calculate\n");
   start = get_time();
   ref_func(vd_ref, vs2, rs1, n);
   end = get_time();
-  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+  debug(performance, "reference time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing vector calculate\n");
+  debug(details, "doing vector calculate\n");
   start = get_time();
   vector_func(vd, vs2, rs1, n);
   end = get_time();
-  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "vector time: %f\n", elapsed_time(start, end));
 
   test_result(vd, vd_ref, n);
 
@@ -56,7 +56,7 @@ void test_opi_vxvv_m(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %zu\n", n);
+  debug(details, "test length: %zu\n", n);
   /* Allocate the source and result vectors */
   uint8_t *vmask   = (uint8_t*)   malloc(n*sizeof(uint8_t));
   TypeSrc1 *rs1    = (TypeSrc1*)  malloc(1*sizeof(TypeSrc1));
@@ -71,19 +71,19 @@ void test_opi_vxvv_m(
   init_mask_vector(vmask, n);
 
   end = get_time();
-  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "init_vector time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing reference calculate\n");
+  debug(details, "doing reference calculate\n");
   start = get_time();
   ref_func(vd_ref, vs2, rs1, vmask, n);
   end = get_time();
-  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+  debug(performance, "reference time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing vector calculate\n");
+  debug(details, "doing vector calculate\n");
   start = get_time();
   vector_func(vd, vs2, rs1, vmask, n);
   end = get_time();
-  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "vector time: %f\n", elapsed_time(start, end));
 
   test_result(vd, vd_ref, n);
 

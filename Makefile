@@ -3,13 +3,21 @@
 GCC_TOOLCHAIN_DIR := /opt/RISCV/
 GEM5_DIR ?= 
 
-USER_DEFINES ?= 
+empty := 
+comma := ,
+space := $(empty) $(empty)
+
+debug-flags ?= 
+debugFlags := $(subst ${comma},${space}, ${debug-flags})
+$(info ${debugFlags})
 
 TEST_LENGTH ?= 1024
 
 EXE_NAME ?= riscv-vector-tests
 
+USER_DEFINES =
 USER_DEFINES += -DTEST_LENGTH=${TEST_LENGTH}
+USER_DEFINES += $(foreach var, ${debugFlags}, -Dshow_${var})
 
 GCC := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-gcc
 GXX := ${GCC_TOOLCHAIN_DIR}/bin/riscv64-unknown-linux-gnu-g++

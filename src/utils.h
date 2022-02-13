@@ -132,4 +132,19 @@ void init_vector(uint8_t* pv, const size_t n);
 void init_vector(bool* pv, const size_t n);
 void init_mask_vector(uint8_t* pv, const size_t n);
 
+#define debug(flag, ...) \
+debug_##flag(__VA_ARGS__)
+
+#ifdef show_performance
+#define debug_performance(...) printf(__VA_ARGS__)
+#else
+#define debug_performance(...)
+#endif
+
+#ifdef show_details
+#define debug_details(...) printf(__VA_ARGS__)
+#else
+#define debug_details(...)
+#endif
+
 #endif

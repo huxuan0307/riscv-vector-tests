@@ -20,19 +20,19 @@ void test_opi_vv(
   init_vector(vs1, n);
 
   end = get_time();
-  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "init_vector time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing reference calculate\n");
+  debug(details, "doing reference calculate\n");
   start = get_time();
   ref_func(vd_ref, vs1, n);
   end = get_time();
-  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+  debug(performance, "reference time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing vector calculate\n");
+  debug(details, "doing vector calculate\n");
   start = get_time();
   vector_func(vd, vs1, n);
   end = get_time();
-  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "vector time: %f\n", elapsed_time(start, end));
   
   test_result(vd, vd_ref, n);
 

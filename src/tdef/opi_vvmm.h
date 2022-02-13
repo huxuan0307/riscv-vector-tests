@@ -12,7 +12,7 @@ void test_opi_vvmm(
   start = get_time();
 
   const size_t n = test_size;
-  printf("test length: %zu\n", n);
+  debug(details, "test length: %zu\n", n);
   /* Allocate the source and result vectors */
   uint8_t *vmask   = (uint8_t*)   malloc(n*sizeof(uint8_t));
   TypeSrc1 *vs1    = (TypeSrc1*)  malloc(n*sizeof(TypeSrc1));
@@ -25,28 +25,27 @@ void test_opi_vvmm(
   init_vector(vs2, n);
   init_vector(vd, n, static_cast<TypeRet>(0));
   init_vector(vd_ref, n, static_cast<TypeRet>(0));
-#ifdef SHOW_ORIGIN
+
   for(size_t i=0; i<n; i++) {
-    printf("vd[%d]=%llx, vs1[%d]=%llx, vs2[%d]=%llx, vmask[%d]=%d\n", 
+    debug(origin, "vd[%d]=%llx, vs1[%d]=%llx, vs2[%d]=%llx, vmask[%d]=%d\n", 
       i, vd[i], i, vs1[i], i, vs2[i], i, ((vmask[i/8] >> (i%8)) & 0x1)
     );
   }
-#endif
 
   end = get_time();
-  fprintf(stderr, "init_vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "init_vector time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing reference calculate\n");
+  debug(details, "doing reference calculate\n");
   start = get_time();
   ref_func(vd_ref, vs2, vs1, vmask, n);
   end = get_time();
-  fprintf(stderr, "reference time: %f\n", elapsed_time(start, end));
+  debug(performance, "reference time: %f\n", elapsed_time(start, end));
 
-  fprintf(stderr, "doing vector calculate\n");
+  debug(details, "doing vector calculate\n");
   start = get_time();
   vector_func(vd, vs2, vs1, vmask, n);
   end = get_time();
-  fprintf(stderr, "vector time: %f\n", elapsed_time(start, end));
+  debug(performance, "vector time: %f\n", elapsed_time(start, end));
 
   test_mask_result(vd, vd_ref, n);
 
