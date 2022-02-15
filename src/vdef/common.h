@@ -5,7 +5,7 @@
 #include <riscv_vector.h>
 
 #ifndef VLEN
-#define VLEN 128
+#define VLEN 256
 #endif
 
 #define CONCAT(A, B) A ## B
