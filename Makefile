@@ -81,8 +81,10 @@ all_O2:
 	rm src/*.o
 
 dump:
-	@ ${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME} > bin/${EXE_NAME}.dump;
-	@ ${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME}_O2 > bin/${EXE_NAME}_O2.dump;
+	-${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME} > bin/${EXE_NAME}.dump || \
+	
+dump_O2:
+	-${OBJDUMP} ${OBJDUMP_OPTION} -d bin/${EXE_NAME}_O2 > bin/${EXE_NAME}_O2.dump;
 
 clean:
 	rm -rf bin/
