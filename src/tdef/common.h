@@ -3,6 +3,10 @@
 
 #include <cstdint>
 
+#ifndef TEST_LENGTH
+#define TEST_LENGTH 1024
+#endif
+
 #define TEST_OPI3OPS_COMMON_III_GROUP_MF8(test, op) \
 test(op, i8,   i8,   i8,   mf8); \
 
