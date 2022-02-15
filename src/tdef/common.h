@@ -1,7 +1,9 @@
 #ifndef __TDEF_COMMON_H__
 #define __TDEF_COMMON_H__
 
+#include "../utils.h"
 #include <cstdint>
+#include <sstream>
 
 #ifndef TEST_LENGTH
 #define TEST_LENGTH 1024

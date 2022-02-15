@@ -1,3 +1,4 @@
+#include "tdef/lsmask.h"
 #include "tdef/opi_vv.h"
 #include "tdef/opi_vvv.h"
 #include "tdef/opi_vxv.h"

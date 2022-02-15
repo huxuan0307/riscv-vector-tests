@@ -22,6 +22,25 @@ void test_opi_vvm(
   init_vector(vs1, n);
   init_vector(vs2, n);
 
+  for(size_t i=0; i<n; i++) {
+    const char* int_flag = nullptr;
+    if constexpr(sizeof(TypeRet) == 1) {
+      int_flag = "%hhx";
+    } else if constexpr(sizeof(TypeRet) == 2) {
+      int_flag = "%hx";
+    } else if constexpr(sizeof(TypeRet) == 4) {
+      int_flag = "%lx";
+    } else {
+      int_flag = "%llx";
+    }
+    std::ostringstream oss;
+    oss << "vs1[%zu]=" << int_flag << ", vs2[%zu]=" << int_flag << "\n";
+    std::string format = oss.str();
+    debug(origin, format.data(), 
+      i, vs1[i], i, vs2[i]
+    );
+  }
+
   end = get_time();
   debug(performance, "init_vector time: %f\n", elapsed_time(start, end));
 
@@ -69,7 +88,7 @@ void test_opi_vvm_m(
   init_vector(vd_ref, n, static_cast<uint8_t>(0));
 
   for(size_t i=0; i<n; i++) {
-    debug(origin, "vd[%4lu]=%d, vs1[%4lu]=%llx, vs2[%4lu]=%llx, vmask[%4lu]=%d\n", 
+    debug(origin, "vd[%4lu]=%llx, vs1[%4lu]=%llx, vs2[%4lu]=%llx, vmask[%4lu]=%d\n", 
       i, get_bit(vd, i), i, vs1[i], i, vs2[i], i, get_bit(vmask, i)
     );
   }
