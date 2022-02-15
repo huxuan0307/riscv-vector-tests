@@ -8,6 +8,7 @@
 #include <cstdio>
 #include <time.h>
 #include <sys/time.h>
+#include <float.h>
 
 bool inline get_bit(const uint8_t* bits, const size_t i) {
   return (bits[i/8] >> (i%8)) & 0x1;
@@ -22,6 +23,32 @@ void copy_vector(Type* dst, Type* src, uint64_t n)
   }
 }
 
+/**
+ * @brief 
+ * 
+ * @param a 
+ * @param b 
+ * @param maxRelDiff : max relative difference
+ * @return true : nearly equal
+ * @return false : not equal
+ * @ref https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
+ */
+inline bool near_eq(float a, float b, float maxRelDiff = FLT_EPSILON * 4) {
+  float diff = std::fabs(a - b);
+  a = std::fabs(a);
+  b = std::fabs(b);
+  float largest = std::max(a, b);
+  return diff <= (largest * maxRelDiff);
+}
+
+inline bool near_eq(double a, double b, double maxRelDiff = DBL_EPSILON * 4) {
+  double diff = std::fabs(a - b);
+  a = std::fabs(a);
+  b = std::fabs(b);
+  double largest = std::max(a, b);
+  return diff <= (largest * maxRelDiff);
+}
+
 template<typename Type>
 void test_result(Type* y, Type* y_ref, uint64_t n)
 {
@@ -30,9 +57,12 @@ void test_result(Type* y, Type* y_ref, uint64_t n)
   /* Compute with the result to keep the compiler for marking the code as dead */
   if constexpr (std::is_floating_point<Type>::value) {
     for (i=0; i<n; i++) {
-      double error = y[i] - y_ref[i];
-      if (fabs(error) > 0.0000001)  {
-        printf("y_vec[%4lu]=%.16f != y_ref[%4lu]=%.16f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+      if (!near_eq(y[i], y_ref[i]))  {
+        if constexpr (std::is_same_v<float, std::remove_cv_t<Type>>) {
+          printf("y_vec[%4lu]=%.8f != y_ref[%4lu]=%.8f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        } else if constexpr (std::is_same_v<double, std::remove_cv_t<Type>>) {
+          printf("y_vec[%4lu]=%.16f != y_ref[%4lu]=%.16f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
         nerrs++;
         if (nerrs == 100) break;
       }
@@ -74,9 +104,12 @@ void test_result_with_mask(Type* y, Type* y_ref, const uint8_t* mask, uint64_t n
   /* Compute with the result to keep the compiler for marking the code as dead */
   if (std::is_floating_point<Type>::value) {
     for (i=0; i<n; i++) {
-      double error = y[i] - y_ref[i];
-      if (get_bit(mask, i) && fabs(error) > 0.0000001 )  {
-        printf("y_vec[%ld]=%.16f != y_ref[%ld]=%.16f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+      if (get_bit(mask, i) && !near_eq(y[i], y_ref[i]))  {
+        if constexpr (std::is_same_v<float, std::remove_cv_t<Type>>) {
+          printf("y_vec[%4lu]=%.8f != y_ref[%4lu]=%.8f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        } else if constexpr (std::is_same_v<double, std::remove_cv_t<Type>>) {
+          printf("y_vec[%4lu]=%.16f != y_ref[%4lu]=%.16f  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
         nerrs++;
         if (nerrs == 100) break;
       }
