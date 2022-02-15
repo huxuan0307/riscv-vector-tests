@@ -24,11 +24,11 @@ void test_opi_vvm(
 
   for(size_t i=0; i<n; i++) {
     const char* int_flag = nullptr;
-    if constexpr(sizeof(TypeRet) == 1) {
+    if constexpr(sizeof(TypeSrc2) == 1) {
       int_flag = "%hhx";
-    } else if constexpr(sizeof(TypeRet) == 2) {
+    } else if constexpr(sizeof(TypeSrc2) == 2) {
       int_flag = "%hx";
-    } else if constexpr(sizeof(TypeRet) == 4) {
+    } else if constexpr(sizeof(TypeSrc2) == 4) {
       int_flag = "%lx";
     } else {
       int_flag = "%llx";
