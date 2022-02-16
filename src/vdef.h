@@ -4,6 +4,7 @@
 #include "vdef/opi_vvm.h"
 #include "vdef/opi_vxm.h"
 #include "vdef/opi_vvw.h"
+#include "vdef/opi_vww.h"
 #include "vdef/opi_vvvv.h"
 #include "vdef/opi_vxvv.h"
 #include "vdef/opi_vvmv.h"

@@ -5,6 +5,7 @@
 #include "tdef/opi_vvm.h"
 #include "tdef/opi_vxm.h"
 #include "tdef/opi_vvw.h"
+#include "tdef/opi_vww.h"
 #include "tdef/opi_vvvv.h"
 #include "tdef/opi_vxvv.h"
 #include "tdef/opi_vvmv.h"
