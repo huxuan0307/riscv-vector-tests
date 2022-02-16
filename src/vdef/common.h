@@ -1,12 +1,9 @@
 #ifndef __VDEF_COMMON_H__
 #define __VDEF_COMMON_H__
 
+#include "../config.h"
 #include <stdint.h>
 #include <riscv_vector.h>
-
-#ifndef VLEN
-#define VLEN 256
-#endif
 
 #define CONCAT(A, B) A ## B
 #define DEREF(x)     x

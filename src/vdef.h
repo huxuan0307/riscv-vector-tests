@@ -15,3 +15,4 @@
 #include "vdef/opf_vvv.h"
 #include "vdef/opf_vfv.h"
 #include "vdef/opf_vvvv.h"
+#include "vdef/opi_vx.h"
