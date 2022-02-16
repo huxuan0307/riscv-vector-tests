@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VXM_H__
+#define __TDEF_OPI_VXM_H__
+
 #include "common.h"
 
 template<typename TypeSrc2, typename TypeSrc1>
@@ -168,3 +171,5 @@ TEST_OPI_VXM_UU_M_GROUP(vmsleu) \
 TEST_OPI_VXM_II_M_GROUP(vmsle) \
 TEST_OPI_VXM_UU_M_GROUP(vmsgtu) \
 TEST_OPI_VXM_II_M_GROUP(vmsgt) \
+
+#endif

@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VVM_H__
+#define __TDEF_OPI_VVM_H__
+
 #include "common.h"
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
@@ -174,3 +177,5 @@ TEST_OPI_VVM_UU_M_GROUP(vmsltu) \
 TEST_OPI_VVM_II_M_GROUP(vmslt) \
 TEST_OPI_VVM_UU_M_GROUP(vmsleu) \
 TEST_OPI_VVM_II_M_GROUP(vmsle) \
+
+#endif

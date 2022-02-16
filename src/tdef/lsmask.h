@@ -1,3 +1,6 @@
+#ifndef __TDEF_LSMASK_H__
+#define __TDEF_LSMASK_H__
+
 #include "common.h"
 #include <riscv_vector.h>
 
@@ -38,3 +41,5 @@ test_lsmask(TEST_LENGTH)
 
 #define TEST_LSMASK_ALL() \
 TEST_LSMASK()
+
+#endif

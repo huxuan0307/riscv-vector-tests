@@ -1,3 +1,6 @@
+#ifndef __SDEF_OPI_VVMM_H__
+#define __SDEF_OPI_VVMM_H__
+
 #include "common.h"
 
 #define VOPI_VVMM_REF_DEF(op, code) \
@@ -10,3 +13,5 @@ void op ## _vvm_ref( \
 
 VOPI_VVMM_REF_DEF(vmadc,        FORLOOP(i, ASSIGN_BIT(vd, i, carry_out(vs2[i], vs1[i], VMASK(i)))))
 VOPI_VVMM_REF_DEF(vmsbc,        FORLOOP(i, ASSIGN_BIT(vd, i, borrow_out(vs2[i], vs1[i], VMASK(i)))))
+
+#endif

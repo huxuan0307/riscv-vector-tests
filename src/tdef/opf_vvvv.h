@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPF_VVVV_H__
+#define __TDEF_OPF_VVVV_H__
+
 #include "common.h"
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
@@ -186,3 +189,5 @@ TEST_OPF_VVVV_M_GROUP(vfmadd) \
 TEST_OPF_VVVV_M_GROUP(vfnmadd) \
 TEST_OPF_VVVV_M_GROUP(vfmsub) \
 TEST_OPF_VVVV_M_GROUP(vfnmsub) \
+
+#endif

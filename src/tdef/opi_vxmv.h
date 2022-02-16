@@ -1,4 +1,8 @@
+#ifndef __TDEF_OPI_VXMV_H__
+#define __TDEF_OPI_VXMV_H__
+
 #include "common.h"
+#include "opi_vxv.h"
 
 #define test_opi_vxmv test_opi_vxv_m
 
@@ -28,3 +32,5 @@ test_opi_vxmv<type, type, type>(op ## _vxm_ref<type, type, type>, op ## _vxm_## 
 TEST_OPI_VXMV_GROUP(vmerge) \
 TEST_OPI_VXMV_GROUP(vadc) \
 TEST_OPI_VXMV_GROUP(vsbc) \
+
+#endif

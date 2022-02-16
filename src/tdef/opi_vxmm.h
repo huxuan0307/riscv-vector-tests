@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VXMM_H__
+#define __TDEF_OPI_VXMM_H__
+
 #include "common.h"
 
 template<typename TypeSrc2, typename TypeSrc1>
@@ -77,3 +80,5 @@ test_opi_vxmm<type, type>(op ## _vxm_ref<type, type>, op ## _vxm_## type ## lmul
 #define TEST_OPI_VXMM_ALL() \
 TEST_OPI_VXMM_GROUP(vmadc) \
 TEST_OPI_VXMM_GROUP(vmsbc) \
+
+#endif

@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <cstddef>
+#include <cmath>
 #include <algorithm>
 #include <type_traits>
 

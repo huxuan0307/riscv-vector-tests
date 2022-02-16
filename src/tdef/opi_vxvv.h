@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VXVV_H__
+#define __TDEF_OPI_VXVV_H__
+
 #include "common.h"
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
@@ -163,3 +166,5 @@ TEST_OPI_VXVV_M_GROUP(vmacc) \
 TEST_OPI_VXVV_M_GROUP(vnmsac) \
 TEST_OPI_VXVV_M_GROUP(vmadd) \
 TEST_OPI_VXVV_M_GROUP(vnmsub) \
+
+#endif

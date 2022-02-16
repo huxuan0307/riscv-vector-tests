@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VXWW_H__
+#define __TDEF_OPI_VXWW_H__
+
 #include "common.h"
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
@@ -217,3 +220,5 @@ TEST_OPI_VXWW_III_M_GROUP(vwmacc) \
 TEST_OPI_VXWW_UUU_M_GROUP(vwmaccu) \
 TEST_OPI_VXWW_IUI_M_GROUP(vwmaccus) \
 TEST_OPI_VXWW_UII_M_GROUP(vwmaccsu) \
+
+#endif

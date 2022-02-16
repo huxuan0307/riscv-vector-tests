@@ -1,3 +1,6 @@
+#ifndef __SDEF_OPI_VXM_H__
+#define __SDEF_OPI_VXM_H__
+
 #include "common.h"
 
 #define VOPI_VXM_REF_DEF(op, code) \
@@ -36,3 +39,4 @@ VOPI_VXM_M_REF_DEF(vmsleu,      FORLOOPIF(i, VMASK(i), ASSIGN_BIT(vd, i, vs2[i] 
 VOPI_VXM_M_REF_DEF(vmsgtu,      FORLOOPIF(i, VMASK(i), ASSIGN_BIT(vd, i, vs2[i] >  rs1[0])))
 VOPI_VXM_M_REF_DEF(vmsgt,       FORLOOPIF(i, VMASK(i), ASSIGN_BIT(vd, i, vs2[i] >  rs1[0])))
 
+#endif

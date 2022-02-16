@@ -1,3 +1,6 @@
+#ifndef __SDEF_OPI_VVWW_H__
+#define __SDEF_OPI_VVWW_H__
+
 #include "common.h"
 
 #define VOPI_VVWW_REF_DEF(op, code) \
@@ -23,3 +26,5 @@ VOPI_VVWW_REF_DEF(vwmaccsu, FORLOOP(i, vd[i] = +(static_cast<TypeRet>(vs1[i]) * 
 VOPI_VVWW_M_REF_DEF(vwmacc,   FORLOOPIF(i, VMASK(i), vd[i] = +(static_cast<TypeRet>(vs1[i]) * static_cast<TypeRet>(vs2[i])) + vd[i]))
 VOPI_VVWW_M_REF_DEF(vwmaccu,  FORLOOPIF(i, VMASK(i), vd[i] = +(static_cast<TypeRet>(vs1[i]) * static_cast<TypeRet>(vs2[i])) + vd[i]))
 VOPI_VVWW_M_REF_DEF(vwmaccsu, FORLOOPIF(i, VMASK(i), vd[i] = +(static_cast<TypeRet>(vs1[i]) * static_cast<std::make_unsigned_t<TypeRet>>(vs2[i])) + vd[i]))
+
+#endif

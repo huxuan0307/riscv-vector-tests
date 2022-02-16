@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VV_H__
+#define __TDEF_OPI_VV_H__
+
 #include "common.h"
 
 template<typename TypeRet, typename TypeSrc1>
@@ -174,3 +177,5 @@ TEST_OPI_VV_UINT_GROUP_M8(op)  \
 
 #define TEST_OPI_VV_ALL() \
 TEST_OPI_VV_GROUP(vmv) \
+
+#endif

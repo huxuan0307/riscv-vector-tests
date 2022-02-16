@@ -1,3 +1,6 @@
+#ifndef __VDEF_OPF_VVV_H__
+#define __VDEF_OPF_VVV_H__
+
 #include "common.h"
 
 #define VOPF_VVV_DEF(op, type, lmul) \
@@ -96,3 +99,5 @@ VOPF_VVV_M_DEF_GROUP(VFMIN)
 VOPF_VVV_M_DEF_GROUP(VFSGNJ)
 VOPF_VVV_M_DEF_GROUP(VFSGNJN)
 VOPF_VVV_M_DEF_GROUP(VFSGNJX)
+
+#endif

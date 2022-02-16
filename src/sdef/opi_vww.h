@@ -1,3 +1,6 @@
+#ifndef __SDEF_OPI_VWW_H__
+#define __SDEF_OPI_VWW_H__
+
 #include "common.h"
 
 #define VOPI_VWW_REF_DEF(op, code) \
@@ -23,3 +26,5 @@ VOPI_VWW_M_REF_DEF(vwadd,       FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeR
 VOPI_VWW_M_REF_DEF(vwsub,       FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) - static_cast<TypeRet>(vs1[i])))
 VOPI_VWW_M_REF_DEF(vwaddu,      FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) + static_cast<TypeRet>(vs1[i])))
 VOPI_VWW_M_REF_DEF(vwsubu,      FORLOOPIF(i, VMASK(i), vd[i] = static_cast<TypeRet>(vs2[i]) - static_cast<TypeRet>(vs1[i])))
+
+#endif

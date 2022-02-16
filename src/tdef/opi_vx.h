@@ -1,3 +1,6 @@
+#ifndef __TDEF_OPI_VX_H__
+#define __TDEF_OPI_VX_H__
+
 #include "common.h"
 
 template<typename Type>
@@ -199,3 +202,5 @@ TEST_OPI_VX_UINT_GROUP_M8(test, op)  \
 
 #define TEST_OPI_VX_ALL() \
 TEST_OPI_VX_GROUP(TEST_VMV_X_S, vmv) \
+
+#endif

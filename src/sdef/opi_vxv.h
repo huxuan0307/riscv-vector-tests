@@ -1,3 +1,6 @@
+#ifndef __SDEF_OPI_VXV_H__
+#define __SDEF_OPI_VXV_H__
+
 #include "common.h"
 
 #define VOPI_VXV_REF_DEF(op, code) \
@@ -43,3 +46,5 @@ VOPI_VXV_M_REF_DEF(vrgather,    FORLOOPIF(i, VMASK(i), vd[i] = vs2[rs1[0]]))
 VOPI_VXV_M_REF_DEF(vsll,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]<<(rs1[0] & (sizeof(vs2[i])*8-1))))
 VOPI_VXV_M_REF_DEF(vsrl,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(rs1[0] & (sizeof(vs2[i])*8-1))))
 VOPI_VXV_M_REF_DEF(vsra,        FORLOOPIF(i, VMASK(i), vd[i] = vs2[i]>>(rs1[0] & (sizeof(vs2[i])*8-1))))
+
+#endif

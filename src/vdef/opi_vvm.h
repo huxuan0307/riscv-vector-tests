@@ -1,3 +1,6 @@
+#ifndef __VDEF_OPI_VVM_H__
+#define __VDEF_OPI_VVM_H__
+
 #include "common.h"
 
 #define VOPI_VVM_DEF(op, type2, lmul2, type1, lmul1) \
@@ -182,3 +185,5 @@ VOPI_VVM_UU_M_DEF_GROUP(VMSLTU)
 VOPI_VVM_II_M_DEF_GROUP(VMSLT)
 VOPI_VVM_UU_M_DEF_GROUP(VMSLEU)
 VOPI_VVM_II_M_DEF_GROUP(VMSLE)
+
+#endif

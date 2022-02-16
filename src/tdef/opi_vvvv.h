@@ -1,4 +1,8 @@
+#ifndef __TDEF_OPI_VVVV_H__
+#define __TDEF_OPI_VVVV_H__
+
 #include "common.h"
+#include "opi_vvv.h"
 
 #define test_opi_vvvv test_opi_vvv
 #define test_opi_vvvv_m test_opi_vvv_m
@@ -76,3 +80,5 @@ TEST_OPI_VVVV_M_GROUP(vmacc) \
 TEST_OPI_VVVV_M_GROUP(vnmsac) \
 TEST_OPI_VVVV_M_GROUP(vmadd) \
 TEST_OPI_VVVV_M_GROUP(vnmsub) \
+
+#endif

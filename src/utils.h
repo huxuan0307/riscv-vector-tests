@@ -1,5 +1,5 @@
-#ifndef _MY_TESTS_UTILS_
-#define _MY_TESTS_UTILS_
+#ifndef __UTILS__
+#define __UTILS__
 
 #include <type_traits>
 #include <cstdint>

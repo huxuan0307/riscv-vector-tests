@@ -1,4 +1,8 @@
+#ifndef __TDEF_OPI_VVW_H__
+#define __TDEF_OPI_VVW_H__
+
 #include "common.h"
+#include "opi_vvv.h"
 
 #define test_opi_vvw test_opi_vvv
 #define test_opi_vvw_m test_opi_vvv_m
@@ -103,3 +107,5 @@ TEST_OPI_VVW_UUU_M_GROUP(vwsubu) \
 TEST_OPI_VVW_III_M_GROUP(vwmul) \
 TEST_OPI_VVW_UUU_M_GROUP(vwmulu) \
 TEST_OPI_VVW_IUI_M_GROUP(vwmulsu) \
+
+#endif

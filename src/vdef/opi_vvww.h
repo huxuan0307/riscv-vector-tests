@@ -1,3 +1,6 @@
+#ifndef __VDEF_OPI_VVWW_H__
+#define __VDEF_OPI_VVWW_H__
+
 #include "common.h"
 
 #define VOPI_VVWW_DEF(op, type2, type1, lmul_arg, type_ret, lmul_ret) \
@@ -137,3 +140,5 @@ VOPI_VVWW_UII_DEF_GROUP(VWMACCSU)
 VOPI_VVWW_III_M_DEF_GROUP(VWMACC)
 VOPI_VVWW_UUU_M_DEF_GROUP(VWMACCU)
 VOPI_VVWW_UII_M_DEF_GROUP(VWMACCSU)
+
+#endif

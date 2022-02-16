@@ -1,4 +1,8 @@
+#ifndef __TDEF_OPF_VVV_H__
+#define __TDEF_OPF_VVV_H__
+
 #include "common.h"
+#include "opi_vvv.h"
 
 #define test_opf_vvv test_opi_vvv
 #define test_opf_vvv_m test_opi_vvv_m
@@ -89,3 +93,5 @@ TEST_OPF_VVV_M_GROUP(vfmin) \
 TEST_OPF_VVV_M_GROUP(vfsgnj) \
 TEST_OPF_VVV_M_GROUP(vfsgnjn) \
 TEST_OPF_VVV_M_GROUP(vfsgnjx) \
+
+#endif

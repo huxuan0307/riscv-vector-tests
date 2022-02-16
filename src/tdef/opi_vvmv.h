@@ -1,4 +1,8 @@
+#ifndef __TDEF_OPI_VVMV_H__
+#define __TDEF_OPI_VVMV_H__
+
 #include "common.h"
+#include "opi_vvv.h"
 
 #define test_opi_vvmv test_opi_vvv_m
 
@@ -36,3 +40,5 @@ test_opi_vvmv<type_ret, type2, type1>(op ## _vvm_ref<type_ret, type2, type1>, op
 TEST_OPI_VVMV_GROUP(vmerge) \
 TEST_OPI_VVMV_GROUP(vadc) \
 TEST_OPI_VVMV_GROUP(vsbc) \
+
+#endif

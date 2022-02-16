@@ -1,3 +1,6 @@
+#ifndef __VDEF_OPI_VX_H__
+#define __VDEF_OPI_VX_H__
+
 #include "common.h"
 
 #define VMV_X_S_DEF(type, lmul) \
@@ -71,3 +74,5 @@ VOPI_X_V_INT_DEF_GROUP_IMPL   (VMV_X_S_DEF) \
 VOPI_X_V_UINT_DEF_GROUP_IMPL  (VMV_X_S_DEF)
 
 VMV_X_S_DEF_GROUP()
+
+#endif

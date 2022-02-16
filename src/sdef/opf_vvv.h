@@ -1,4 +1,8 @@
+#ifndef __SDEF_OPF_VVV_H__
+#define __SDEF_OPF_VVV_H__
+
 #include "common.h"
+#include "opi_vvv.h"
 
 #define VOPF_VVV_REF_DEF(op, code)    VOPI_VVV_REF_DEF(op, code)
 #define VOPF_VVV_M_REF_DEF(op, code)  VOPI_VVV_M_REF_DEF(op, code)
@@ -22,3 +26,5 @@ VOPF_VVV_M_REF_DEF(vfmin,       FORLOOPIF(i, VMASK(i), vd[i] = std::min(vs2[i],v
 VOPF_VVV_M_REF_DEF(vfsgnj,      FORLOOPIF(i, VMASK(i), vd[i] = vs1[i]>0 ? fabs(vs2[i]) : -fabs(vs2[i])))
 VOPF_VVV_M_REF_DEF(vfsgnjn,     FORLOOPIF(i, VMASK(i), vd[i] = vs1[i]<0 ? fabs(vs2[i]) : -fabs(vs2[i])))
 VOPF_VVV_M_REF_DEF(vfsgnjx,     FORLOOPIF(i, VMASK(i), vd[i] = vs1[i]>0 ? vs2[i] : -vs2[i]))
+
+#endif

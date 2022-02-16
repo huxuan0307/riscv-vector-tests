@@ -13,6 +13,12 @@ $(info ${debugFlags})
 
 TEST_LENGTH ?= 1024
 
+TESTS_SOURCES := $(wildcard src/tests/*.cpp)
+TESTS_EXECUTABLE := $(addprefix exe/, $(notdir $(TESTS_SOURCES:.cpp=)))
+TESTS_EXECUTABLE_O2 := $(addprefix exeO2/, $(notdir $(TESTS_SOURCES:.cpp=)))
+TESTS_DUMP := $(addprefix objdump/, $(notdir $(TESTS_SOURCES:.cpp=)))
+TESTS_DUMP_O2 := $(addprefix objdumpO2/, $(notdir $(TESTS_SOURCES:.cpp=)))
+
 EXE_NAME ?= riscv-vector-tests
 
 USER_DEFINES =
@@ -59,6 +65,30 @@ start:
 	else \
 		echo bin dir exist; \
 	fi
+
+libutils.o : src/utils.cpp
+	${CXX} -c ${USER_DEFINES} ${CXX_FLAGS} -o bin/$(notdir $@) $<
+
+exe/% : src/tests/%.cpp libutils.o
+	${CXX} -c ${USER_DEFINES} ${CXX_FLAGS} -o bin/$(notdir $@).o $<
+	${CXX} ${CXX_FLAGS} -o bin/$(notdir $@) bin/$(notdir $@).o bin/libutils.o -lm
+
+exeO2/% : CXX_FLAGS += -O2
+exeO2/% : src/tests/%.cpp libutils.o
+	${CXX} -c ${USER_DEFINES} ${CXX_FLAGS} -o bin/$(notdir $@)_O2.o $< 
+	${CXX} ${CXX_FLAGS} -o bin/$(notdir $@)_O2 bin/$(notdir $@)_O2.o bin/libutils.o -lm
+
+dump/% : exe/%
+	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/$(notdir $<).o > bin/$(notdir $@).dump
+
+dumpO2/% : exeO2/%
+	${OBJDUMP} ${OBJDUMP_OPTION} -d bin/$(notdir $<)_O2.o > bin/$(notdir $@)_O2.dump
+
+# Just for bash auto complete
+${TESTS_EXECUTABLE_O2} : 
+${TESTS_EXECUTABLE} :
+$(TESTS_DUMP_O2) :
+$(TESTS_DUMP) :
 
 all:
 	@echo ${CXX}
