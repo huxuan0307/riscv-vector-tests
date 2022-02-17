@@ -13,7 +13,7 @@ void op##_wv_ ## type_ret ## lmul_ret ## _vec(type_ret*d, type2*s2, type1*s1, u6
     vl = VSETVL(type1, lmul_arg, n - i); \
     VTYPE(type1, lmul_arg) vs1 = VLE(type1, lmul_arg, &s1[i], vl); \
     VTYPE(type2, lmul_ret) vs2 = VLE(type2, lmul_ret, &s2[i], vl); \
-    VTYPE(type_ret, lmul_ret) vd = op ## _wv(vs2, vs1, vl); \
+    vd = op ## _wv(vs2, vs1, vl); \
     /*__asm__(#op ".wv %0, %1, %2;" : "=&vr"(vd) : "vr"(vs2), "vr"(vs1));*/ \
     VSE(type_ret, lmul_ret, &d[i], vd, vl); \
     i += vl; \

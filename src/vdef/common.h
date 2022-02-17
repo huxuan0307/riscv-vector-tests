@@ -2,6 +2,7 @@
 #define __VDEF_COMMON_H__
 
 #include "../config.h"
+#include "../utils.h"
 #include <stdint.h>
 #include <riscv_vector.h>
 

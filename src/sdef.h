@@ -15,5 +15,7 @@
 #include "sdef/opi_vxww.h"
 #include "sdef/opf_vvv.h"
 #include "sdef/opf_vfv.h"
+#include "sdef/opf_vvw.h"
+#include "sdef/opf_vww.h"
 #include "sdef/opf_vvvv.h"
 #include "sdef/opi_vx.h"
