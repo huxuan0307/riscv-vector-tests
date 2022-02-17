@@ -25,7 +25,6 @@ void op##_vv_ ## type_ret ## lmul_ret ## _m_vec( \
 { \
   size_t i; \
   size_t vl = VSETVL(type1, lmul_arg, n); \
-  VTYPE(type_ret, lmul_ret) vd; \
   for (i = 0; i < n;) { \
     VTYPE(type_ret, lmul_ret) vd = VLE(type_ret, lmul_ret, &d[i], vl); \
     vl = VSETVL(type1, lmul_arg, n - i); \

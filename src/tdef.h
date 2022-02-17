@@ -19,4 +19,5 @@
 #include "tdef/opf_vvw.h"
 #include "tdef/opf_vww.h"
 #include "tdef/opf_vvvv.h"
+#include "tdef/opf_vvww.h"
 #include "tdef/opi_vx.h"
