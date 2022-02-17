@@ -186,4 +186,10 @@ debug_##flag(__VA_ARGS__)
 #define debug_origin(...)
 #endif
 
+#ifdef show_vl
+#define debug_vl(...) printf(__VA_ARGS__)
+#else
+#define debug_vl(...)
+#endif
+
 #endif

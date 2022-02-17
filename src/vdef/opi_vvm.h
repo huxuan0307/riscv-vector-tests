@@ -11,6 +11,7 @@ u8*d, type2*s2, type1*s1, u64 n) \
   VTYPEB(VBOOL_BITS(type2, lmul2)) vd; \
   for (i = 0; i < n;) { \
     size_t vl = VSETVL(type2, lmul2, n - i); \
+    debug(vl, "vl[%zu]=%zu\n", i, vl); \
     auto vs1 = VLE(type1, lmul1, &s1[i], vl); \
     auto vs2 = VLE(type2, lmul2, &s2[i], vl); \
     __asm__(#op ".vv %0, %1, %2;" : "=vr"(vd) : "vr"(vs2), "vr"(vs1)); \
