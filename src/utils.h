@@ -102,7 +102,7 @@ void test_result_with_mask(Type* y, Type* y_ref, const uint8_t* mask, uint64_t n
   uint64_t i;
   uint64_t nerrs=0;
   /* Compute with the result to keep the compiler for marking the code as dead */
-  if (std::is_floating_point<Type>::value) {
+  if constexpr (std::is_floating_point<Type>::value) {
     for (i=0; i<n; i++) {
       if (get_bit(mask, i) && !near_eq(y[i], y_ref[i]))  {
         if constexpr (std::is_same_v<float, std::remove_cv_t<Type>>) {
@@ -121,7 +121,7 @@ void test_result_with_mask(Type* y, Type* y_ref, const uint8_t* mask, uint64_t n
   else {
     for (i=0; i<n; i++) {
       if (get_bit(mask, i) && y[i] != y_ref[i]) {
-        printf("y_vec[%4d]=%llx != y_ref[%4d]=%llx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        printf("y_vec[%4lu]=%llx != y_ref[%4d]=%llx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
         nerrs++;
         if (nerrs == 100) break;
       }

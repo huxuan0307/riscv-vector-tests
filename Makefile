@@ -16,8 +16,8 @@ TEST_LENGTH ?= 1024
 TESTS_SOURCES := $(wildcard src/tests/*.cpp)
 TESTS_EXECUTABLE := $(addprefix exe/, $(notdir $(TESTS_SOURCES:.cpp=)))
 TESTS_EXECUTABLE_O2 := $(addprefix exeO2/, $(notdir $(TESTS_SOURCES:.cpp=)))
-TESTS_DUMP := $(addprefix objdump/, $(notdir $(TESTS_SOURCES:.cpp=)))
-TESTS_DUMP_O2 := $(addprefix objdumpO2/, $(notdir $(TESTS_SOURCES:.cpp=)))
+TESTS_DUMP := $(addprefix dump/, $(notdir $(TESTS_SOURCES:.cpp=)))
+TESTS_DUMP_O2 := $(addprefix dumpO2/, $(notdir $(TESTS_SOURCES:.cpp=)))
 
 EXE_NAME ?= riscv-vector-tests
 

@@ -79,7 +79,7 @@ void test_opi_vvv_m(
   copy_vector(vd_ref, vd, n);
   init_mask_vector(vmask, n);
 
-  for(size_t i=0; i<100; i++) {
+  for(size_t i=0; i<n; i++) {
     debug(origin, "vd[%d]=%llx, vs1[%d]=%llx, vs2[%d]=%llx, vmask[%d]=%d\n", 
       i, vd[i], i, vs1[i], i, vs2[i], i, ((vmask[i/8] >> (i%8)) & 0x1)
     );
@@ -100,7 +100,7 @@ void test_opi_vvv_m(
   end = get_time();
   debug(performance, "vector time: %f\n", elapsed_time(start, end));
 
-  test_result(vd, vd_ref, n);
+  test_result_with_mask<TypeRet>(vd, vd_ref, vmask, n);
 
   free(vs1); free(vs2); free(vd); free(vd_ref);
 }

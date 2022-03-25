@@ -79,7 +79,7 @@ void test_opf_vvww_m(
   copy_vector(vd_ref, vd, n);
   init_mask_vector(vmask, n);
 
-  for(size_t i=0; i<100; i++) {
+  for(size_t i=0; i<n; i++) {
     debug(origin, "vd[%d]=%llx, vs1[%d]=%llx, vs2[%d]=%llx, vmask[%d]=%d\n", 
       i, vd[i], i, vs1[i], i, vs2[i], i, ((vmask[i/8] >> (i%8)) & 0x1)
     );
