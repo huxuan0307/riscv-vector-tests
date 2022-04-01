@@ -121,7 +121,15 @@ void test_result_with_mask(Type* y, Type* y_ref, const uint8_t* mask, uint64_t n
   else {
     for (i=0; i<n; i++) {
       if (get_bit(mask, i) && y[i] != y_ref[i]) {
-        printf("y_vec[%4lu]=%llx != y_ref[%4d]=%llx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        if constexpr (sizeof(uint8_t) == sizeof(Type)) {
+          printf("y_vec[%4lu]=%x != y_ref[%4lu]=%x  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        } else if constexpr (sizeof(uint16_t) == sizeof(Type)) {
+          printf("y_vec[%4lu]=%x != y_ref[%4lu]=%x  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        } else if constexpr (sizeof(uint32_t) == sizeof(Type)) {
+          printf("y_vec[%4lu]=%x != y_ref[%4lu]=%x  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        } else if constexpr (sizeof(uint64_t) == sizeof(Type)) {
+          printf("y_vec[%4lu]=%lx != y_ref[%4lu]=%lx  INCORRECT RESULT !!!! \n", i, y[i], i, y_ref[i]);
+        }
         nerrs++;
         if (nerrs == 100) break;
       }

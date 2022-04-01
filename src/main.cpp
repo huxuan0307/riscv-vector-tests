@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
   TEST_OPI_VXWW_M_ALL();
   TEST_OPF_VVV_ALL();
   TEST_OPF_VVV_M_ALL();
+  TEST_OPF_VVM_ALL();
+  TEST_OPF_VVM_M_ALL();
   TEST_OPF_VVW_ALL();
   TEST_OPF_VVW_M_ALL();
   TEST_OPF_VWW_ALL();

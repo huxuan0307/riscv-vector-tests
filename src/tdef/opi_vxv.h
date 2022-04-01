@@ -86,7 +86,7 @@ void test_opi_vxv_m(
   end = get_time();
   debug(performance, "vector time: %f\n", elapsed_time(start, end));
 
-  test_result(vd, vd_ref, n);
+  test_result_with_mask<TypeRet>(vd, vd_ref, vmask, n);
 
   free(rs1); free(vs2); free(vd); free(vd_ref);
 }

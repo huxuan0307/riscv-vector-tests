@@ -11,7 +11,7 @@ debug-flags ?=
 debugFlags := $(subst ${comma},${space}, ${debug-flags})
 $(info ${debugFlags})
 
-TEST_LENGTH ?= 1024
+TEST_LENGTH ?= 1001
 
 TESTS_SOURCES := $(wildcard src/tests/*.cpp)
 TESTS_EXECUTABLE := $(addprefix exe/, $(notdir $(TESTS_SOURCES:.cpp=)))
