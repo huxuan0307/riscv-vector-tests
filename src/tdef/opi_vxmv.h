@@ -2,7 +2,6 @@
 #define __TDEF_OPI_VXMV_H__
 
 #include "common.h"
-#include "opi_vxv.h"
 
 template<typename TypeRet, typename TypeSrc2, typename TypeSrc1>
 void test_opi_vxmv(

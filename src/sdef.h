@@ -20,5 +20,6 @@
 #include "sdef/opf_vvw.h"
 #include "sdef/opf_vww.h"
 #include "sdef/opf_vvvv.h"
+#include "sdef/opf_vfmv.h"
 #include "sdef/opf_vvww.h"
 #include "sdef/opi_vx.h"
