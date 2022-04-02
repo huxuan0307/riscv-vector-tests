@@ -7,7 +7,7 @@
 void op##_vx_ ## type2 ## lmul2 ## _vec( \
 u8*d, type2*s2, type1*s1, u64 n) \
 { \
-  size_t i=0; \
+  size_t i = 0; \
   VTYPEB(VBOOL_BITS(type2, lmul2)) vd; \
   for (i = 0; i < n;) { \
     size_t vl = VSETVL(type2, lmul2, n - i); \

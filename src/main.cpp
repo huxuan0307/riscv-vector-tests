@@ -45,6 +45,8 @@ int main(int argc, char *argv[])
   TEST_OPF_VWW_M_ALL();
   TEST_OPF_VFV_ALL();
   TEST_OPF_VFV_M_ALL();
+  TEST_OPF_VFM_ALL();
+  TEST_OPF_VFM_M_ALL();
   TEST_OPF_VVVV_ALL();
   TEST_OPF_VVVV_M_ALL();
   TEST_OPF_VVWW_ALL();

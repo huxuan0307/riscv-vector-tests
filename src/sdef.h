@@ -16,6 +16,7 @@
 #include "sdef/opf_vvv.h"
 #include "sdef/opf_vfv.h"
 #include "sdef/opf_vvm.h"
+#include "sdef/opf_vfm.h"
 #include "sdef/opf_vvw.h"
 #include "sdef/opf_vww.h"
 #include "sdef/opf_vvvv.h"

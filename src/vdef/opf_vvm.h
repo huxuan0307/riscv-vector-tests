@@ -105,39 +105,4 @@ VOPF_VVM_M_DEF_GROUP(VMFLE)
 VOPF_VVM_M_DEF_GROUP(VMFLT)
 VOPF_VVM_M_DEF_GROUP(VMFNE)
 
-// VOPF_VVM_DEF(vmfeq, f32, m1)
-
-// void vmfeq_vv_f32m1_vec(u8 *d, f32 *s2, f32 *s1, u64 n)
-// {
-//   VTYPEB(VBOOL_BITS(f32, m1))
-//   vd;
-//   for (i = 0; i < n;)
-//   {
-//     size_t vl = VSETVL(f32, m1, n - i);
-//     debug(vl, "vl[%zu]=%zu\n", i, vl);
-//     auto vs1 = VLE(f32, m1, &s1[i], vl);
-//     auto vs2 = VLE(f32, m1, &s2[i], vl);
-//     __asm__("vmfeq"
-//             ".vv %0, %1, %2;"
-//             : "=vr"(vd)
-//             : "vr"(vs2), "vr"(vs1));
-//     auto offset = i % 8;
-//     if (OFFSET_PER_LOOP(f32, m1) >= 8)
-//     {
-//       vsm(&d[i / 8], vd, vl);
-//     }
-//     else
-//     {
-//       uint8_t new_res;
-//       __asm__("vmv.x.s %0, %1;"
-//               : "=r"(new_res)
-//               : "vr"(vd));
-//       new_res <<= offset;
-//       auto old_res = d[i / 8] & ~NEWMASK(f32, m1, offset);
-//       d[i / 8] = new_res | old_res;
-//     }
-//     i += vl;
-//   }
-// }
-
 #endif
